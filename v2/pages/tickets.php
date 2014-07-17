@@ -32,7 +32,7 @@
 						echo '<b>' . $ticket->getHumanName() . '</b>';
 					echo '</td>';
 					echo '<td>';
-						echo '<input type="button" value="Overfør biletten" onclick="searchUser()" />';
+						echo '<input type="button" value="Overfør biletten" onclick="searchUser(\'Overfør billetten!\')" />';
 					echo '</td>';
 					echo '<td>';
 						echo '<input type="button" value="Endre plassreserverer" /><br />';
