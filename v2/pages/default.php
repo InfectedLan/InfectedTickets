@@ -1,13 +1,13 @@
 <?php
-	class Page
+class Page
+{
+	public function render()
 	{
-		public function render()
-		{
-			echo 'Velkommen til infected tickets v2!<br />';
-		}
-		public function renderTutorial()
-		{
-			echo 'Hi mom';
-		}
+		echo 'Velkommen til infected tickets v2!<br />';
 	}
+	public function renderTutorial()
+	{
+		echo 'Hi mom';
+	}
+}
 ?>
