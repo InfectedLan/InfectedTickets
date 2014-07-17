@@ -94,7 +94,8 @@ class TicketPage extends Site {
 				echo '<h3>Velg bruker</h3>';
 				echo 'Start å skrive i tekstboksen, så kommer brukere opp<br />';
 				echo '<input id="userSearchInput" type="text" name="userText" /><br />';
-				echo '<div id="userSearchContent"></div>';
+				echo '<div id="userSearchContent"></div><br /><br />';
+				echo '<div id="userSelectedData"></div>';
 			echo '</div>';
 	    echo '</body>';
 	}
