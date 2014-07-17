@@ -1,10 +1,10 @@
 <?php
-require_once '/../../api/utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/UserHandler.php';
 require_once 'Site.php';
-require_once '/../../api/handlers/UserHandler.php';
 
 class TicketPage extends Site {
-		private function renderHead()
+	private function renderHead()
 	{
 		echo "<head>";
 			echo '<title>Tickets - Infected</title>';
@@ -16,11 +16,13 @@ class TicketPage extends Site {
 	        echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>';
 		echo "</head>";
 	}
+	
 	private function outputScripts()
 	{
 		echo '<script src="scripts/ticketScripts.php"> </script>';
 		echo '<script src="scripts/shared.php"> </script>';
 	}
+	
 	public function renderNavBar()
 	{
 		echo '<a href="#"><h1 style="border-left:0px; text-decoration:underline;">Kjøp billetter</h1></a>';
@@ -28,6 +30,7 @@ class TicketPage extends Site {
         echo '<a href="#"><h1>Plassreservering</h1></a>';
         echo '<a href="index.php?page=contact"><h1 style="border-right:0px">Kontakt</h1></a>';
 	}
+	
 	private function renderBody()
 	{
 		echo '<body>';
@@ -61,12 +64,10 @@ class TicketPage extends Site {
             	//Make sure it is not trying to access something outside the pages directory
             	if ( isset($_GET["page"]) && !empty($_GET["page"]) && ctype_alpha( $_GET["page"] ) )
 				{
-					if(file_exists("pages/" . $_GET["page"] . '.php'))
+					if(file_exists("pages/" . ucfirst($_GET["page"]) . '.php'))
 					{
-						$pageToInclude = "pages/" . $_GET["page"] . '.php';
-					}
-					else
-					{
+						$pageToInclude = "pages/" . ucfirst($_GET["page"]) . '.php';
+					} else {
 						$pageToInclude = "pages/404.php";
 					}
 				}
@@ -99,6 +100,7 @@ class TicketPage extends Site {
 			echo '</div>';
 	    echo '</body>';
 	}
+	
 	public function render()
 	{
 		echo "<html>";

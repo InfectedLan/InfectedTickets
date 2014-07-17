@@ -1,11 +1,10 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/Utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/TicketHandler.php';
 require_once 'Site.php';
-require_once '/../../api/utils.php';
-require_once '/../../api/handlers/TicketHandler.php';
 
 class SplashPage extends Site {
-	private function renderHead()
-	{
+	private function renderHead() {
 		echo "<head>";
 			echo "<title>Logg inn - Infected</title>";
 			echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
@@ -15,13 +14,13 @@ class SplashPage extends Site {
     		echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>";
 		echo "</head>";
 	}
-	private function outputScripts()
-	{
+	
+	private function outputScripts() {
 		echo '<script src="scripts/splash.php"> </script>';
 		echo '<script src="scripts/shared.php"> </script>';
 	}
-	private function renderBody()
-	{
+	
+	private function renderBody() {
 		echo '<body>';
 			//Scripts
 			$this->outputScripts();
@@ -184,12 +183,10 @@ class SplashPage extends Site {
 	                echo '</li>';
 	                
 	                echo '<li>';
-	                    echo 'Pris: ' . 
-		                    $event->getPrice() . 
-		                    'kr inkludert medlemskap.';
+	                    echo 'Pris: ' . $event->getPrice() . ',- inkludert medlemskap i Radar.';
 	                echo '</li>';
 	                echo '<li>';
-	                    echo 'Du har samme bruker på tickets og crew-siden.';
+	                    echo '<i>Du har samme bruker på tickets og crew-siden.</i>';
 	                echo '</li>';
 	            echo '</ul>';
 	        echo '</div>';
@@ -201,13 +198,12 @@ class SplashPage extends Site {
 			echo '</div>';
 	    echo '</body>';
 	}
-	public function render()
-	{
+	
+	public function render() {
 		echo "<html>";
 			$this->renderHead();
 			$this->renderBody();
 		echo "</html>";
 	}
 }
-
 ?>
