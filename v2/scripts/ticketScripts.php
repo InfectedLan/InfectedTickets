@@ -67,3 +67,14 @@ function closePrompt()
 		$('#userSearchInput').val("");
 	});
 }
+function handleJson(data)
+{
+	if(data.result == true)
+	{
+		location.reload();
+	}
+	else
+	{
+		error(data.message);
+	}
+}

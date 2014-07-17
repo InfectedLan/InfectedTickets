@@ -25,6 +25,7 @@
 		}
 		private function printTicket($ticket)
 		{
+			//The code
 			$seater = $ticket->getSeater();
 			echo '<table>';
 				echo '<tr>';
@@ -32,7 +33,7 @@
 						echo '<b>' . $ticket->getHumanName() . '</b>';
 					echo '</td>';
 					echo '<td>';
-						echo '<input type="button" value="Overfør biletten" onclick="searchUser(\'Overfør billetten!\')" />';
+						echo '<input type="button" value="Overfør biletten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'http://' . $_SERVER['HTTP_HOST'] . '/api/json/transferTicket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
 					echo '</td>';
 					echo '<td>';
 						echo '<input type="button" value="Endre plassreserverer" /><br />';
