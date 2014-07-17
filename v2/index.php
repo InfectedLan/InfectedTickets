@@ -20,5 +20,5 @@ else
 
 $timeToGenerate = microtime(true)-$scriptStart;
 
-echo "<!-- Page generated in " . ($timeToGenerate/1000000) . " seconds -->";
+echo "<!-- Page generated in " . ($timeToGenerate/1000) . " milliseconds -->";
 ?>
