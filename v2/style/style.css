@@ -1,0 +1,181 @@
+html, body{
+	height:100%;
+	font-family:arial;
+}
+
+body{
+	position:relative;
+	padding:0px;
+	margin:0px;
+	background:rgb(229, 229, 229);
+}
+
+#imgContainer{
+	position:fixed;
+	z-index:-2;
+	top:170px;
+	height:255px;
+	width:100%;
+	background:gray;
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+}
+
+	.bgControl{
+		background-image:url("../backgrounds/0.jpg");
+		background-position: center top;
+    	background-size: 100% auto;
+		-webkit-background-size: cover;
+		   -moz-background-size: cover;
+			 -o-background-size: cover;
+				background-size: cover;
+	}
+	#leftBgImg, #rightBgImg{
+		width:50%;
+		height:255px;
+		position:absolute;
+	}
+	#leftBgImg{
+		left:0px;
+		margin-right:900px;
+	}
+	
+	#rightBgImg{
+		right:0px;
+		margin-left:900px;
+	}
+
+
+#container{
+	width:900px;
+	min-height:100%;
+	margin:auto;
+	background:white;
+	border-left: 1px solid #333;
+	border-right: 1px solid #333;
+}
+
+.banner{
+	height:40px;
+	width:910px;
+	margin-left:-15px;
+	padding:0px 0px 2px 20px;
+	background:rgb(33, 168, 15);
+	position:relative;
+}
+
+	.banner:before, .banner:after {
+		content: "";
+		display: block;
+		width: 0;
+		height: 0; 	
+	}
+	
+	.banner:before {
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+		border-right: 15px solid rgb(0,102,0); 
+		position: absolute;
+		bottom: -20px;
+		left: -0px;
+		z-index:-1;
+		
+	}
+	
+	.banner:after { 
+		border-top: 20px solid transparent;
+		border-bottom: 20px solid transparent;
+		border-left: 15px solid rgb(0,102,0); 
+		position: absolute;
+		bottom: -20px;
+		right: -0px;
+		z-index:-1;
+}
+
+
+#header{
+	height:110px;
+}
+	#logo{
+	position:absolute;
+	margin:19px 0px 0px 17px;
+	height:70px;
+	}
+	
+	#colorChange{
+		float:right;
+		margin:5px 10px;
+		height: 20px;
+	}
+	
+		.cc{
+			height:16px;
+			width:16px;
+			border:1px solid rgb(147,147,147);
+			float:right;
+			margin-left: 4px;
+			cursor:pointer;
+		}
+		
+			#cGreen{
+				background-color:rgb(33, 168, 15);
+			}
+			
+			#cBlue{
+				background-color:rgb(19, 113,185);
+			}
+			
+			#cPink{
+				background-color:rgb(208, 20, 127);
+			}
+	
+	#whenLoggedIn{
+		float:right;
+		margin:25px 10px 0px;
+		clear:right;
+	}
+	
+	#whenLoggedIn span{
+		padding:0px;
+		margin:0px;
+		margin-right:1px;
+		float:right;
+		font-size: 11px;
+		
+	}
+	#whenLoggedIn input{
+		width:125px;
+		height:20px;
+		color:black;
+		float:right;
+		
+		cursor:pointer;
+		margin:5px 0px 0px 4px;
+		background:rgb(126, 209, 114);
+		border: 1px solid rgb(148,148,148);
+	}
+		#whenLoggedIn input:hover{
+			background:#0C3;
+		}
+		
+	#nav{
+		}
+	#nav h1{
+		float:left;
+		
+		font-size:0.9em;
+		color:white;
+		font-weight:200;
+		
+		padding:3px 10px;
+		border-left: 1px solid rgb(26, 134, 12);
+		border-right: 1px solid rgb(77, 185, 63);
+	}
+		#nav h1:hover{
+			text-decoration:underline;
+		
+		}
+#content{
+	height:250px;
+	padding:0px 10px;
+}

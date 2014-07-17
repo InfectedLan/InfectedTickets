@@ -1,0 +1,107 @@
+
+
+
+
+html, body{
+	height:100%;
+	font-family:arial;
+}
+
+body{
+	position:relative;
+	padding:0px;
+	margin:0px;
+	
+	background:rgb(229, 229, 229);
+	background-image:url(../images/1.jpg);
+	background-position: center top;
+    	background-size: 100% auto;
+		-webkit-background-size: cover;
+		   -moz-background-size: cover;
+			 -o-background-size: cover;
+				background-size: cover;
+}
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto; 
+    width:600px;
+	height:176px;
+	background-color:rgba(240,240,240,0.8);
+	border:1px solid #333;
+    border-radius: 10px;
+	position:relative;
+
+}
+
+#logo{
+	position:absolute;
+	height:80px;
+	top:-80px;
+	left:20px;
+	
+}
+
+#ul1, #ul2{
+	float:left;
+	list-style:none;
+	padding:0px;
+}
+
+#ul1{
+	width:30%;
+	margin-left:5%;
+	
+}
+
+#ul2{	
+	width:60%;
+	margin-left:5%;
+}
+#ul2 li{
+margin-bottom:10px;	
+}
+
+
+
+
+
+.input, .select {
+	width:175px;
+		margin:3px 0px;
+}
+
+.button{
+		height:20px;
+		width:100%;
+		color:black;
+		float:right;
+		padding:2px;
+		margin:3px 0px;
+		cursor:pointer;
+		background:rgb(126, 209, 114);
+		border: 1px solid rgb(148,148,148);
+	}
+		.button:hover{
+			background:#0C3;
+		}
+
+
+
+
+
+
+
+
+
