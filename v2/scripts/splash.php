@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	$('#loginForm').submit( function(e) {
 		e.preventDefault();
-	    $.post( 'http://<?php echo $_SERVER['HTTP_HOST']; ?>/api/json/Login.php', $('#loginForm').serialize(), function(data) {
+	    $.post( 'http://<?php echo $_SERVER['HTTP_HOST']; ?>/api/json/login.php', $('#loginForm').serialize(), function(data) {
 	    	console.log('Got data!');
 	        if(data.result==true)
 	        {
@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 	$('#registerForm').submit( function(e) {
 		e.preventDefault();
-	    $.post( 'http://<?php echo $_SERVER['HTTP_HOST']; ?>/api/json/Register.php', $('#registerForm').serialize(), function(data) {
+	    $.post( 'http://<?php echo $_SERVER['HTTP_HOST']; ?>/api/json/register.php', $('#registerForm').serialize(), function(data) {
 	    	console.log('Got data!');
 	        if(data.result==true)
 	        {

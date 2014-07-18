@@ -1,8 +1,6 @@
 <?php
-class Site
-{
-	public function render()
-	{
+class Site {
+	public function render() {
 		
 	}
 }

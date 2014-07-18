@@ -1,7 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/Utils.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/EventHandler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/TicketHandler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/eventhandler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/tickethandler.php';
 
 class Page
 {

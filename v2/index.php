@@ -1,18 +1,15 @@
 <?php
-require_once '../../api/Utils.php';
-require_once 'Site.php';
-require_once 'SplashPage.php';
-require_once 'TicketPage.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/utils.php';
+require_once 'site.php';
+require_once 'splashpage.php';
+require_once 'ticketpage.php';
 
 $scriptStart = microtime(true);
 
-if(Utils::isAuthenticated())
-{
+if (Utils::isAuthenticated()) {
 	$page = new TicketPage();
 	$page->render();
-}
-else
-{
+} else {
 	$page = new SplashPage();
 	$page->render();
 }
