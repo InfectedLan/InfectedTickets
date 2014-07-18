@@ -64,9 +64,9 @@ class TicketPage extends Site {
             	//Make sure it is not trying to access something outside the pages directory
             	if ( isset($_GET["page"]) && !empty($_GET["page"]) && ctype_alpha( $_GET["page"] ) )
 				{
-					if(file_exists("pages/" . ucfirst($_GET["page"]) . '.php'))
+					if(file_exists("pages/" . $_GET["page"] . '.php'))
 					{
-						$pageToInclude = "pages/" . ucfirst($_GET["page"]) . '.php';
+						$pageToInclude = "pages/" . $_GET["page"] . '.php';
 					} else {
 						$pageToInclude = "pages/404.php";
 					}
