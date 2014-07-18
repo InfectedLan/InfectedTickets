@@ -1,6 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/utils.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/handlers/tickethandler.php';
+require_once 'utils.php';
+require_once 'handlers/tickethandler.php';
+
 require_once 'site.php';
 
 class SplashPage extends Site {
