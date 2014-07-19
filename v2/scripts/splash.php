@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	$('#loginForm').submit( function(e) {
 		e.preventDefault();
-	    $.post( 'http://infectedlan.tk/api/json/login.php', $('#loginForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
+	    $.post( 'http://api.infectedlan.tk/json/login.php', $('#loginForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
 	    	console.log('Got data!');
 	        if(data.result==true)
 	        {
@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 	$('#registerForm').submit( function(e) {
 		e.preventDefault();
-	    $.post( 'http://infectedlan.tk/api/json/register.php', $('#registerForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
+	    $.post( 'http://api.infectedlan.tk/json/register.php', $('#registerForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
 	    	console.log('Got data!');
 	        if(data.result==true)
 	        {
