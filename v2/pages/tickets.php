@@ -41,7 +41,7 @@ class Page
 					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'http://' . $_SERVER['HTTP_HOST'] . '/api/json/setSeater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
 				echo '<td>';
-					echo '<input type="button" value="Skriv ut Billett" />';
+					echo '<input type="button" value="Skriv ut Billett" onclick="document.location(\'printTicket.php?id=' . $ticket->getId() . '\')"/>';
 				echo '</td>';
 				echo '<td>';
 					echo '<input type="button" value="Lagre mobil versjon" />';
