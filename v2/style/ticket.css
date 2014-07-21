@@ -1,0 +1,49 @@
+
+body {
+height: 842px;
+text-align: center;
+}
+
+#total {
+  border-style:solid;
+margin: 0 auto;
+text-align: left;
+width: 810px;
+height: 470px;
+/*background: #f0f0f0;*/
+padding-left: 60px;
+padding-top: 60px;
+font: 14px Arial;
+border-width: 1px;
+border-color: #f0f0f0;
+}
+
+#total td {
+height: 30px;
+}
+
+h2 {
+margin: 4px;
+margin-bottom: 30px;
+font-family: Arial;
+font-size: 30px;
+}
+#inputdata {
+float: right;
+margin-right: 130px;
+margin-top: 10px;
+}
+#tekstprint {
+width: 45%;
+float:left;
+margin-top: 55px;
+margin-right: 10px;
+}
+
+#logo {
+width: 50%;
+float: right;
+margin-top: 35px;
+margin-left: 20px;
+
+}
