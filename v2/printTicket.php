@@ -7,7 +7,7 @@
 			echo '<title>Biletten din</title>';
 			echo '<link rel="stylesheet" type="text/css" href="style/ticket.css">';
 		echo '</head>';
-		echo '<body>';
+		echo '<body onload="window.print()">';
 			//Validation
 			if(!isset($_GET["id"]))
 			{
