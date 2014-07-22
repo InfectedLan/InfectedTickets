@@ -42,7 +42,7 @@
 			echo '</div>';
 			echo '<div id="tekstprint">Denne billetten skal vises ved innsjekking på Radar. Husk å ta med gyldig legitimasjon. De under 14 må ha med
 bekreftelse fra foreldre. Skjema på nettsiden.</div>';
-			echo '<div id="logo">'
+			echo '<div id="logo">';
 				echo '<img src="images/logo_infected.jpg" width="299px">';
 			echo '</div>';
 		echo '</body>';
