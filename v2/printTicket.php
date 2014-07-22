@@ -1,4 +1,6 @@
 <?php
+	set_include_path('.:/home/infectedlan.tk/public_html/api/');
+	
 	require_once 'utils.php';
 	require_once 'handlers/tickethandler.php';
 
