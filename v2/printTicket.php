@@ -28,7 +28,7 @@
 					echo '<tr><td>Adresse:</td><td>' . $ticket->getOwner()->getAddress() . '</td></tr>';
 					echo '<tr><td>Mobil:</td><td>' . $ticket->getOwner()->getPhone() . '</td></tr>';
 					echo '<tr><td>Brukernavn:</td><td>' . $ticket->getOwner()->getUsername() . '</td></tr>';
-					if(!isset($ticket->getSeat()))
+					if(null !== $ticket->getSeat() )
 					{
 						echo '<tr><td>Sete:</td><td><b>IKKE PLASSERT</b></td></tr>';
 					}
