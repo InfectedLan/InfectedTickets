@@ -1,6 +1,6 @@
 <?php
 	set_include_path('.:/home/infectedlan.tk/public_html/api/');
-	
+
 	require_once 'utils.php';
 	require_once 'handlers/tickethandler.php';
 
@@ -8,6 +8,7 @@
 		echo '<head>';
 			echo '<title>Biletten din</title>';
 			echo '<link rel="stylesheet" type="text/css" href="style/ticket.css">';
+			echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
 		echo '</head>';
 		echo '<body onload="window.print()">';
 			//Validation
@@ -30,16 +31,17 @@
 					echo '<tr><td>Adresse:</td><td>' . $ticket->getOwner()->getAddress() . '</td></tr>';
 					echo '<tr><td>Mobil:</td><td>' . $ticket->getOwner()->getPhone() . '</td></tr>';
 					echo '<tr><td>Brukernavn:</td><td>' . $ticket->getOwner()->getUsername() . '</td></tr>';
-					if(null !== $ticket->getSeat() )
+					$seat = $ticket->getSeat();
+					if( !isset($seat) )
 					{
 						echo '<tr><td>Sete:</td><td><b>IKKE PLASSERT</b></td></tr>';
 					}
 					else
 					{
-						echo '<tr><td>Sete:</td><td>' . $ticket->getSeat()->getHumanString() . '</td></tr>';
+						echo '<tr><td>Sete:</td><td>' . $seat->getHumanString() . '</td></tr>';
 					}
 					echo '<tr><td colspan="2"><b>Innsjekking: <a href="https://github.com/InfectedLan/InfectedAPI/issues/27">Please poke this issue</a></b></td></tr>';
-					echo '<div id="inputdata"><img src="' . $ticket->getQr() . '" width="200px"/></div>';
+					echo '<div id="inputdata"><img src="' . $ticket->getQrImagePath() . '" width="200px"/></div>';
 				echo '</table>';
 			echo '</div>';
 			echo '<div id="tekstprint">Denne billetten skal vises ved innsjekking på Radar. Husk å ta med gyldig legitimasjon. De under 14 må ha med
