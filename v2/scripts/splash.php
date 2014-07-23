@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	$('#loginForm').submit( function(e) {
 		e.preventDefault();
-	    $.post( 'http://api.infectedlan.tk/json/login.php', $('#loginForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
+	    $.getJSON( 'http://api.infectedlan.tk/json/login.php?callback=?', $('#loginForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
 	    	console.log('Got data!');
 	        if(data.result==true)
 	        {
@@ -12,13 +12,12 @@ $(document).ready(function() {
 	        {
 	         	error(data.message);
 	        }
-	       },
-	       'json'
+	       }
 	    );
 	});
 	$('#registerForm').submit( function(e) {
 		e.preventDefault();
-	    $.post( 'http://api.infectedlan.tk/json/register.php', $('#registerForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
+	    $.getJSON( 'http://api.infectedlan.tk/json/register.php?callback=?', $('#registerForm').serialize(), function(data) { // TODO: Link this to api in a more elegant way.
 	    	console.log('Got data!');
 	        if(data.result==true)
 	        {
@@ -31,8 +30,7 @@ $(document).ready(function() {
 	        {
 	         	error(data.message);
 	        }
-	       },
-	       'json'
+	       }
 	    );
 	});
 	$('.errorClose').click(function() {hideErrorBox();});
