@@ -2,6 +2,7 @@
 	set_include_path('.:/home/infectedlan.tk/public_html/api/');
 
 	require_once 'utils.php';
+	require_once 'settings.php';
 	require_once 'handlers/tickethandler.php';
 
 	echo '<html>';
@@ -23,6 +24,16 @@
 				echo 'Biletten eksisterer ikke</body></html>';
 				return;
 			}
+			if(!Utils::isAuthenticated())
+			{
+				echo 'Du er ikke logget inn!</body></html>';
+				return;
+			}
+			if(Utils::getUser()->getId() != $ticket->getOwner()->getId())
+			{
+				echo 'Du eier ikke denne biletten!</body></html>';
+				return;
+			}
 			echo '<div id="total">';
 				echo '<h2>Billett: ' . $ticket->getHumanName() . '</h2>';
 				echo '<table>';
@@ -41,7 +52,7 @@
 						echo '<tr><td>Sete:</td><td>' . $seat->getHumanString() . '</td></tr>';
 					}
 					echo '<tr><td colspan="2"><b>Innsjekking: <a href="https://github.com/InfectedLan/InfectedAPI/issues/27">Please poke this issue</a></b></td></tr>';
-					echo '<div id="inputdata"><img src="' . $ticket->getQrImagePath() . '" width="200px"/></div>';
+					echo '<div id="inputdata"><img src="' . Settings::path . 'images/qrcache/' . $ticket->getQrImagePath() . '" width="200px"/></div>';
 				echo '</table>';
 			echo '</div>';
 			echo '<div id="tekstprint">Denne billetten skal vises ved innsjekking på Radar. Husk å ta med gyldig legitimasjon. De under 14 må ha med
