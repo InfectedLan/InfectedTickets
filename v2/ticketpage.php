@@ -20,7 +20,7 @@ class TicketPage extends Site {
 	
 	private function outputScripts()
 	{
-		echo '<script src="scripts/ticketScripts.php"> </script>';
+		echo '<script src="scripts/ticketscripts.php"> </script>';
 		echo '<script src="scripts/shared.php"> </script>';
 	}
 	

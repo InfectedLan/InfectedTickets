@@ -17,12 +17,65 @@ class Page
 			if($tikkit->getEvent()->getId()==EventHandler::getCurrentEvent()->getId())
 			{
 				self::printTicket($tikkit);
+				echo '<hr />';
+			}
+		}
+		echo '<h3>Tidligere arrangementer</h3>';
+		echo '<hr />';
+		foreach($ticketArr as $tikkit)
+		{
+			if($tikkit->getEvent()->getId() != EventHandler::getCurrentEvent()->getId())
+			{
+				self::printOldTicket($tikkit);
+				echo '<hr />';
 			}
 		}
 	}
 	public function renderTutorial()
 	{
 		echo 'Yolo';
+	}
+
+	private function printOldTicket($ticket)
+	{
+		//The code
+		$seater = $ticket->getSeater();
+		$oldEvent = $ticket->getEvent();
+		echo '<table>';
+			echo '<tr>';
+				echo '<td>';
+					echo '<b>' . $ticket->getHumanName() . '</b>';
+				echo '</td>';
+				echo '<td>';
+					echo 'Ble arrangert den ' . date("j. M o", $oldEvent->getStartTime());
+				echo '</td>';
+				echo '<td>';
+					if(!isset($seater))
+						{
+							echo "Seatet av deg";
+						}
+						else
+						{
+							echo 'Seatet av ' . $seater->getDisplayName();
+						}
+				echo '</td>';
+				echo '<td>';
+					echo 'Var arrangert på ' . $oldEvent->getLocation();
+				echo '</td>';
+			echo '</tr>';
+		echo '</table>';
+		/*
+		echo '<div class="ticket_div">';
+			echo '<b>' . $ticket->getHumanName() . '</b>';
+			if(!isset($sete))
+			{
+				echo '<b>Ikke plassert</b>';
+			}
+			echo '<br />';
+			echo 'Eier: <b>' . $ticket->getOwner()->getDisplayName() . '</b><br />';
+			echo 'Seater: <b>' . $ticket->getSeater()->getDisplayName() . '</b><br />';
+		echo '</div>';
+		*/
 	}
 	
 	private function printTicket($ticket)
@@ -41,7 +94,7 @@ class Page
 					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'http://' . $_SERVER['HTTP_HOST'] . '/api/json/setSeater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
 				echo '<td>';
-					echo '<input type="button" value="Skriv ut Billett" onclick="document.location(\'printTicket.php?id=' . $ticket->getId() . '\')"/>';
+					echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
 				echo '</td>';
 				echo '<td>';
 					echo '<input type="button" value="Lagre mobil versjon" />';
@@ -67,7 +120,6 @@ class Page
 				echo '<td></td>'; //mobile
 			echo '</tr>';
 		echo '</table>';
-		echo '<hr />';
 		/*
 		echo '<div class="ticket_div">';
 			echo '<b>' . $ticket->getHumanName() . '</b>';
