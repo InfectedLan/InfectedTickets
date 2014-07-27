@@ -13,7 +13,7 @@ class TicketPage extends Site {
 	    	echo '<link rel="stylesheet" type="text/css" href="style/shared.css">';
 	        
 	        
-	        echo '<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>';
+	        echo '<script src="scripts/jquery.js"></script>';
 		echo "</head>";
 	}
 	
