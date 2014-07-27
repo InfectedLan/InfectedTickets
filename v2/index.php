@@ -1,5 +1,5 @@
 <?php
-require_once 'utils.php';
+require_once 'session.php';
 
 require_once 'site.php';
 require_once 'splashpage.php';
@@ -7,7 +7,7 @@ require_once 'ticketpage.php';
 
 $scriptStart = microtime(true);
 
-if (Utils::isAuthenticated()) {
+if (Session::isAuthenticated()) {
 	$page = new TicketPage();
 	$page->render();
 } else {

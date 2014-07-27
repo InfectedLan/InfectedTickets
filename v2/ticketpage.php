@@ -1,6 +1,5 @@
 <?php
-require_once 'utils.php';
-require_once 'handlers/userhandler.php';
+require_once 'session.php';
 
 require_once 'site.php';
 
@@ -37,7 +36,7 @@ class TicketPage extends Site {
 		echo '<body>';
 			//Scripts
 			$this->outputScripts();
-			$user = Utils::getUser();
+			$user = Session::getCurrentUser();
 			echo '<div id="imgContainer">';
 	            echo '<div class="bgControl" id="leftBgImg"></div>';
 	            echo '<div class="bgControl" id="rightBgImg"></div>';

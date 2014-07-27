@@ -1,5 +1,5 @@
 <?php
-require_once 'utils.php';
+require_once 'session.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
 
@@ -9,7 +9,7 @@ class Page
 	{
 		/*echo '<h1>Mine biletter</h1>';
 		echo '<p>Her kan du endre hvem som kommer til å bruke biletter du har kjøpt for kommende arrangement, samt se biletter du har kjøpt til tidligere arrangement</p>';*/
-		$ticketArr = TicketHandler::getTicketsForOwner(Utils::getUser());
+		$ticketArr = TicketHandler::getTicketsForOwner(Session::getCurrentUser());
 		echo '<h3>Årets arrangement</h3>';
 		echo '<hr />';
 		foreach($ticketArr as $tikkit)

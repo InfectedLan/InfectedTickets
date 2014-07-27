@@ -1,5 +1,4 @@
 <?php
-require_once 'utils.php';
 require_once 'handlers/tickethandler.php';
 
 require_once 'site.php';

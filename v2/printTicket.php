@@ -1,7 +1,5 @@
 <?php
-	set_include_path('.:/home/infectedlan.tk/public_html/api/');
-
-	require_once 'utils.php';
+	require_once 'session.php';
 	require_once 'settings.php';
 	require_once 'handlers/tickethandler.php';
 
@@ -24,12 +22,12 @@
 				echo 'Biletten eksisterer ikke</body></html>';
 				return;
 			}
-			if(!Utils::isAuthenticated())
+			if(!Session::isAuthenticated())
 			{
 				echo 'Du er ikke logget inn!</body></html>';
 				return;
 			}
-			if(Utils::getUser()->getId() != $ticket->getOwner()->getId())
+			if(Session::getCurrentUser()->getId() != $ticket->getOwner()->getId())
 			{
 				echo 'Du eier ikke denne biletten!</body></html>';
 				return;
