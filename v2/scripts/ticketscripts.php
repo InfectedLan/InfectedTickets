@@ -35,7 +35,7 @@ function updateSearchField()
 			{
 				for(var i = 0; i < userLength; i++)
 				{
-					$('#userSearchContent').append("<b>" + data.users[i].firstname + ' "' + data.users[i].nick + '" ' + data.users[i].lastname + '</b> <input type="button" value="Velg" onclick="setSelectedUser(\'' + data.users[i].userId + '\', \'' + data.users[i].firstname + ' &quot;' + data.users[i].nick + '&quot; ' + data.users[i].lastname + '\')" /><br />');
+					$('#userSearchContent').append("<b>" + data.users[i].firstname + ' "' + data.users[i].nick + '" ' + data.users[i].lastname + '</b> <input type="button" value="Velg" onclick="setSelectedUser(\'' + data.users[i].userId + '\', \'' + data.users[i].firstname + ' &quot;' + data.users[i].nickname + '&quot; ' + data.users[i].lastname + '\')" /><br />');
 				}
 			}
 		}
