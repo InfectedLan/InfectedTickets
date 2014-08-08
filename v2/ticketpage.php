@@ -25,7 +25,7 @@ class TicketPage extends Site {
 	
 	public function renderNavBar()
 	{
-		echo '<a href="#"><h1 style="border-left:0px; text-decoration:underline;">Kjøp billetter</h1></a>';
+		echo '<a href="index.php?page=buyTickets"><h1 style="border-left:0px; text-decoration:underline;">Kjøp billetter</h1></a>';
         echo '<a href="index.php?page=tickets"><h1>Mine billetter</h1></a>';
         echo '<a href="#"><h1>Plassreservering</h1></a>';
         echo '<a href="index.php?page=contact"><h1 style="border-right:0px">Kontakt</h1></a>';
