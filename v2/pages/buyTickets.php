@@ -23,7 +23,7 @@ class Page {
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
 		$type = TicketTypeHandler::getTicketType( $currentEvent->getTicketType() );
-		echo '<h1>Kjøper bilett for ' . 
+		echo '<h1>Kjøper bilett for ' . $currentEvent->getTheme() . '</h1>'; 
 	}
 }
 ?>
