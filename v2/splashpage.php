@@ -1,5 +1,6 @@
 <?php
 require_once 'handlers/tickethandler.php';
+require_once 'handlers/tickettypehandler.php';
 
 require_once 'site.php';
 
@@ -183,7 +184,8 @@ class SplashPage extends Site {
 	                echo '</li>';
 	                
 	                echo '<li>';
-	                    echo 'Pris: ' . $event->getPrice() . ',- inkludert medlemskap i Radar.';
+	                	$ticketType = TicketTypeHandler::getTicketType($event->getTicketType());
+	                    echo 'Pris: ' . $ticketType->getPrice() . ',- inkludert medlemskap i Radar.';
 	                echo '</li>';
 	                echo '<li>';
 	                    echo '<i>Du har samme bruker på tickets og crew-siden.</i>';
