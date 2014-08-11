@@ -1,5 +1,7 @@
 <?php
 require_once 'handlers/storesessionhandler.php';
+require_once 'handlers/tickettypehandler.php';
+require_once 'handlers/eventhandler.php';
 require_once 'session.php';
 
 class Page {
@@ -19,7 +21,8 @@ class Page {
 		echo 'Step stuff goes here';
 	}
 	public function renderFirstStep() {
-		
+		$currentEvent = EventHandler::getCurrentEvent();
+		$type = TicketTypeHandler::getTicketType( $currentEvent->getTicketType() );
 	}
 }
 ?>
