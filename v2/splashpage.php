@@ -184,7 +184,7 @@ class SplashPage extends Site {
 	                echo '</li>';
 	                
 	                echo '<li>';
-	                	$ticketType = TicketTypeHandler::getTicketType($event->getTicketType());
+	                	$ticketType = $event->getTicketType();
 	                    echo 'Pris: ' . $ticketType->getPrice() . ',- inkludert medlemskap i Radar.';
 	                echo '</li>';
 	                echo '<li>';
