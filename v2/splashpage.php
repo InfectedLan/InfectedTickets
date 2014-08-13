@@ -180,7 +180,7 @@ class SplashPage extends Site {
 	               	echo '</li>';
 	                
 	                echo '<li>';
-	                    echo 'Antall Billetter igjen: <b>' . TicketHandler::getAvailableTickets() . '</b>';
+	                    echo 'Antall Billetter igjen: <b>' . $event->getAvailableTickets() . '</b>';
 	                echo '</li>';
 	                
 	                echo '<li>';
