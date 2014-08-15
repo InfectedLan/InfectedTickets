@@ -9,19 +9,12 @@ $(document).ready(function() {
 	});
 
 	});
-function logOut() {
-	$.getJSON('http://<?php echo $_SERVER['HTTP_HOST']; ?>/json/logout.php', function(data){
-		if(data.result == true)
-		{
-			location.reload();
-		}		
-  	});
 }
 var updateKey = 0;
 function updateSearchField()
 {
 	updateKey = Math.random();
-	$.getJSON('http://<?php echo $_SERVER['HTTP_HOST']; ?>/json/searchusers.php?key=' + encodeURIComponent(updateKey) + "&query=" + encodeURIComponent( $('#userSearchInput').val() ), function(data){
+	$.getJSON('http://<?php echo $_SERVER['HTTP_HOST']; ../api/json/searchusers.php?key=' + encodeURIComponent(updateKey) + "&query=" + encodeURIComponent( $('#userSearchInput').val() ), function(data){
 		resetSelectedUser();
 		if(data.result == true && data.key == updateKey)
 		{

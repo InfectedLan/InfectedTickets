@@ -1,19 +1,8 @@
 //Login form submitter
-$(document).ready(function() {
-	$('#loginForm').submit(function(e) {
-		e.preventDefault();
-		$.getJSON('../json/login.php' + '?' + $(this).serialize(), function(data){
-			if (data.result) {
-				location.reload();
-			} else {
-				error(data.message); 
-			}
-		});
-	});
-	
+$(document).ready(function() {	
 	$('#registerForm').submit( function(e) {
 		e.preventDefault();
-		$.getJSON('../json/register.php' + '?' + $(this).serialize(), function(data){
+		$.getJSON('../api/json/register.php' + '?' + $(this).serialize(), function(data){
 			if (data.result) {
 				showLoginBoxFromRegister();
 	        	info("Din bruker har blitt laget! Sjekk e-posten din for å aktivere, før du logger inn.");

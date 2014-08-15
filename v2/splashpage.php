@@ -11,8 +11,8 @@ class SplashPage extends Site {
 			echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
     		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style_splash.css\">";
     		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"style/shared.css\">";
-    		
-    		echo '<script src="scripts/jquery.js"></script>';
+    		echo '<script src="../api/scripts/jquery.js"></script>';
+			echo '<script src="../api/scripts/login.js"></script>';
 		echo "</head>";
 	}
 	
@@ -32,7 +32,7 @@ class SplashPage extends Site {
 	        	echo '<ul id="ul1">';
 	        		//Login frame
 	        		echo '<div id="loginFrame">';
-			        	echo '<form id="loginForm">';
+			        	echo '<form class="login" method="post">';
 			            	echo '<li>';
 			                    echo '<input class="input" name="username" type="input"/ placeholder="Brukernavn">';
 			                echo '</li>';

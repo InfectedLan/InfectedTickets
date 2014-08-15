@@ -4,7 +4,7 @@ $(document).ready(function() {
 	});
 	$('#buyTicketForm').submit(function(e) {
 		e.preventDefault();
-		$.getJSON('../json/registerStoreSession.php?ticketType=' + ticketType + '&amount=' + $("#ticketAmount").val() , function(data){
+		$.getJSON('../api/json/registerStoreSession.php?ticketType=' + ticketType + '&amount=' + $("#ticketAmount").val() , function(data){
 			if(data.result) {
 				//info(data.message); // TODO: Display "data.message" to user.
 				location.reload();

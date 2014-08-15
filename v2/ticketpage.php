@@ -11,9 +11,8 @@ class TicketPage extends Site {
 	    	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 	    	echo '<link rel="stylesheet" type="text/css" href="style/style.css">';
 	    	echo '<link rel="stylesheet" type="text/css" href="style/shared.css">';
-	        
-	        
-	        echo '<script src="scripts/jquery.js"></script>';
+	        echo '<script src="../api/scripts/jquery.js"></script>';
+			echo '<script src="../api/scripts/logout.js"></script>';
 		echo "</head>";
 	}
 	
@@ -52,8 +51,8 @@ class TicketPage extends Site {
 	                echo '<div id="whenLoggedIn">';
 	                    echo '<span> Du er nå logget in som ' . $user->getFirstname() . ' ' . $user->getLastname() . '</span>';
 	                    echo '<div style="clear:both";></div>';
-	                    echo '<input type="button"/ value="Logg Ut" onClick="logOut()">';
-	                    echo '<input type="button"/ value="Min Profil">';
+	                    echo '<input type="button" value="Logg Ut" onClick="logout()">';
+	                    echo '<input type="button" value="Min Profil">';
 	                echo '</div>';
 	            echo '</div>';
 	            echo '<div class="banner" id="nav">';
