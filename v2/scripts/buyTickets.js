@@ -4,13 +4,12 @@ $(document).ready(function() {
 	});
 	$('#buyTicketForm').submit(function(e) {
 		e.preventDefault();
-		$.getJSON('../json/registerStoreSession.php?ticketType=' + ticketType + '&amount=' + $("#ticketAmount").val() , function(data){
+		$.getJSON('../json/getPaypalUrl.php?ticketType=' + ticketType + '&amount=' + $("#ticketAmount").val() , function(data){
 			if(data.result) {
-				//info(data.message); // TODO: Display "data.message" to user.
-				location.reload();
+				window.location = data.url;
 			}
 			else {
-				error(data.message); // TODO: Display "data.message" to user.
+				error(data.message);
 			}
 		});
 	});

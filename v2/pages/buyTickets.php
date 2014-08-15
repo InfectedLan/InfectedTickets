@@ -9,7 +9,7 @@ class Page {
 		$user = Session::getCurrentUser();
 		if( StoreSessionHandler::hasStoreSession( $user ) )
 		{
-
+			echo "Det virker som om du har forlatt et kjøp! Kontakt support.";
 		}
 		else
 		{
@@ -31,7 +31,7 @@ class Page {
 				echo '</td>';
 				echo '<td>';
 					echo '<h3>Steg 3.</h3>';
-					echo '<p>Ticket get!</p>';
+					echo '<p>Verifiser detaljer og godkjenn betalingen!</p>';
 				echo '</td>';
 			echo '</tr>';
 		echo '</table>';
