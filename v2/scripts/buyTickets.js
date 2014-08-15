@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$("#ticketAmount").change(function(e) {
 		$("#totalPrice").text(ticketPrice * $("#ticketAmount").val() );
 	});
+	
 	$('#buyTicketForm').submit(function(e) {
 		e.preventDefault();
 		$.getJSON('../api/json/registerStoreSession.php?ticketType=' + ticketType + '&amount=' + $("#ticketAmount").val() , function(data){
