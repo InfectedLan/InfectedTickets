@@ -63,8 +63,8 @@ class Site {
 							echo '<div id="whenLoggedIn">';
 								echo '<span> Du er nå logget in som ' . $user->getFirstname() . ' ' . $user->getLastname() . '</span>';
 								echo '<div style="clear:both";></div>';
-								echo '<input type="button" value="Logg Ut" onClick="logout()">';
-								echo '<input type="button" value="Min Profil">';
+								echo '<input type="button" value="Logg ut" onClick="logout()">';
+								echo '<input type="button" value="Min profil">';
 							echo '</div>';
 						echo '</div>';
 						echo '<div class="banner" id="nav">';
