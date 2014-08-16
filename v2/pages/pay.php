@@ -29,10 +29,12 @@ class Page {
 				echo "<br />";
 				echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
 
-				$numTickets = $_SESSION['qty'];
-				for($i = 0; $i < $numTickets; $i++)
+				$user = Session::getCurrentUser();
+				$success = StoreSessionHandler::purchaseComplete($_SESSION['key'], $_SESSION['amt'], $_SESSION['qty'])
+				if(!$success)
 				{
-					
+					echo '<br />';
+					echo 'Det skjedde noe galt under registreringen av bilettene dine. Kontakt support.';
 				}
 			}
 		}
