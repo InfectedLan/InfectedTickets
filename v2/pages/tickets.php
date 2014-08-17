@@ -96,9 +96,9 @@ class Page
 				echo '<td>';
 					echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
 				echo '</td>';
-				echo '<td>';
+				/*echo '<td>';
 					echo '<input type="button" value="Lagre mobil versjon" />';
-				echo '</td>';
+				echo '</td>';*/
 			echo '</tr>';
 			//Seater row :P
 			echo '<tr>';
