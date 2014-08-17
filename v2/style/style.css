@@ -253,6 +253,18 @@ body{
 .free {
 	background: green;
 }
+.current {
+	background: gray;
+}
+/* Seatable tickets */
+.ticket {
+	border-style: solid;
+	padding: 4px;
+	margin: 4px;
+}
+.selectedTicket {
+	background-color: gray;
+}
 .seat {
 	width: 27px;
 	height: 27px;

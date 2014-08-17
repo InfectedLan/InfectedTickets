@@ -7,7 +7,6 @@ class Page {
 		echo '<script>';
 			echo 'var seatmapId = ' . $currentEvent->getSeatmap() . ';';
 			echo '$(document).ready(function() {';
-				echo 'downloadAndRenderSeatmap();';
 				echo 'loadSeatableTickets();';
 			echo '});';
 		echo '</script>';
@@ -17,7 +16,9 @@ class Page {
 	}
 	
 	public function renderTutorial() {
-		echo 'Klikk på et sete for å plassere deg';
+		echo 'Velg en billett du vil plassere for listen. Velg deretter hvor du vil sitte ved å trykke på et grønt sete.<br />';
+		echo 'Billetter du kan plassere:<br />';
+		echo '<div id="seatableTickets"><i>Laster inn</i></div>';
 	}
 }
 ?>
