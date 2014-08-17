@@ -14,7 +14,7 @@ var updateKey = 0;
 function updateSearchField()
 {
 	updateKey = Math.random();
-	$.getJSON('http://<?php echo $_SERVER['HTTP_HOST']; ../api/json/searchusers.php?key=' + encodeURIComponent(updateKey) + "&query=" + encodeURIComponent( $('#userSearchInput').val() ), function(data){
+	$.getJSON('../api/json/searchusers.php?key=' + encodeURIComponent(updateKey) + "&query=" + encodeURIComponent( $('#userSearchInput').val() ), function(data){
 		resetSelectedUser();
 		if(data.result == true && data.key == updateKey)
 		{
