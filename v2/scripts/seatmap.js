@@ -16,7 +16,7 @@ function downloadAndRenderSeatmap()
 function renderSeatmap() {
 	//Render seatmap
 	$("#seatmapCanvas").html('');
-	$("#seatmapCanvas").css('background-image', 'url("../api/content/' + seatmapData.backgroundImage + '")');
+	$("#seatmapCanvas").css('background-image', 'url("../api/content/seatmapBackground/' + seatmapData.backgroundImage + '")');
 	for(var i = 0; i < seatmapData.rows.length; i++)
 	{
 		var returnData = [];
