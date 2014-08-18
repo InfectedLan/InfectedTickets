@@ -45,7 +45,7 @@ class Page {
 			echo '<p>Alle som skal på Infected må ha en bruker med en tilknyttet billett.';
 	
 			echo '<br><br>';
-			echo '<p>Du kan kjøpe billetter for andre, for å så overføre den til dem senere. Dette gjøres under "Mine billetter".</p>';
+			echo '<p>Det er mulig å kjøpte billetter på vegne av andre brukere. Kjøp billetten(e) og overfor eierskap på "Mine billetter".</p>';
 		echo'</div>';
 	}
 	public function renderFirstStep() {
