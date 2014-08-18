@@ -19,22 +19,24 @@ class Page {
 	
 	public function renderTutorial() {
 		echo '<h1>Slik kjøper du billett</h1>';
-		echo '<table width="100%">';
-			echo '<tr>';
-				echo '<td>';
-					echo '<h3>Steg 1.</h3>';
-					echo '<p>Velg antall billetter du vil kjøpe</p>';
-				echo '</td>';
-				echo '<td>';
-					echo '<h3>Steg 2.</h3>';
-					echo '<p>Betal for billetten(e)</p>';
-				echo '</td>';
-				echo '<td>';
-					echo '<h3>Steg 3.</h3>';
-					echo '<p>Verifiser detaljer og godkjenn betalingen!</p>';
-				echo '</td>';
-			echo '</tr>';
-		echo '</table>';
+		echo '<center>';
+			echo '<table width="100%">';
+				echo '<tr>';
+					echo '<td>';
+						echo '<h3>1. Velg antall</h3>';
+						echo '<img src="images/tickets.jpg" />';
+					echo '</td>';
+					echo '<td>';
+						echo '<h3>2. Godkjenn regler og rettningslinjer</h3>';
+						echo '<img src="images/rules.jpg" />';
+					echo '</td>';
+					echo '<td>';
+						echo '<h3>3. Bekreft / Betal</h3>';
+						echo '<img src="images/confirm.jpg" />';
+					echo '</td>';
+				echo '</tr>';
+			echo '</table>';
+		echo '</center>';
 	}
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
