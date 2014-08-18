@@ -216,8 +216,8 @@ body{
 		
 		cursor:pointer;
 		margin:0px 0px 0px 0px;
-		background:rgb(126, 209, 114);
-		border: 1px solid #ddffd5;
+		background:#ddffd5;
+		border: 1px solid #ccc;
 	}
 	
 #content table {
