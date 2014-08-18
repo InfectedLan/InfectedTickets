@@ -3,22 +3,22 @@ html, body{
 	font-family:arial;
 }
 
-h1{
+h1 {
 	font-size:18px;
 }
 
-h3{
+h3 {
 	font-size:16px;
 }
 
-body{
+body {
 	position:relative;
-	padding:0px;
-	margin:0px;
+	padding: 0px;
+	margin: 0px;
 	background:rgb(229, 229, 229);
 }
 
-#imgContainer{
+#imgContainer {
 	position:fixed;
 	z-index:-2;
 	top:164px;
@@ -29,30 +29,21 @@ body{
 	border-bottom:1px solid black;
 }
 
-	.bgControl{
-		background-image:url("../backgrounds/0.jpg");
-		background-position: center top;
-    	background-size: 100% auto;
-		-webkit-background-size: cover;
-		   -moz-background-size: cover;
-			 -o-background-size: cover;
-				background-size: cover;
-	}
 	#leftBgImg, #rightBgImg{
 		width:50%;
 		height:255px;
 		position:absolute;
 	}
+
 	#leftBgImg{
 		left:0px;
 		margin-right:900px;
 	}
-	
+
 	#rightBgImg{
 		right:0px;
 		margin-left:900px;
 	}
-
 
 #container{
 	width:900px;
@@ -98,7 +89,7 @@ body{
 		bottom: -20px;
 		right: -0px;
 		z-index:-1;
-}
+	}
 
 
 #header{

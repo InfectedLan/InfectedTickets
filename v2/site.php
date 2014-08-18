@@ -25,20 +25,29 @@ class Site {
 				
 				if (Session::isAuthenticated()) {
 					echo '<link rel="stylesheet" type="text/css" href="style/style.css">';
-				} else {
-					echo '<link rel="stylesheet" type="text/css" href="style/style_splash.css">';
-				}
-
-				echo '<link rel="shortcut icon" href="images/favicon.ico">';
-				echo '<style>';
-					echo 'body {';
-						echo 'background: #000000 url(\'' . $this->getBackground() . '\');';
+					echo '<style>';
+					echo '#imgContainer {';
+						echo 'background: #000000 url(\'' . $this->getBackground(true) . '\');';
 						echo 'background-repeat: no-repeat;';
 						echo 'background-attachment: fixed;';
 						echo 'background-size: 100% auto;';
 						echo 'background-position: center;';
 					echo '}';
 				echo '</style>';
+				} else {
+					echo '<link rel="stylesheet" type="text/css" href="style/style_splash.css">';
+					echo '<style>';
+						echo 'body {';
+							echo 'background: #000000 url(\'' . $this->getBackground(false) . '\');';
+							echo 'background-repeat: no-repeat;';
+							echo 'background-attachment: fixed;';
+							echo 'background-size: 100% auto;';
+							echo 'background-position: center;';
+						echo '}';
+					echo '</style>';
+				}
+
+				echo '<link rel="shortcut icon" href="images/favicon.ico">';
 				echo '<script src="../api/scripts/jquery.js"></script>';
 				echo '<script src="../api/scripts/jquery.form.min.js"></script>';
 				echo '<script src="scripts/shared.php"></script>';
@@ -290,10 +299,16 @@ class Site {
 	}
 	
 	// Picks randomly a background from the background directory.
-	private function getBackground() {
+	private function getBackground($authenticated) {
 		$directory = 'images/backgrounds/';
 		$suffix = 'jpg';
-		$list = glob($directory . '*.' . $suffix);
+		$list = null;
+		
+		if ($authenticated) {
+			$list = glob($directory . '/main/*.' . $suffix);
+		} else {
+			$list = glob($directory . '/splash/*.' . $suffix);
+		}
 		
 		return $list[rand(0, count($list) - 1)];
 	}
