@@ -44,7 +44,7 @@ class Page {
 			
 			echo '<p>Alle som skal på Infected må ha en bruker med en tilknyttet billett.';
 	
-			echo '<br>';
+			echo '<br><br>';
 			echo '<p>Du kan kjøpe billetter for andre, for å så overføre den til dem senere. Dette gjøres under "Mine billetter".</p>';
 		echo'</div>';
 	}
