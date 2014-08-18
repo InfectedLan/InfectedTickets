@@ -202,11 +202,9 @@ body{
 		cursor:pointer;
 		margin:0px 0px 0px 0px;
 		background:rgb(126, 209, 114);
-		border: 1px solid rgb(148,148,148);
+		border: 1px solid rgb(255,248,255);
 	}
-		#content input:hover{
-			background:#0C3;
-		}
+	
 #content table {
 	width: 100%;
 }
