@@ -9,7 +9,11 @@
 			echo '<link rel="stylesheet" type="text/css" href="style/ticket.css">';
 			echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
 		echo '</head>';
-		echo '<body onload="window.print()">';
+		if(isset($_GET['print'])) {
+			echo '<body onload="window.print()">';
+		} else {
+			echo '<body>';
+		}
 			//Validation
 			if(!isset($_GET["id"]))
 			{

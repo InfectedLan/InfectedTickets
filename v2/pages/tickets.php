@@ -94,11 +94,11 @@ class Page
 					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'http://' . $_SERVER['HTTP_HOST'] . '/api/json/setSeater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
 				echo '<td>';
-					echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
+					echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
 				echo '</td>';
-				/*echo '<td>';
-					echo '<input type="button" value="Lagre mobil versjon" />';
-				echo '</td>';*/
+				echo '<td>';
+					echo '<input type="button" value="Mobil bilett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
+				echo '</td>';
 			echo '</tr>';
 			//Seater row :P
 			echo '<tr>';
