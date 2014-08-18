@@ -22,15 +22,15 @@ class Page {
 		echo '<center>';
 			echo '<table width="100%">';
 				echo '<tr>';
-					echo '<td>';
+					echo '<td style="text-align:center">';
 						echo '<h3>1. Velg antall</h3>';
 						echo '<img src="images/tickets.jpg" />';
 					echo '</td>';
-					echo '<td>';
+					echo '<td style="text-align:center">';
 						echo '<h3>2. Godkjenn regler og rettningslinjer</h3>';
 						echo '<img src="images/rules.jpg" />';
 					echo '</td>';
-					echo '<td>';
+					echo '<td style="text-align:center">';
 						echo '<h3>3. Bekreft / Betal</h3>';
 						echo '<img src="images/confirm.jpg" />';
 					echo '</td>';
