@@ -21,7 +21,7 @@ body{
 #imgContainer{
 	position:fixed;
 	z-index:-2;
-	top:170px;
+	top:165px;
 	height:255px;
 	width:100%;
 	background:gray;
