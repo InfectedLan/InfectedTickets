@@ -38,7 +38,7 @@ class Page {
 			echo '</table>';
 		echo '</center>';
 		
-		echo '<div id="divInstruks1">'
+		echo '<div id="divInstruks1">';
 			echo '<p>Når du har kjøpt billett får du den/de under "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Reserver Plass".</p>';
 			
 			
@@ -46,7 +46,7 @@ class Page {
 	
 			echo '<br>';
 			echo '<p>Du kan kjøpe billetter for andre, for å så overføre den til dem senere. Dette gjøres under "Mine billetter".</p>';
-		echo'</div>'
+		echo'</div>';
 	}
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
