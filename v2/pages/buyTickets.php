@@ -18,7 +18,7 @@ class Page {
 	}
 	
 	public function renderTutorial() {
-		echo '<h1>Slik kjøper du billett</h1>';
+		echo '<h1 style="margin-bottom:0px;">Slik kjøper du billett</h1>';
 		echo '<center>';
 			echo '<table width="100%">';
 				echo '<tr>';
