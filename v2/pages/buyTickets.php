@@ -39,7 +39,7 @@ class Page {
 		echo '</center>';
 		
 		echo '<div id="divInstruks1">';
-			echo '<p>Når du har kjøpt billett får du den/de under "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Reserver Plass".</p>';
+			echo '<p>Når du har kjøpt billett får du den/de under "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Plassreservering".</p>';
 			
 			
 			echo '<p>Alle som skal på Infected må ha en bruker med en tilknyttet billett.';
