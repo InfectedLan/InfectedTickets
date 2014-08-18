@@ -23,21 +23,21 @@ class Page {
 			echo '<table width="100%">';
 				echo '<tr>';
 					echo '<td style="text-align:center">';
-						echo '<h3 style="margin-bottom: 0px">1. Velg antall</h3>';
+						echo '<h3 style="margin: 0px">1. Velg antall</h3>';
 						echo '<img src="images/tickets.jpg" />';
 					echo '</td>';
 					echo '<td style="text-align:center">';
-						echo '<h3 style="margin-bottom: 0px">2. Godkjenn regler og rettningslinjer</h3>';
+						echo '<h3 style="margin: 0px">2. Godkjenn regler og rettningslinjer</h3>';
 						echo '<img src="images/rules.jpg" />';
 					echo '</td>';
 					echo '<td style="text-align:center">';
-						echo '<h3 style="margin-bottom: 0px">3. Bekreft / Betal</h3>';
+						echo '<h3 style="margin: 0px">3. Bekreft / Betal</h3>';
 						echo '<img src="images/confirm.jpg" />';
 					echo '</td>';
 				echo '</tr>';
 			echo '</table>';
 		echo '</center>';
-		/*
+		
 		echo '<br>';
 		
 		echo '<p>Når du har kjøpt billett får du den/de under "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Reserver Plass".</p>';
@@ -49,7 +49,7 @@ class Page {
 
 		echo '<br>';
 		echo '<p>Du kan kjøpe billetter for andre, for å så overføre den til dem senere. Dette gjøres under "Mine billetter".</p>';
-*/
+
 	}
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
