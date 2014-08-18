@@ -37,6 +37,19 @@ class Page {
 				echo '</tr>';
 			echo '</table>';
 		echo '</center>';
+		
+		echo '<br>';
+		
+		echo '<p>Når du har kjøpt billett får du den/de under "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Reserver Plass".</p>'
+		
+		echo '<br>';
+		echo '<br>';
+		
+		echo '<p>Alle som skal på Infected må ha en bruker med en tilknyttet billett.';
+
+		echo '<br>';
+		echo '<p>Du kan kjøpe billetter for andre, for å så overføre den til dem senere. Dette gjøres under "Mine billetter".</p>';
+
 	}
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
