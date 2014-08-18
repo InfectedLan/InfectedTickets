@@ -186,17 +186,18 @@ body{
 		
 		}
 #tutorial{
-	height:240px;
+	height:245px;
 	padding:0px 10px;
 }
 
 #divInstruks1{
-		
+	margin-top:5px;
 
 }
 
 #divInstruks1 p{
-	margin:0px;	
+	margin:0px;
+	font-size:11px;
 
 }
 
