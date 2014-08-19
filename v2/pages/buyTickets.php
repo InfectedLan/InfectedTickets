@@ -66,9 +66,8 @@ class Page {
 		echo '<script src="scripts/buyTickets.js"></script>';
 		echo '<script>';
 			echo 'var ticketPrice = ' . $type->getPrice() . ';';
-			echo 'var ticketType = ' . $type->getId() . ';';
 		echo '</script>';
-		echo '<form action="" id="buyTicketForm">';
+		echo '<form action="index.php?page=rules" id="buyTicketForm" method="post">';
 			echo '<input type="hidden" name="ticketType" value="' . $type->getId() . '" />';
 			echo '<table>';
 				echo '<tr>';

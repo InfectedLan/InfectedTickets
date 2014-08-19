@@ -3,15 +3,21 @@ $(document).ready(function() {
 		$("#totalPrice").text(ticketPrice * $("#ticketAmount").val() );
 	});
 	
-	$('#buyTicketForm').submit(function(e) {
-		e.preventDefault();
-		$.getJSON('../api/json/getPaypalUrl.php?ticketType=' + ticketType + '&amount=' + $("#ticketAmount").val() , function(data){
-			if(data.result) {
-				window.location = data.url;
-			}
-			else {
-				error(data.message);
-			}
-		});
-	});
+	function goToPaypal(ticketType, amount)
+	{
+		if($("#acceptedRulesBox").prop('checked')) {
+			$.getJSON('../api/json/getPaypalUrl.php?ticketType=' + ticketType + '&amount=' + amount , function(data){
+				if(data.result) {
+					window.location = data.url;
+				}
+				else {
+					error(data.message);
+				}
+			});
+		}
+		else
+		{
+			alert("Du må godta reglene for å kunne kjøpe billetter!");
+		}
+	}
 });
