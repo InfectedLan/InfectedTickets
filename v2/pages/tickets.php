@@ -3,7 +3,7 @@ require_once 'session.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
 
-class Page
+class TicketPage
 {
 	public function render()
 	{

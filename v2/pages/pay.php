@@ -3,7 +3,7 @@ require_once 'session.php';
 require_once 'handlers/storesessionhandler.php';
 require_once 'handlers/userhandler.php';
 require_once 'paypal/paypal.php';
-class Page {
+class TicketPage {
 	public function render() {
 		$token =urlencode( $_POST['token']);
 		$paymentAmount =urlencode ($_POST['paymentAmount']);

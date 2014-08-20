@@ -295,3 +295,6 @@ body {
     border-width: 1px;
     min-height: 1400px;
 }
+#ticketRules {
+	border-style: solid;
+}

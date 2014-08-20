@@ -1,6 +1,6 @@
 <?php
 require_once 'handlers/eventhandler.php';
-class Page {
+class TicketPage {
 	public function render() {
 		$currentEvent = EventHandler::getCurrentEvent();
 		echo '<script src="scripts/seatmap.js"></script>';

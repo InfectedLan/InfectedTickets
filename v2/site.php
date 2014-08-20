@@ -95,7 +95,7 @@ class Site {
 						}
 						
 						include $pageToInclude;
-						$contentPage = new Page();
+						$contentPage = new TicketPage();
 
 						echo '<div id="tutorial">';
 						

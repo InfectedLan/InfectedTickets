@@ -4,7 +4,7 @@ require_once 'handlers/tickettypehandler.php';
 require_once 'handlers/eventhandler.php';
 require_once 'session.php';
 
-class Page {
+class TicketPage {
 	public function render() {
 		$user = Session::getCurrentUser();
 		if( StoreSessionHandler::hasStoreSession( $user ) )
@@ -98,7 +98,7 @@ class Page {
 					echo '</td>';
 					echo '<td>';
 						$ticketsLeft = $currentEvent->getAvailableTickets();
-						echo '<input id="ticketAmount" type="number" name="amount" value="1" min="1" max="' . $ticketsLeft . '">';
+						echo '<input id="ticketAmount" type="number" name="ticketAmount" value="1" min="1" max="' . $ticketsLeft . '">';
 					echo '</td>';
 					echo '<td>';
 						echo $ticketsLeft . '/' . $currentEvent->getParticipants();

@@ -1,6 +1,6 @@
 <?php
 require_once 'handlers/pagehandler.php';
-class Page {
+class TicketPage {
 	public function render() {
 		if(!isset($_POST['ticketAmount'])){
 			echo '<b>Du skal ikke være her. Trykk "Kjøp billetter" for å kjøpe billetter</b>';
@@ -9,18 +9,24 @@ class Page {
 		echo '<h1>Før du kan kjøpe biletter, må du godta disse reglene.</h1>';
 		echo '<p>Dette er for din egen, og andres sikkerhet.</p>';
 
-		$page = PageHandler::getPage(2); //Rules?
-		echo $page->getContent();
+		echo '<div id="ticketRules">';
 
-		echo '<input type="checkbox" id="acceptedRulesBox" /> Jeg har lest og godtatt reglene.';
+			$page = PageHandler::getPage(2); //Rules?
+			echo $page->getContent();
+
+		echo '</div>';
+
+		echo '<br />';
+		echo '<p>Jeg har lest og godtatt reglene<input type="checkbox" id="acceptedRulesBox" /></p>';
 
 		//POSTed data
 		$ticketType = $_POST['ticketType'];
 		$ticketAmount = $_POST['ticketAmount'];
 
 		echo '<script src="scripts/buyTickets.js"></script>';
-
-		echo '<input type="button" value="Kjøp billett(er)" onclick="goToPaypal(' . $ticketType . ', ' . $ticketAmount . ')" />';
+		echo '<br />';
+		echo '<p><input type="button" value="Kjøp billett(er)" onclick="goToPaypal(' . $ticketType . ', ' . $ticketAmount . ')" /></p>';
+		echo '<p><i>Ved å trykke her vil du bli sendt til paypal for å godkjenne betalingen</i></p>';
 	}
 	
 	public function renderTutorial() {
