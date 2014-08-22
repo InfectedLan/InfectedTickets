@@ -7,17 +7,16 @@ class TicketPage {
 	public function render() {
 		$token =urlencode( $_POST['token']);
 		$paymentAmount =urlencode ($_POST['paymentAmount']);
-		$paymentType = urlencode($_POST['paymentType']);
-		$currCodeType = urlencode($_POST['currCodeType']);
+		$currCodeType = 'NOK';
 		$payerID = urlencode($_POST['payerID']);
-		$serverName = urlencode($_POST['serverName']);	
+		$serverName = urlencode($_SERVER['SERVER_NAME']);
 		if(!isset($token))
 		{
 			echo "Du må komme fra en betaling!";
 		}
 		else
 		{
-			$result = PayPal::completePurchase($token, $paymentAmount, $paymentType, $currCodeType, $payerID, $serverName);	
+			$result = PayPal::completePurchase($token, $paymentAmount, $currCodeType, $payerID, $serverName);	
 		
 			if($result==null)
 			{
