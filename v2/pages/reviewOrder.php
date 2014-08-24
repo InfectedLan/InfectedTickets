@@ -25,7 +25,7 @@ class TicketPage {
 			echo '<br />';
 			echo '<form id="payForm" action="index.php?page=pay" method="POST">';
 				echo '<input type="hidden" name="token" value="' . $_REQUEST['token'] . '" />';
-				echo '<input type="hidden" name="paymentAmount" value="' . $resArray["AMT"] . '" />';
+				//echo '<input type="hidden" name="paymentAmount" value="' . $resArray["AMT"] . '" />';
 				//echo '<input type="hidden" name="paymentType" value="' . $_SESSION['paymentType'] . '" />';
 				echo '<input type="hidden" name="payerID" value="' . $_REQUEST['PayerID'] . '" />';
 				echo '<input type="submit" value="Kjøp" />';

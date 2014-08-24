@@ -7,12 +7,10 @@ class TicketPage {
 	public function render() {
 		//Get stuff
 		$token =urlencode( $_POST['token']);
-		$paymentAmount =urlencode ($_POST['paymentAmount']);
+		//$paymentAmount =urlencode ($_POST['paymentAmount']);
 		$currCodeType = 'NOK';
 		$payerID = urlencode($_POST['payerID']);
 		$serverName = urlencode($_SERVER['SERVER_NAME']);
-
-		$user = Session::getCurrentUser();
 
 		if(!isset($token))
 		{
@@ -20,7 +18,11 @@ class TicketPage {
 		}
 		else
 		{
+			$user = Session::getCurrentUser();
 			$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
+			
+			$paymentAmount = $storeSession->getPrice();
+			
 			$result = PayPal::completePurchase($token, $paymentAmount, $currCodeType, $payerID, $serverName);	
 		
 			if($result==null)
@@ -33,7 +35,7 @@ class TicketPage {
 				echo "<br />";
 				echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
 
-				$success = StoreSessionHandler::purchaseComplete($_SESSION['key'], $_SESSION['amt'], $_SESSION['qty'])
+				$success = StoreSessionHandler::purchaseComplete($storeSession);
 				if(!$success)
 				{
 					echo '<br />';
