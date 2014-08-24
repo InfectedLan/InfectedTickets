@@ -11,13 +11,16 @@ class TicketPage {
 		$currCodeType = 'NOK';
 		$payerID = urlencode($_POST['payerID']);
 		$serverName = urlencode($_SERVER['SERVER_NAME']);
-		
+
+		$user = Session::getCurrentUser();
+
 		if(!isset($token))
 		{
 			echo "Du må komme fra en betaling!";
 		}
 		else
 		{
+			$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
 			$result = PayPal::completePurchase($token, $paymentAmount, $currCodeType, $payerID, $serverName);	
 		
 			if($result==null)
@@ -30,7 +33,6 @@ class TicketPage {
 				echo "<br />";
 				echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
 
-				$user = Session::getCurrentUser();
 				$success = StoreSessionHandler::purchaseComplete($_SESSION['key'], $_SESSION['amt'], $_SESSION['qty'])
 				if(!$success)
 				{

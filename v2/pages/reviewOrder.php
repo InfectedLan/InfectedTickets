@@ -11,7 +11,7 @@ class TicketPage {
 		$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
 		//print_r($resArray);
 
-		if(StoreSessionHandler::isPaymentValid($resArray['AMT'], $resArray["L_PAYMENTREQUEST_0_QTY0"], $user))
+		if(StoreSessionHandler::isPaymentValid($resArray['AMT'], $resArray["L_PAYMENTREQUEST_0_QTY0"], $storeSession))
 		{
 			echo '<h4>Vennligst se igjennom detaljene før du godkjenner betalingen.</h4>';
 			echo '<table>';
