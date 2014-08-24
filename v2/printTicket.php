@@ -54,7 +54,7 @@
 						echo '<tr><td>Sete:</td><td>' . SeatHandler::getHumanString($seat) . '</td></tr>';
 					}
 					echo '<tr><td colspan="2"><b>Innsjekking: <a href="https://github.com/InfectedLan/InfectedAPI/issues/27">Please poke this issue</a></b></td></tr>';
-					echo '<div id="inputdata"><img src="' . "" . 'images/qrcache/' . $ticket->getQrImagePath() . '" width="200px"/></div>';
+					echo '<div id="inputdata"><img src="' . "" . '../api/content/qrcache/' . $ticket->getQrImagePath() . '" width="200px"/></div>';
 				echo '</table>';
 			echo '</div>';
 			echo '<div id="tekstprint">Denne billetten skal vises ved innsjekking på Radar. Husk å ta med gyldig legitimasjon. De under 14 må ha med
