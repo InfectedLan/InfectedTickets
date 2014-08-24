@@ -5,11 +5,13 @@ require_once 'handlers/userhandler.php';
 require_once 'paypal/paypal.php';
 class TicketPage {
 	public function render() {
+		//Get stuff
 		$token =urlencode( $_POST['token']);
 		$paymentAmount =urlencode ($_POST['paymentAmount']);
 		$currCodeType = 'NOK';
 		$payerID = urlencode($_POST['payerID']);
 		$serverName = urlencode($_SERVER['SERVER_NAME']);
+		
 		if(!isset($token))
 		{
 			echo "Du må komme fra en betaling!";
