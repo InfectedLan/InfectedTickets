@@ -1,5 +1,6 @@
 <?php
 require_once 'session.php';
+require_once 'utils.php';
 require_once 'handlers/eventhandler.php';
 
 class Site {
