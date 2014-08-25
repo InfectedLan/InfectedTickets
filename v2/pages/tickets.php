@@ -33,7 +33,13 @@ class TicketPage
 	}
 	public function renderTutorial()
 	{
-		echo 'Yolo';
+		echo '<h1>Mine billetter</h1>';
+
+		echo '<p>Har du kjøpt billett for en annen må den overføres til hans/huns bruker. Dette gjør du ved å trykke  ”Overfør billetten”</p>';
+
+		echo '<p>Ønsker du at en annen skal velge plass for deg? Trykk på ”Endre plassreserverer” <br /> Dette gjør det enklere og komme samme i gruppe.</p>';
+
+		echo '<p>Alle må ha med billett når de kommer på Infected, Du kan selv velge om du ønsker og skrive den ut eller bare ha den på Mobilen din.</p>';
 	}
 
 	private function printOldTicket($ticket)

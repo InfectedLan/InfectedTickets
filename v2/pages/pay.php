@@ -6,6 +6,10 @@ require_once 'handlers/paymentloghandler.php';
 require_once 'paypal/paypal.php';
 class TicketPage {
 	public function render() {
+		
+	}
+	
+	public function renderTutorial() {
 		//Get stuff
 		$token =urlencode( $_POST['token']);
 		//$paymentAmount =urlencode ($_POST['paymentAmount']);
@@ -21,42 +25,46 @@ class TicketPage {
 		{
 			$user = Session::getCurrentUser();
 			$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
-			
-			$paymentAmount = $storeSession->getPrice();
-			
-			$result = PayPal::completePurchase($token, $paymentAmount, $currCodeType, $payerID, $serverName);	
-		
-			if($result==null)
+
+			if(!isset($storeSession))
 			{
-				echo "Det skjedde en feil under verifiseringen av betaingen!";
+				echo 'Du har ingen reservert billett! Har du ventet for lenge med å betale? Kontakt support.';
 			}
 			else
 			{
-				echo "Takk!";
-				echo "<br />";
-				echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
-				PaymentLogHandler::logPayment($user, 
-					TicketTypeHandler::getTicketType( $storeSession->getTicketType() ), 
-					$storeSession->getAmount(), 
-					$storeSession->getPrice(), 
-					$result);
-
-				$success = StoreSessionHandler::purchaseComplete($storeSession);
-				if(!$success)
+				$paymentAmount = $storeSession->getPrice();
+			
+				$result = PayPal::completePurchase($token, $paymentAmount, $currCodeType, $payerID, $serverName);	
+			
+				if($result==null)
 				{
-					echo '<br />';
-					echo 'Det skjedde noe galt under registreringen av bilettene dine. Kontakt support.';
+					echo "Det skjedde en feil under verifiseringen av betaingen!";
 				}
 				else
 				{
-					echo '<br />';
-					echo 'Kjøpet ditt er registrert. Du kan nå plassere deg ved å trykke på "Plassreservering" oppe i menyen.';
+					echo "<h1>Takk for din bestilling</h1>";
+					echo "<br />";
+					echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
+					PaymentLogHandler::logPayment($user, 
+						TicketTypeHandler::getTicketType( $storeSession->getTicketType() ), 
+						$storeSession->getAmount(), 
+						$storeSession->getPrice(), 
+						$result);
+
+					$success = StoreSessionHandler::purchaseComplete($storeSession);
+					if(!$success)
+					{
+						echo '<br />';
+						echo 'Det skjedde noe galt under registreringen av bilettene dine. Kontakt support.';
+					}
+					else
+					{
+						echo '<br />';
+						echo 'Kjøpet ditt er registrert. Du kan nå plassere deg ved å trykke på "Plassreservering" oppe i menyen.';
+					}
 				}
 			}
 		}
-	}
-	
-	public function renderTutorial() {
 	}
 }
 ?>
