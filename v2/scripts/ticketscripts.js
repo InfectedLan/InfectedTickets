@@ -7,9 +7,7 @@ $(document).ready(function() {
 	$('#userSearchInput').on('input', function(){
 		updateSearchField();
 	});
-
-	});
-}
+});
 var updateKey = 0;
 function updateSearchField()
 {
