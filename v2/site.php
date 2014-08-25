@@ -2,6 +2,7 @@
 require_once 'session.php';
 require_once 'utils.php';
 require_once 'handlers/eventhandler.php';
+require_once 'handlers/tickethandler.php';
 
 class Site {
 	// Variable definitions.
@@ -64,7 +65,7 @@ class Site {
 					echo '</div>';
 					echo '<div id="container">';
 						echo '<div id="header">';
-							echo '<a href="index.php?page=default"><img id="logo" src="images/logo.png"/></a>';
+							echo '<a href="index.php"><img id="logo" src="images/logo.png"/></a>';
 							echo '<div id="colorChange">';
 								echo '<div class="cc" id="cPink" title="Hot Pink"></div>';
 								echo '<div class="cc" id="cBlue" title="Cool Blue"></div>';
@@ -84,7 +85,14 @@ class Site {
 							echo '<a href="index.php?page=contact"><h1 style="border-right:0px">Kontakt</h1></a>';
 						echo '</div>';
 						//echo '<h1>put things here in the #content div</h1>';
-						$pageToInclude = 'pages/default.php';
+						$currentEvent = EventHandler::getCurrentEvent();
+						$numTickets = TicketHandler::getTicketsForOwnerAndEvent($user, $currentEvent);
+
+						$pageToInclude = 'pages/buyTickets.php';
+						if(count($numTickets)!=0)
+						{
+							$pageToInclude = 'pages/tickets.php';
+						}
 						//Make sure it is not trying to access something outside the pages directory
 						
 						if (isset($_GET["page"]) && !empty($_GET["page"]) && ctype_alpha($_GET["page"] )) {
