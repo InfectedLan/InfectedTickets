@@ -88,10 +88,10 @@ class TicketPage
 					echo '<b>' . $ticket->getHumanName() . '</b>';
 				echo '</td>';
 				echo '<td>';
-					echo '<input type="button" value="Overfør biletten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/transferTicket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
+					echo '<input type="button" value="Overfør biletten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/transferticket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
 				echo '</td>';
 				echo '<td>';
-					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/setSeater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
+					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/setseater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
 				echo '<td>';
 					echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
