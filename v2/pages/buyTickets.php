@@ -9,12 +9,10 @@ class TicketPage {
 		$user = Session::getCurrentUser();
 		if( StoreSessionHandler::hasStoreSession( $user ) )
 		{
-			echo "Det virker som om du har forlatt et kjøp! Kontakt support.";
+			$session = StoreSessionHandler::getStoreSessionForUser($user);
+			StoreSessionHandler::deleteStoreSession();
 		}
-		else
-		{
-			$this->renderFirstStep();
-		}
+		$this->renderFirstStep();
 	}
 	
 	public function renderTutorial() {
