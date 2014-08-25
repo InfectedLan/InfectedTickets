@@ -51,13 +51,13 @@ class Site {
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
 				echo '<script src="../api/scripts/jquery.js"></script>';
 				echo '<script src="../api/scripts/jquery.form.min.js"></script>';
-				echo '<script src="scripts/shared.php"></script>';
+				echo '<script src="scripts/shared.js"></script>';
 			echo '</head>';
 			echo '<body>';
 				if (Session::isAuthenticated()) {
 					$user = Session::getCurrentUser();
 					echo '<script src="../api/scripts/logout.js"></script>';
-					echo '<script src="scripts/ticketscripts.php"></script>';
+					echo '<script src="scripts/ticketscripts.js"></script>';
 					echo '<div id="imgContainer">';
 						echo '<div class="bgControl" id="leftBgImg"></div>';
 						echo '<div class="bgControl" id="rightBgImg"></div>';
@@ -125,7 +125,7 @@ class Site {
 					echo '</div>';
 				} else {
 					echo '<script src="../api/scripts/login.js"></script>';
-					echo '<script src="scripts/splash.php"></script>';
+					echo '<script src="scripts/splash.js"></script>';
 					echo '<div class="outer">';
 						echo '<div class="middle">';
 							echo '<div class="inner">';

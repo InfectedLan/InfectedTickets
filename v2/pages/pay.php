@@ -47,6 +47,11 @@ class TicketPage {
 					echo '<br />';
 					echo 'Det skjedde noe galt under registreringen av bilettene dine. Kontakt support.';
 				}
+				else
+				{
+					echo '<br />';
+					echo 'Kjøpet ditt er registrert. Du kan nå plassere deg ved å trykke på "Plassreservering" oppe i menyen.';
+				}
 			}
 		}
 	}
