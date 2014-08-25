@@ -2,6 +2,7 @@
 require_once 'session.php';
 require_once 'handlers/storesessionhandler.php';
 require_once 'handlers/userhandler.php';
+require_once 'handlers/paymentloghandler.php';
 require_once 'paypal/paypal.php';
 class TicketPage {
 	public function render() {
@@ -34,6 +35,11 @@ class TicketPage {
 				echo "Takk!";
 				echo "<br />";
 				echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
+				PaymentLogHandler::logPayment($user, 
+					TicketTypeHandler::getTicketType( $storeSession->getTicketType() ), 
+					$storeSession->getAmount(), 
+					$storeSession->getPrice(), 
+					$result);
 
 				$success = StoreSessionHandler::purchaseComplete($storeSession);
 				if(!$success)
