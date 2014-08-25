@@ -16,8 +16,8 @@ class TicketPage {
 	}
 	
 	public function renderTutorial() {
-		echo 'Velg en billett du vil plassere for listen. Velg deretter hvor du vil sitte ved å trykke på et grønt sete.<br />';
-		echo 'Billetter du kan plassere:<br />';
+		echo '<p>Velg en billett du vil plassere for listen. Velg deretter hvor du vil sitte ved å trykke på et grønt sete.';
+		echo 'Billetter du kan plassere:</p>';
 		echo '<div id="seatableTickets"><i>Laster inn</i></div>';
 	}
 }
