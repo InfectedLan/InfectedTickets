@@ -200,7 +200,7 @@ body {
 		width:150px;
 		height:19px;
 		color:black;
-		float:right;
+		/* float:right; */
 		border:1;
 		
 		border:1px solid #ccc;
