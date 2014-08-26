@@ -48,68 +48,78 @@ class TicketPage {
 	}
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
-		$type = $currentEvent->getTicketType();
-		echo '<h2>';
-			echo 'Kjøper billett for Infected ';
-			echo $currentEvent->getTheme();
-			echo ' ( ';
-			echo date("d", $currentEvent->getStartTime()) . 
-	                    '. - ' . 
-	                    date("d", $currentEvent->getEndTime()) . 
-	                    '. ' . 
-	                    date("F", $currentEvent->getStartTime()) . 
-	                    '.';
-	        echo ' )';
-		echo '</h2>';
-		echo '<script src="scripts/buyTickets.js"></script>';
-		echo '<script>';
-			echo 'var ticketPrice = ' . $type->getPrice() . ';';
-		echo '</script>';
-		echo '<form action="index.php?page=rules" id="buyTicketForm" method="post">';
-			echo '<input type="hidden" name="ticketType" value="' . $type->getId() . '" />';
-			echo '<table>';
-				echo '<tr>';
+		if($currentEvent->isBookingTime())
+		{
+			$type = $currentEvent->getTicketType();
+			echo '<h2>';
+				echo 'Kjøper billett for Infected ';
+				echo $currentEvent->getTheme();
+				echo ' ( ';
+				echo date("d", $currentEvent->getStartTime()) . 
+		                    '. - ' . 
+		                    date("d", $currentEvent->getEndTime()) . 
+		                    '. ' . 
+		                    date("F", $currentEvent->getStartTime()) . 
+		                    '.';
+		        echo ' )';
+			echo '</h2>';
+			echo '<script src="scripts/buyTickets.js"></script>';
+			echo '<script>';
+				echo 'var ticketPrice = ' . $type->getPrice() . ';';
+			echo '</script>';
+			echo '<form action="index.php?page=rules" id="buyTicketForm" method="post">';
+				echo '<input type="hidden" name="ticketType" value="' . $type->getId() . '" />';
+				echo '<table>';
+					echo '<tr>';
+							echo '<td>';
+								echo 'Bilettnavn';
+							echo '</td>';
+							echo '<td>';
+								echo 'Pris';
+							echo '</td>';
+							echo '<td>';
+								echo 'Bestill antall';
+							echo '</td>';
+							echo '<td>';
+								echo 'Antall ledige';
+							echo '</td>';
+							echo '<td>';
+								echo 'Total';
+							echo '</td>';
+					echo '</tr>';
+					echo '<tr>';
 						echo '<td>';
-							echo 'Bilettnavn';
+							echo '<b>';
+								echo $type->getHumanName();
+							echo '</b>';
 						echo '</td>';
 						echo '<td>';
-							echo 'Pris';
+							echo $type->getPrice();
 						echo '</td>';
 						echo '<td>';
-							echo 'Bestill antall';
+							$ticketsLeft = $currentEvent->getAvailableTickets();
+							echo '<input id="ticketAmount" type="number" name="ticketAmount" value="1" min="1" max="' . $ticketsLeft . '">';
 						echo '</td>';
 						echo '<td>';
-							echo 'Antall ledige';
+							echo $ticketsLeft . '/' . $currentEvent->getParticipants();
 						echo '</td>';
 						echo '<td>';
-							echo 'Total';
+							echo '<span id="totalPrice">' . $type->getPrice() . '</span>';
 						echo '</td>';
-				echo '</tr>';
-				echo '<tr>';
-					echo '<td>';
-						echo '<b>';
-							echo $type->getHumanName();
-						echo '</b>';
-					echo '</td>';
-					echo '<td>';
-						echo $type->getPrice();
-					echo '</td>';
-					echo '<td>';
-						$ticketsLeft = $currentEvent->getAvailableTickets();
-						echo '<input id="ticketAmount" type="number" name="ticketAmount" value="1" min="1" max="' . $ticketsLeft . '">';
-					echo '</td>';
-					echo '<td>';
-						echo $ticketsLeft . '/' . $currentEvent->getParticipants();
-					echo '</td>';
-					echo '<td>';
-						echo '<span id="totalPrice">' . $type->getPrice() . '</span>';
-					echo '</td>';
-					echo '<td>';
-						echo '<input type="submit" value="Kjøp" />';
-					echo '</td>';
-				echo '</tr>';
-			echo '</table>';
-		echo '</form>';
+						echo '<td>';
+							echo '<input type="submit" value="Kjøp" />';
+						echo '</td>';
+					echo '</tr>';
+				echo '</table>';
+			echo '</form>';
+		}
+		else
+		{
+			echo '<h1>Billettsalget har ikke åpnet enda</h1>';
+			echo '<p>';
+			echo 'Billettsalget åpner ' . date("d F H:i", $currentEvent->getBookingTime());
+			echo '</p>';
+		}
 	}
 }
 ?>
