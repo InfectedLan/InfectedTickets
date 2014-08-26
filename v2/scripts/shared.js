@@ -18,3 +18,8 @@ function showInfoBox() {
 	$("#errorbox").fadeIn(200);
 	$('#errorbox').attr("class", "info");
 }
+$(document).ready(function() {	
+	$('.errorClose').click(function() {
+		hideErrorBox();
+	});
+});

@@ -11,10 +11,6 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
-	$('.errorClose').click(function() {
-		hideErrorBox();
-	});
 });
 
 //View faders
