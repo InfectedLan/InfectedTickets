@@ -10,7 +10,7 @@ class Site {
 	
 	public function __construct() {
 		// Set the variables.
-		$this->pageName = isset($_GET['viewPage']) ? $_GET['viewPage'] : null;
+		$this->pageName = isset($_GET['page']) ? $_GET['page'] : 'buytickets';
 	}
 	
 	// Execute the site.
@@ -102,8 +102,8 @@ class Site {
 						echo '</div>';
 						//Make sure it is not trying to access something outside the pages directory
 						
-						if (isset($_GET["page"]) && !empty($_GET["page"]) && ctype_alpha($_GET["page"] )) {
-							if(file_exists("pages/" . $_GET["page"] . '.php')) {
+						if (isset($_GET['page']) && !empty($_GET['page']) && ctype_alpha($_GET['page'] )) {
+							if (file_exists('pages/' . $this->pageName . '.php')) {
 								$pageToInclude = "pages/" . $_GET["page"] . '.php';
 							} else {
 								$pageToInclude = "pages/404.php";
