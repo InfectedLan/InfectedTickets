@@ -78,21 +78,27 @@ class Site {
 								echo '<input type="button" value="Min profil">';
 							echo '</div>';
 						echo '</div>';
-						echo '<div class="banner" id="nav">';
-							echo '<a href="index.php?page=buyTickets"><h1 style="border-left:0px; text-decoration:underline;">Kjøp billetter</h1></a>';
-							echo '<a href="index.php?page=tickets"><h1>Mine billetter</h1></a>';
-							echo '<a href="index.php?page=viewSeatmap"><h1>Plassreservering</h1></a>';
-							echo '<a href="index.php?page=contact"><h1 style="border-right:0px">Kontakt</h1></a>';
-						echo '</div>';
+						//Has to be done before the banner
 						//echo '<h1>put things here in the #content div</h1>';
 						$currentEvent = EventHandler::getCurrentEvent();
 						$numTickets = TicketHandler::getTicketsForOwnerAndEvent($user, $currentEvent);
 
 						$pageToInclude = 'pages/buyTickets.php';
+						$defaultPage = "buyTickets";
 						if(count($numTickets)!=0)
 						{
+							$defaultPage = "tickets";
 							$pageToInclude = 'pages/tickets.php';
 						}
+						//Banner
+						echo '<div class="banner" id="nav">';
+							$pageString = ( isset($_GET['page']) ? $_GET['page'] : $defaultPage);
+							$underlined = ' style="border-left:0px; text-decoration:underline;"';
+							echo '<a href="index.php?page=buyTickets"><h1' . ($pageString=='buyTickets' ? $underlined : '') . '>Kjøp billetter</h1></a>';
+							echo '<a href="index.php?page=tickets"><h1' . ($pageString=='tickets' ? $underlined : '') . '>Mine billetter</h1></a>';
+							echo '<a href="index.php?page=viewSeatmap"><h1' . ($pageString=='viewSeatmap' ? $underlined : '') . '>Plassreservering</h1></a>';
+							echo '<a href="index.php?page=contact"><h1' . ($pageString=='contact' ? $underlined : '') . '>Kontakt</h1></a>';
+						echo '</div>';
 						//Make sure it is not trying to access something outside the pages directory
 						
 						if (isset($_GET["page"]) && !empty($_GET["page"]) && ctype_alpha($_GET["page"] )) {
