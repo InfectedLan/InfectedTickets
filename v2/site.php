@@ -1,5 +1,6 @@
 <?php
 require_once 'session.php';
+require_once 'settings.php';
 require_once 'utils.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
@@ -101,8 +102,8 @@ class Site {
 							echo '<a href="index.php?page=viewSeatmap"><h1' . ($pageString == 'viewSeatmap' ? $underlined : '') . '>Plassreservering</h1></a>';
 							echo '<a href="index.php?page=contact"><h1' . ($pageString == 'contact' ? $underlined : '') . '>Kontakt</h1></a>';
 						echo '</div>';
-						//Make sure it is not trying to access something outside the pages directory
 						
+						//Make sure it is not trying to access something outside the pages directory
 						if (isset($_GET['page']) && !empty($_GET['page']) && ctype_alpha($_GET['page'] )) {
 							if (file_exists('pages/' . $this->pageName . '.php')) {
 								$pageToInclude = "pages/" . $_GET["page"] . '.php';
@@ -146,123 +147,134 @@ class Site {
 						echo '<div class="middle">';
 							echo '<div class="inner">';
 								echo '<img id="logo" src="images/logo_trans2.png" alt="Infected">';
+								
+								$publicPages = array('activation', 
+													 'reset-password');
+							
+								if (isset($_GET['page']) && in_array($this->pageName, $publicPages)) {
 									echo '<ul id="ul1">';
-									//Login frame
-									echo '<div id="loginFrame">';
-										echo '<form class="login" method="post">';
-											echo '<li>';
-												echo '<input class="input" name="username" type="input" placeholder="Brukernavn">';
-											echo '</li>';
-											echo '<li>';
-												echo '<input class="input" name="password" type="password" placeholder="Passord">';
-											echo '</li>';
-											
-											echo '<li>';
-												echo '<input class="button" id="submit" name="submit" type="submit" value="Logg inn">';
-											echo '</li>';
-										echo '</form>';
+										$this->viewPage($this->pageName);
 										echo '<li>';
-											echo '<input class="button" type="button" value="Registrer" onclick="showRegisterBox()">';
+											echo '<input class="button" type="button" value="Gå tilbake" onclick="showSplash()">';
 										echo '</li>';
-										echo '<li>';
-											echo '<input class="button" type="button" value="Glemt passord" onclick="showForgotBox()">';
-										echo '</li>';
-									echo '</div>';
-									//Register frame
-									echo '<div id="registerFrame" style="display:none;">';
-										echo '<form class="register" method="post">';
+									echo '</ul>';
+								} else {
+									echo '<ul id="ul1">';
+										//Login frame
+										echo '<div id="loginFrame">';
+											echo '<form class="login" method="post">';
+												echo '<li>';
+													echo '<input class="input" type="text" name="username" placeholder="Brukernavn">';
+												echo '</li>';
+												echo '<li>';
+													echo '<input class="input" name="password" type="password" placeholder="Passord">';
+												echo '</li>';
+												
+												echo '<li>';
+													echo '<input class="button" id="submit" name="submit" type="submit" value="Logg inn">';
+												echo '</li>';
+											echo '</form>';
 											echo '<li>';
-													echo '<input type="text" name="firstname" placeholder="Fornavn" required autofocus>';
+												echo '<input class="button" type="button" value="Registrer" onclick="showRegisterBox()">';
 											echo '</li>';
 											echo '<li>';
-													echo '<input type="text"name="lastname" placeholder="Etternavn" required>';
+												echo '<input class="button" type="button" value="Glemt passord" onclick="showForgotBox()">';
 											echo '</li>';
-											echo '<li>';
-													echo '<input type="text"name="username" placeholder="Brukernavn" required>';
-											echo '</li>';
-											echo '<li>';
-													echo '<input type="password" name="password" placeholder="Passord" required>';
-											echo '</li>';
-											echo '<li>';
-													echo '<input type="password" name="confirmpassword" placeholder="Gjenta passord" required>';
-											echo '</li>';
-											echo '<li>';
-													echo '<input type="email" name="email" placeholder="E-post" required>';
-											echo '</li>';
-											echo '<li>';
-												echo '<select class="select" name="gender" placeholder="Kjønn">';
-													echo '<option value="0">Mann</option>';
-													echo '<option value="1">Kvinne</option>';
-												echo '</select>';
-											echo '</li>';
-											echo '<li>';
-												echo '<select name="birthday">';
-													for ($day = 1; $day < 32; $day++) {
-														echo '<option value="' . $day . '">' . $day . '</option>';
-													}
-												echo '</select>';
-												echo '<select name="birthmonth">';
-													for ($month = 1; $month < 13; $month++) {
-														echo '<option value="' . $month . '">' . Utils::getMonthFromInt($month) . '</option>';
-													}
-												echo '</select>';
-												echo '<select name="birthyear">';
-													for ($year = date('Y') - 100; $year < date('Y'); $year++) {
-														if ($year == date('Y') - 18) {
-															echo '<option value="' . $year . '" selected>' . $year . '</option>';
-														} else {
-															echo '<option value="' . $year . '">' . $year . '</option>';
+										echo '</div>';
+										//Register frame
+										echo '<div id="registerFrame" style="display:none;">';
+											echo '<script src="../api/scripts/register.js"></script>';
+											echo '<script src="../api/scripts/lookupCity.js"></script>';
+											echo '<form class="register" method="post">';
+												echo '<li>';
+														echo '<input type="text" name="firstname" placeholder="Fornavn" required autofocus>';
+												echo '</li>';
+												echo '<li>';
+														echo '<input type="text"name="lastname" placeholder="Etternavn" required>';
+												echo '</li>';
+												echo '<li>';
+														echo '<input type="text"name="username" placeholder="Brukernavn" required>';
+												echo '</li>';
+												echo '<li>';
+														echo '<input type="password" name="password" placeholder="Passord" required>';
+												echo '</li>';
+												echo '<li>';
+														echo '<input type="password" name="confirmpassword" placeholder="Gjenta passord" required>';
+												echo '</li>';
+												echo '<li>';
+														echo '<input type="email" name="email" placeholder="E-post" required>';
+												echo '</li>';
+												echo '<li>';
+													echo '<select class="select" name="gender" placeholder="Kjønn">';
+														echo '<option value="0">Mann</option>';
+														echo '<option value="1">Kvinne</option>';
+													echo '</select>';
+												echo '</li>';
+												echo '<li>';
+													echo '<select name="birthday">';
+														for ($day = 1; $day < 32; $day++) {
+															echo '<option value="' . $day . '">' . $day . '</option>';
 														}
-													}
-												echo '</select>';
+													echo '</select>';
+													echo '<select name="birthmonth">';
+														for ($month = 1; $month < 13; $month++) {
+															echo '<option value="' . $month . '">' . Utils::getMonthFromInt($month) . '</option>';
+														}
+													echo '</select>';
+													echo '<select name="birthyear">';
+														for ($year = date('Y') - 100; $year < date('Y'); $year++) {
+															if ($year == date('Y') - 18) {
+																echo '<option value="' . $year . '" selected>' . $year . '</option>';
+															} else {
+																echo '<option value="' . $year . '">' . $year . '</option>';
+															}
+														}
+													echo '</select>';
+												echo '</li>';
+												echo '<li>';
+													echo '<input type="tel" name="phone" placeholder="Telefon" required>';
+												echo '</li>';
+												echo '<li>';
+													echo '<input type="text" name="address" placeholder="Gateadresse" required>';
+												echo '</li>';
+												echo '<li>';
+													echo '<input class="postalcode" type="number" name="postalcode" min="1" max="9999" placeholder="Postnummer" required>';
+												echo '</li>';
+												echo '<li>';
+													echo '<span class="city"></span>';
+												echo '</li>';
+												echo '<li>';
+													echo '<input name="nickname" type="text" placeholder="Kallenavn">';
+												echo '</li>';
+												echo '<li>';
+													echo '<input name="parent" type="tel" placeholder="Foresatte\'s telefon">';
+													echo '<i>(Påkrevd hvis du er under 18)</i>';
+												echo '</li>';
+												echo '<li>';
+													echo '<input class="button" id="submit" name="submit" type="submit" value="Registrer">';
+												echo '</li>';
+											echo '</form>';
+											//Go back button
+											echo '<li>';
 											echo '</li>';
 											echo '<li>';
-												echo '<input type="tel" name="phone" placeholder="Telefon" required>';
+												echo '<input class="button" type="button" value="Gå tilbake" onclick="showLoginBoxFromRegister()">';
 											echo '</li>';
+										echo '</div>';
+										echo '<div id="forgotFrame" style="display:none;">';
+											echo '<script src="../api/scripts/reset-password.js"></script>';
 											echo '<li>';
-												echo '<input type="text" name="address" placeholder="Gateadresse" required>';
+												echo '<form class="request-reset-password" method="post">';
+													echo '<p>Skriv inn ditt brukernavnet eller din e-postadresse for å nullstille passordet ditt:</p>';
+													echo '<input type="text" name="username" placeholder="Brukernavn eller e-post" required autofocus>';
+													echo '<input class="button" type="submit" value="Nullstill passord">';
+												echo '</form>';
 											echo '</li>';
+											//Go back button
 											echo '<li>';
-												echo '<input class="postalcode" type="number" name="postalcode" min="1" max="9999" placeholder="Postnummer" required>';
+												echo '<input class="button" type="button" value="Gå tilbake" onclick="showLoginBoxFromForgot()">';
 											echo '</li>';
-											echo '<li>';
-												echo '<span class="city"></span>';
-											echo '</li>';
-											echo '<li>';
-												echo '<input name="nickname" type="text" placeholder="Kallenavn">';
-											echo '</li>';
-											echo '<li>';
-												echo '<input name="parent" type="tel" placeholder="Foresatte\'s telefon">';
-												echo '<i>(Påkrevd hvis du er under 18)</i>';
-											echo '</li>';
-											echo '<li>';
-												echo '<input class="button" id="submit" name="submit" type="submit" value="Registrer">';
-											echo '</li>';
-										echo '</form>';
-										//Go back button
-										echo '<li>';
-										echo '</li>';
-										echo '<li>';
-											echo '<input class="button" type="button" value="Gå tilbake" onclick="showLoginBoxFromRegister()">';
-										echo '</li>';
-									echo '</div>';
-									echo '<div id="forgotFrame" style="display:none;">';
-										echo '<li>';
-											echo 'Dersom du har glemt passordet ditt, kan du skrive inn e-post addresseen din her og få en kode tilsendt for å endre passordet.';
-										echo '</li>';
-										echo '<li>';
-											echo '<input class="input" name="email" type="email" placeholder="E-post addresse">';
-										echo '</li>';
-										echo '<li>';
-											echo '<input class="button" id="submit" name="submit" type="submit" value="Send e-post">';
-										echo '</li>';
-										//Go back button
-										echo '<li>';
-										echo '</li>';
-										echo '<li>';
-											echo '<input class="button" type="button" value="Gå tilbake" onclick="showLoginBoxFromForgot()">';
-										echo '</li>';
-									echo '</div>';
+										echo '</div>';
 									echo '</ul>';
 									echo '<ul id="ul2">';
 										echo '<li>';
@@ -279,13 +291,14 @@ class Site {
 											echo '<i>Du har samme bruker på tickets og crew-siden.</i>';
 										echo '</li>';
 									echo '</ul>';
-								echo '</div>';
+								}
 							echo '</div>';
 						echo '</div>';
-						echo '<div id="errorbox" class="error">';
-							echo '<span id="errorMsg">Placeholder error message here...</span>';
-							echo '<div class="errorClose">X</div>';
-						echo '</div>';
+					echo '</div>';
+					echo '<div id="errorbox" class="error">';
+						echo '<span id="errorMsg">Placeholder error message here...</span>';
+						echo '<div class="errorClose">X</div>';
+					echo '</div>';
 				}
 			echo '</body>';
 		echo '</html>';
@@ -309,6 +322,32 @@ class Site {
 		}
 		
 		return $list[rand(0, count($list) - 1)];
+	}
+	
+	private function viewPage($pageName) {
+		$directoryList = array('pages');
+		$includedPages = array();
+		$found = false;
+		
+		foreach ($directoryList as $directory) {
+			$filePath = $directory . '/' . $pageName . '.php';
+		
+			if (!in_array($pageName, $includedPages) &&
+				in_array($filePath, glob($directory . '/*.php'))) {
+				// Make sure we don't include pages with same name twice, 
+				// and set the found varialbe so that we don't have to display the not found message.
+				array_push($includedPages, $pageName);
+				$found = true;
+			
+				include_once $filePath;
+			}
+		}
+			
+		if (!$found) {
+			echo '<article>';
+				echo '<h1>Siden ble ikke funnet!</h1>';
+			echo '</article>';
+		}
 	}
 }
 ?>
