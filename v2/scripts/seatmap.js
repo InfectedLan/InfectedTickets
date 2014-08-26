@@ -92,7 +92,7 @@ function loadSeatableTickets() {
 				{
 					seatingTicketId = data.tickets[i].id;
 				}
-				$("#seatableTickets").append('<div class="ticket' + (i == 0 ? ' selectedTicket' : '') + '" id="ticket' + data.tickets[i].id + '">' + data.tickets[i].owner + '</div>');
+				$("#seatableTickets").append('<div class="ticket' + (i == 0 ? ' selectedTicket' : '') + '" id="ticket' + data.tickets[i].id + '">' + data.tickets[i].owner + ' <i class="smallText">(' + data.tickets[i].humanName + ')</i></div>');
 				$("#ticket" + data.tickets[i].id).click({id: data.tickets[i].id}, function(e){
 					setSeatingTicket(e.data.id);
 				});
