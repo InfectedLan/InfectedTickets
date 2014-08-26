@@ -72,7 +72,7 @@ class Site {
 								echo '<div class="cc" id="cGreen" title="Infected Green"></div>';
 							echo '</div>';
 							echo '<div id="whenLoggedIn">';
-								echo '<span> Du er nå logget in som ' . $user->getFirstname() . ' ' . $user->getLastname() . '</span>';
+								echo '<span> Du er nå logget in som ' . $user->getFullName() . '</span>';
 								echo '<div style="clear:both";></div>';
 								echo '<input type="button" value="Logg ut" onClick="logout()">';
 								echo '<input type="button" value="Min profil">';
@@ -83,21 +83,22 @@ class Site {
 						$currentEvent = EventHandler::getCurrentEvent();
 						$numTickets = TicketHandler::getTicketsForOwnerAndEvent($user, $currentEvent);
 
-						$pageToInclude = 'pages/buyTickets.php';
-						$defaultPage = "buyTickets";
-						if(count($numTickets)!=0)
-						{
-							$defaultPage = "tickets";
-							$pageToInclude = 'pages/tickets.php';
+						$pageToInclude = 'pages/buytickets.php';
+						$defaultPage = "buytickets";
+						
+						if (!empty($numTickets)) {
+							$defaultPage = "mytickets";
+							$pageToInclude = 'pages/mytickets.php';
 						}
+						
 						//Banner
 						echo '<div class="banner" id="nav">';
-							$pageString = ( isset($_GET['page']) ? $_GET['page'] : $defaultPage);
+							$pageString = (isset($_GET['page']) ? $_GET['page'] : $defaultPage);
 							$underlined = ' style="border-left:0px; text-decoration:underline;"';
-							echo '<a href="index.php?page=buyTickets"><h1' . ($pageString=='buyTickets' ? $underlined : '') . '>Kjøp billetter</h1></a>';
-							echo '<a href="index.php?page=tickets"><h1' . ($pageString=='tickets' ? $underlined : '') . '>Mine billetter</h1></a>';
-							echo '<a href="index.php?page=viewSeatmap"><h1' . ($pageString=='viewSeatmap' ? $underlined : '') . '>Plassreservering</h1></a>';
-							echo '<a href="index.php?page=contact"><h1' . ($pageString=='contact' ? $underlined : '') . '>Kontakt</h1></a>';
+							echo '<a href="index.php?page=buytickets"><h1' . ($pageString == 'buytickets' ? $underlined : '') . '>Kjøp billetter</h1></a>';
+							echo '<a href="index.php?page=mytickets"><h1' . ($pageString == 'mytickets' ? $underlined : '') . '>Mine billetter</h1></a>';
+							echo '<a href="index.php?page=viewSeatmap"><h1' . ($pageString == 'viewSeatmap' ? $underlined : '') . '>Plassreservering</h1></a>';
+							echo '<a href="index.php?page=contact"><h1' . ($pageString == 'contact' ? $underlined : '') . '>Kontakt</h1></a>';
 						echo '</div>';
 						//Make sure it is not trying to access something outside the pages directory
 						
@@ -305,12 +306,9 @@ class Site {
 		echo '</html>';
 	}
 	
-	// Generates title based on current page / article.
+	// Generates title.
 	private function getTitle() {
-		$theme = EventHandler::getCurrentEvent()->getTheme();
-		$title = $theme != null ? Settings::name . ' ' . $theme : Settings::name;
-		
-		return $title;
+		return Settings::name . ' Tickets';
 	}
 	
 	// Picks randomly a background from the background directory.
