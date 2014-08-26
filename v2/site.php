@@ -23,6 +23,7 @@ class Site {
 				echo '<meta name="keywords" content="' . Settings::keywords . '">';
 				echo '<meta name="author" content="' . implode(', ', Settings::$authors) . '">';
 				echo '<meta charset="UTF-8">';
+				echo '<link rel="shortcut icon" href="images/favicon.ico">';
 				echo '<link rel="stylesheet" href="style/shared.css">';
 				
 				if (Session::isAuthenticated()) {
