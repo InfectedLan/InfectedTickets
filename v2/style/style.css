@@ -298,3 +298,10 @@ body {
 #ticketRules {
 	/* border-style: solid; */
 }
+hr {
+	border-color: #ddd;
+	background-color: #ddd;
+	color: #ddd;
+	height: 1px;
+	border: 0;
+}
