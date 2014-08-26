@@ -46,7 +46,7 @@ function renderSeatmap() {
 				returnData.push('<div title="' + title + '" class="seat free" id="seat' + seatmapData.rows[i].seats[s].id + '">');
 			}
 			//Push rest of stuff
-			returnData.push(seatmapData.rows[i].seats[s].humanName);
+			returnData.push(seatmapData.rows[i].seats[s].humanName.split(" ").join("<br />"));
 			returnData.push('</div>');
 		}
 		returnData.push('</div>');
