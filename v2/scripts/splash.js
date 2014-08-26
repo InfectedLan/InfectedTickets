@@ -1,18 +1,3 @@
-//Login form submitter
-$(document).ready(function() {	
-	$('#registerForm').submit( function(e) {
-		e.preventDefault();
-		$.getJSON('../api/json/register.php' + '?' + $(this).serialize(), function(data){
-			if (data.result) {
-				showLoginBoxFromRegister();
-	        	info("Din bruker har blitt laget! Sjekk e-posten din for å aktivere, før du logger inn.");
-			} else {
-				error(data.message); 
-			}
-		});
-	});
-});
-
 //View faders
 function showRegisterBox() {
 	$("#loginFrame").fadeOut(200, function() {

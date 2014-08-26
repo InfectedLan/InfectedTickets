@@ -170,34 +170,30 @@ class Site {
 									echo '</div>';
 									//Register frame
 									echo '<div id="registerFrame" style="display:none;">';
-										echo '<form id="registerForm">';
+										echo '<form class="register" method="post">';
 											echo '<li>';
-													echo '<input class="input" name="firstname" type="input" placeholder="Fornavn">';
+													echo '<input type="text" name="firstname" placeholder="Fornavn" required autofocus>';
 											echo '</li>';
 											echo '<li>';
-													echo '<input class="input" name="lastname" type="input" placeholder="Etternavn">';
+													echo '<input type="text"name="lastname" placeholder="Etternavn" required>';
 											echo '</li>';
 											echo '<li>';
-													echo '<input class="input" name="username" type="input" placeholder="Brukernavn">';
+													echo '<input type="text"name="username" placeholder="Brukernavn" required>';
 											echo '</li>';
 											echo '<li>';
-													echo '<input class="input" name="password" type="password" placeholder="Passord">';
+													echo '<input type="password" name="password" placeholder="Passord" required>';
 											echo '</li>';
 											echo '<li>';
-													echo '<input class="input" name="confirmpassword" type="password" placeholder="Gjenta passord">';
+													echo '<input type="password" name="confirmpassword" placeholder="Gjenta passord" required>';
 											echo '</li>';
 											echo '<li>';
-													echo '<input class="input" name="email" type="email" placeholder="E-post addresse">';
+													echo '<input type="email" name="email" placeholder="E-post" required>';
 											echo '</li>';
 											echo '<li>';
-												echo '<i>Kjønn:</i>';
 												echo '<select class="select" name="gender" placeholder="Kjønn">';
 													echo '<option value="0">Mann</option>';
 													echo '<option value="1">Kvinne</option>';
 												echo '</select>';
-											echo '</li>';
-											echo '<li>';
-												echo '<i>Fødselsdato:</i>';
 											echo '</li>';
 											echo '<li>';
 												echo '<select name="birthday">';
@@ -221,19 +217,22 @@ class Site {
 												echo '</select>';
 											echo '</li>';
 											echo '<li>';
-												echo '<input class="input" name="phone" type="tel" placeholder="Telefonnummer">';
+												echo '<input type="tel" name="phone" placeholder="Telefon" required>';
 											echo '</li>';
 											echo '<li>';
-												echo '<input class="input" name="address" type="input" placeholder="Gateadresse">';
+												echo '<input type="text" name="address" placeholder="Gateadresse" required>';
 											echo '</li>';
 											echo '<li>';
-												echo '<input class="input" name="postalCode" type="number" placeholder="Postnummer">';
+												echo '<input class="postalcode" type="number" name="postalcode" min="1" max="9999" placeholder="Postnummer" required>';
 											echo '</li>';
 											echo '<li>';
-												echo '<input class="input" name="nickname" type="text" placeholder="Kallenavn/nick">';
+												echo '<span class="city"></span>';
 											echo '</li>';
 											echo '<li>';
-												echo '<input class="input" name="parent" type="tel" placeholder="Foresattes telefon">';
+												echo '<input name="nickname" type="text" placeholder="Kallenavn">';
+											echo '</li>';
+											echo '<li>';
+												echo '<input name="parent" type="tel" placeholder="Foresatte\'s telefon">';
 												echo '<i>(Påkrevd hvis du er under 18)</i>';
 											echo '</li>';
 											echo '<li>';
@@ -267,29 +266,14 @@ class Site {
 									echo '</ul>';
 									echo '<ul id="ul2">';
 										echo '<li>';
-											//List next lan's date
 											$event = EventHandler::getCurrentEvent();
-											echo 'Neste Lan er:';
-											echo '<br/>';
-											echo date("d", $event->getStartTime()) . 
-												'. - ' . 
-												date("d", $event->getEndTime()) . 
-												'. ' . 
-												date("F", $event->getStartTime()) . 
-												'.';
-											echo '<br/>';
-												echo 'Dørene åpner ' . 
-												date("H:i", $event->getStartTime()) . 
-												'.';
-										echo '</li>';
-										
-										echo '<li>';
-											echo 'Antall Billetter igjen: <b>' . $event->getAvailableTickets() . '</b>';
-										echo '</li>';
-										
-										echo '<li>';
-											$ticketType = $event->getTicketType();
-											echo 'Pris: ' . $ticketType->getPrice() . ',- inkludert medlemskap i Radar.';
+											$ticketText = $event->getTicketCount() > 1 ? 'billeter' : 'billett';
+											
+											echo '<p><b>Neste Lan er:</b><br>';
+											echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . '<br>';
+											echo 'Det er <b>' . $event->getAvailableTickets() . '</b> av <b>' . $event->getParticipants() . '</b> ' . $ticketText . ' igjen<br>';
+											echo 'Dørene åpner kl.' . date('H:i', $event->getStartTime()). '<br>';
+											echo 'Pris per billett: ' . $event->getTicketType()->getPrice() . ',- inkludert medlemskap i Radar.</p>';
 										echo '</li>';
 										echo '<li>';
 											echo '<i>Du har samme bruker på tickets og crew-siden.</i>';
