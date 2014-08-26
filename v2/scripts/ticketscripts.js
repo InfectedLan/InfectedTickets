@@ -37,7 +37,8 @@ var acceptText = "hei";
 var acceptFunction = 0;
 function setSelectedUser(userId, displayname) {
 	selectedUserId = userId;
-	$("#userSelectedData").html('<b>Du har valgt ' + displayname + '. <input type="button" value="' + acceptText + '" onclick="acceptFunction(' + userId + ')" /></b>');
+	acceptFunction(userId);
+	//$("#userSelectedData").html('<b>Du har valgt ' + displayname + '. <input type="button" value="' + acceptText + '" onclick="acceptFunction(' + userId + ')" /></b>');
 }
 function resetSelectedUser() {
 	selectedUserId = 0;

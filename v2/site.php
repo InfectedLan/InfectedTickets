@@ -134,7 +134,7 @@ class Site {
 					echo '<div id="fade"></div>';
 					echo '<div id="prompt">';
 						echo '<h3>Velg bruker</h3>';
-						echo 'Start å skrive i tekstboksen, så kommer brukere opp<br>';
+						echo 'Start å skrive i tekstboksen, så kommer brukere opp. Du kan søke etter navn, brukernavn, e-post, telefonnummer, og nickname.<br>';
 						echo '<input id="userSearchInput" type="text" name="userText"><br>';
 						echo '<div id="userSearchContent"></div><br><br>';
 						echo '<div id="userSelectedData"></div>';
