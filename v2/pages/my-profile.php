@@ -87,7 +87,7 @@ class TicketPage {
 						echo '<td><input type="text" name="nickname" value="' . $user->getNickname() . '"></td>';
 					echo '</tr>';
 					echo '<tr>';
-						echo '<td><input type="submit" value="Lagre"></td>';
+						echo '<td><input type="submit" value="Lagre"><input type="button" value="Endre passord" onClick=\'window.location="index.php?page=edit-password"\' /></td>';
 					echo '</tr>';
 				echo '</table>';
 			echo '</form>';
