@@ -45,6 +45,7 @@
 					echo '<tr><td>Mobil:</td><td>' . $ticket->getOwner()->getPhone() . '</td></tr>';
 					echo '<tr><td>Brukernavn:</td><td>' . $ticket->getOwner()->getUsername() . '</td></tr>';
 					$seat = $ticket->getSeat();
+					$entrance = $seat->getRow()->getEntrance();
 					if( !isset($seat) )
 					{
 						echo '<tr><td>Sete:</td><td><b>IKKE PLASSERT</b></td></tr>';
@@ -53,7 +54,7 @@
 					{
 						echo '<tr><td>Sete:</td><td>' . SeatHandler::getHumanString($seat) . '</td></tr>';
 					}
-					echo '<tr><td colspan="2"><b>Innsjekking: <a href="https://github.com/InfectedLan/InfectedAPI/issues/27">Please poke this issue</a></b></td></tr>';
+					echo '<tr><td colspan="2"><b>Innsjekking: ' . $entrance->getTitle() . '</b></td></tr>';
 					echo '<div id="inputdata"><img src="' . "" . '../api/content/qrcache/' . $ticket->getQrImagePath() . '" width="200px"/></div>';
 				echo '</table>';
 			echo '</div>';
