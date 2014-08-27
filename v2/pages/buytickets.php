@@ -3,6 +3,7 @@ require_once 'handlers/storesessionhandler.php';
 require_once 'handlers/tickettypehandler.php';
 require_once 'handlers/eventhandler.php';
 require_once 'session.php';
+require_once 'utils.php';
 
 class TicketPage {
 	public function render() {
@@ -95,7 +96,7 @@ class TicketPage {
 							echo '</b>';
 						echo '</td>';
 						echo '<td>';
-							echo $type->getPriceForUser($user);
+							echo $type->getPriceForUser($user) . ',-';
 						echo '</td>';
 						echo '<td>';
 							$ticketsLeft = $currentEvent->getAvailableTickets();
@@ -105,7 +106,7 @@ class TicketPage {
 							echo $ticketsLeft . '/' . $currentEvent->getParticipants();
 						echo '</td>';
 						echo '<td>';
-							echo '<span id="totalPrice">' . $type->getPriceForUser($user) . '</span>';
+							echo '<span id="totalPrice">' . $type->getPriceForUser($user) . ',-</span>';
 						echo '</td>';
 						echo '<td>';
 							echo '<input type="submit" value="Neste" />';
@@ -118,7 +119,7 @@ class TicketPage {
 		{
 			echo '<h1>Billettsalget har ikke åpnet enda</h1>';
 			echo '<p>';
-			echo 'Billettsalget åpner ' . date("d F H:i", $currentEvent->getBookingTime());
+			echo 'Billettsalget åpner den ' . Utils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.';
 			echo '</p>';
 		}
 	}

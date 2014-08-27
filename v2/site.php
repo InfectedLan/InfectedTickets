@@ -287,9 +287,6 @@ class Site {
 											echo 'Dørene åpner kl.' . date('H:i', $event->getStartTime()). '<br>';
 											echo 'Pris per billett: ' . $event->getTicketType()->getPrice() . ',- inkludert medlemskap i Radar.</p>';
 										echo '</li>';
-										echo '<li>';
-											echo '<i>Du har samme bruker på tickets og crew-siden.</i>';
-										echo '</li>';
 									echo '</ul>';
 								}
 							echo '</div>';
