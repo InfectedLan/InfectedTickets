@@ -66,7 +66,7 @@ class TicketPage
 						}
 				echo '</td>';
 				echo '<td>';
-					echo 'Var arrangert på ' . $oldEvent->getLocation();
+					echo 'Var arrangert på ' . $oldEvent->getLocation()->getTitle();
 				echo '</td>';
 			echo '</tr>';
 		echo '</table>';
