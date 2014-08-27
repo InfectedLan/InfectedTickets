@@ -99,12 +99,23 @@ class TicketPage
 				echo '<td align="center" width="23%">';
 					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/setseater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
-				echo '<td width="18%">';
-					echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
-				echo '</td>';
-				echo '<td width="18%">';
-					echo '<input type="button" value="Mobil bilett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
-				echo '</td>';
+				$seat = $ticket->getSeat();
+				if(isset($seat))
+				{
+					echo '<td width="18%">';
+						echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
+					echo '</td>';
+					echo '<td width="18%">';
+						echo '<input type="button" value="Mobil bilett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
+					echo '</td>';
+				}
+				else
+				{
+					echo '<td width="36%" colspan="2">';
+						echo '<i>Du må plassere billetten før du kan printe den ut</i>';
+					echo '</td>';
+				}
+				
 			echo '</tr>';
 			//Seater row :P
 			echo '<tr>';

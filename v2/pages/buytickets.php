@@ -107,7 +107,7 @@ class TicketPage {
 							echo '<span id="totalPrice">' . $type->getPrice() . '</span>';
 						echo '</td>';
 						echo '<td>';
-							echo '<input type="submit" value="Kjøp" />';
+							echo '<input type="submit" value="Neste" />';
 						echo '</td>';
 					echo '</tr>';
 				echo '</table>';
