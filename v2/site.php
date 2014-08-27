@@ -77,7 +77,7 @@ class Site {
 								echo '<span> Du er nå logget in som ' . $user->getFullName() . '</span>';
 								echo '<div style="clear:both";></div>';
 								echo '<input type="button" value="Logg ut" onClick="logout()">';
-								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=myprofile"\'>';
+								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=my-profile"\'>';
 							echo '</div>';
 						echo '</div>';
 						//Has to be done before the banner
@@ -104,7 +104,7 @@ class Site {
 						echo '</div>';
 						
 						//Make sure it is not trying to access something outside the pages directory
-						if (isset($_GET['page']) && !empty($_GET['page']) && ctype_alpha($_GET['page'] )) {
+						if (isset($_GET['page']) && !empty($_GET['page'])) {
 							if (file_exists('pages/' . $this->pageName . '.php')) {
 								$pageToInclude = "pages/" . $_GET["page"] . '.php';
 							} else {

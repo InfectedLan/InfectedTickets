@@ -93,9 +93,6 @@ class TicketPage {
 			echo '</form>';
 			//echo '<a href="index.php?page=edit-password">Endre passord</a>';
 			//echo '<a href="index.php?page=edit-avatar">Endre/Last opp profilbilde</a>';
-
-			echo '<br /><br />';
-
 	}
 	
 	public function renderTutorial() {
