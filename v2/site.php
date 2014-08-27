@@ -77,7 +77,7 @@ class Site {
 								echo '<span> Du er nå logget in som ' . $user->getFullName() . '</span>';
 								echo '<div style="clear:both";></div>';
 								echo '<input type="button" value="Logg ut" onClick="logout()">';
-								echo '<input type="button" value="Min profil">';
+								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=myprofile"\'>';
 							echo '</div>';
 						echo '</div>';
 						//Has to be done before the banner
