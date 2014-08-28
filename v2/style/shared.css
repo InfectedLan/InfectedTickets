@@ -13,6 +13,7 @@
     margin: auto;
 }
 .errorClose {
+	cursor: pointer;
 	right: 0px;
 	top: 0px;
 	position: absolute;

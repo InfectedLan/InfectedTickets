@@ -110,9 +110,7 @@ class TicketPage {
 		else
 		{
 			echo '<h1>Billettsalget har ikke åpnet enda</h1>';
-			echo '<p>';
-			echo 'Billettsalget åpner den ' . Utils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.';
-			echo '</p>';
+			echo '<p>Billettsalget åpner ' . Utils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.</p>';
 		}
 	}
 }
