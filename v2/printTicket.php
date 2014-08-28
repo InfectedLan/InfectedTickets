@@ -5,42 +5,45 @@
 
 	echo '<html>';
 		echo '<head>';
-			echo '<title>Biletten din</title>';
-			echo '<link rel="stylesheet" type="text/css" href="style/ticket.css">';
+			echo '<title>Billetten din</title>';
+			echo '<link rel="stylesheet" href="style/ticket.css">';
 			echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
 		echo '</head>';
-		if(isset($_GET['print'])) {
+		
+		if (isset($_GET['print'])) {
 			echo '<body onload="window.print()">';
 		} else {
 			echo '<body>';
 		}
 			//Validation
-			if(!isset($_GET["id"]))
-			{
-				echo 'Ugyldig bilett-id</body></html>';
+			if(!isset($_GET["id"])) {
+				echo 'Ugyldig billett-id</body></html>';
 				return;
 			}
+			
 			$ticket = TicketHandler::getTicket($_GET["id"]);
-			if(!isset($ticket))
-			{
-				echo 'Biletten eksisterer ikke</body></html>';
+			
+			if(!isset($ticket)) {
+				echo 'Billetten eksisterer ikke</body></html>';
+				
 				return;
 			}
-			if(!Session::isAuthenticated())
-			{
+			
+			if(!Session::isAuthenticated()) {
 				echo 'Du er ikke logget inn!</body></html>';
+				
 				return;
 			}
-			if(Session::getCurrentUser()->getId() != $ticket->getOwner()->getId())
-			{
-				echo 'Du eier ikke denne biletten!</body></html>';
+			
+			if(Session::getCurrentUser()->getId() != $ticket->getOwner()->getId()) {
+				echo 'Du eier ikke denne billetten!</body></html>';
 				return;
 			}
 			echo '<div id="total">';
 				echo '<h2>Billett: ' . $ticket->getHumanName() . '</h2>';
 				echo '<table>';
 					echo '<tr><td width="100px"><b>Navn:</b></td><td>' . $ticket->getOwner()->getFullName() . '</td></tr>';
-					echo '<tr><td>Født:</td><td>' . date("j. F o", $ticket->getOwner()->getBirthdate()) .'</td></tr>';
+					echo '<tr><td>Født:</td><td>' . date('d.m.Y', $ticket->getOwner()->getBirthdate()) .'</td></tr>';
 					echo '<tr><td>Adresse:</td><td>' . $ticket->getOwner()->getAddress() . '</td></tr>';
 					echo '<tr><td>Mobil:</td><td>' . $ticket->getOwner()->getPhone() . '</td></tr>';
 					echo '<tr><td>Brukernavn:</td><td>' . $ticket->getOwner()->getUsername() . '</td></tr>';
@@ -61,7 +64,7 @@
 				echo '</table>';
 			echo '</div>';
 			echo '<div id="tekstprint">Denne billetten skal vises ved innsjekking på Radar. Husk å ta med gyldig legitimasjon. De under 14 må ha med
-bekreftelse fra foreldre. Skjema på nettsiden.</div>';
+bekreftelse fra foreldre og <a href="http://infected.no/v7/files/Foreldreskjema.doc">dette</a> skjema.</div>';
 			echo '<div id="logo">';
 				echo '<img src="images/logo_infected.jpg" width="299px">';
 			echo '</div>';
