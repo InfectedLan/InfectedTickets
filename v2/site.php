@@ -33,9 +33,7 @@ class Site {
 						echo '#imgContainer {';
 							echo 'background: #000000 url(\'' . $this->getBackground(true) . '\');';
 							echo 'background-repeat: no-repeat;';
-							echo 'background-attachment: fixed;';
 							echo 'background-size: 100% auto;';
-							echo 'background-position: center;';
 						echo '}';
 					echo '</style>';
 				} else {
@@ -44,7 +42,6 @@ class Site {
 						echo 'body {';
 							echo 'background: #000000 url(\'' . $this->getBackground(false) . '\');';
 							echo 'background-repeat: no-repeat;';
-							echo 'background-attachment: fixed;';
 							echo 'background-size: 100% auto;';
 							echo 'background-position: center;';
 						echo '}';
@@ -155,7 +152,7 @@ class Site {
 					echo '<div class="outer">';
 						echo '<div class="middle">';
 							echo '<div class="inner">';
-								echo '<img id="logo" src="images/logo_trans2.png" alt="Infected">';
+								echo '<img id="logo" src="images/logo.png" alt="Infected">';
 								
 								$publicPages = array('activation', 
 													 'reset-password');

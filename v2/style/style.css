@@ -32,7 +32,6 @@ body {
 	#leftBgImg, #rightBgImg{
 		width:50%;
 		height:255px;
-		position:absolute;
 	}
 
 	#leftBgImg{
