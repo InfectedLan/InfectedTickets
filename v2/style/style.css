@@ -19,7 +19,7 @@ body {
 }
 
 #imgContainer {
-	position:fixed;
+	position: absolute;
 	z-index:-2;
 	top:164px;
 	height:255px;
@@ -282,7 +282,9 @@ body {
 .selectedTicket {
 	background-image: url("../images/select.png");
 }
+
 .seat {
+	cursor: pointer;
 	width: 27px;
 	height: 27px;
 	padding: 2px;
@@ -291,6 +293,7 @@ body {
 	font-size: 10px;
 	text-align: center;
 }
+
 #seatmapCanvas {
 	position: relative;
 	border-style: solid;
@@ -298,9 +301,11 @@ body {
     border-width: 1px;
     min-height: 1400px;
 }
+
 #ticketRules {
 	/* border-style: solid; */
 }
+
 hr {
 	border-color: #ddd;
 	background-color: #ddd;
