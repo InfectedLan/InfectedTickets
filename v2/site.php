@@ -75,9 +75,11 @@ class Site {
 						echo '<div id="header">';
 							echo '<a href="index.php"><img id="logo" src="images/logo.png"></a>';
 							echo '<div id="colorChange">';
+							/*
 								echo '<div class="cc" id="cPink" title="Hot Pink"></div>';
 								echo '<div class="cc" id="cBlue" title="Cool Blue"></div>';
 								echo '<div class="cc" id="cGreen" title="Infected Green"></div>';
+							*/
 							echo '</div>';
 							echo '<div id="whenLoggedIn">';
 								echo '<span> Du er nå logget in som ' . $user->getFullName() . '</span>';
