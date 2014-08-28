@@ -38,13 +38,13 @@ class TicketPage {
 		echo '</center>';
 		
 		echo '<div id="divInstruks1">';
-			echo '<p>Når du har kjøpt billett får du den/de under "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Plassreservering".</p>';
+			echo '<p>Når du har kjøpt billett får du den/de opp på siden "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Plassreservering".</p>';
 			
 			
 			echo '<p>Alle som skal på Infected må ha en bruker med en tilknyttet billett.';
 	
 			echo '<br><br>';
-			echo '<p>Det er mulig å kjøpte billetter på vegne av andre brukere. Kjøp billetten(e) og overfor eierskap på "Mine billetter".</p>';
+			echo '<p>Det er mulig å kjøpe billetter på vegne av andre. Kjøp billetten(e) og overfør eierskap på siden "Mine billetter".</p>';
 		echo'</div>';
 	}
 	public function renderFirstStep() {
@@ -54,16 +54,8 @@ class TicketPage {
 		{
 			$type = $currentEvent->getTicketType();
 			echo '<h2>';
-				echo 'Kjøper billett for Infected ';
-				echo $currentEvent->getTheme();
-				echo ' ( ';
-				echo date("d", $currentEvent->getStartTime()) . 
-		                    '. - ' . 
-		                    date("d", $currentEvent->getEndTime()) . 
-		                    '. ' . 
-		                    date("F", $currentEvent->getStartTime()) . 
-		                    '.';
-		        echo ' )';
+				echo 'Kjøper billett for Infected ' . $currentEvent->getTheme() . ' (';
+				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . date('F', $currentEvent->getStartTime()) . '.)';
 			echo '</h2>';
 			echo '<script src="scripts/buyTickets.js"></script>';
 			echo '<script>';

@@ -8,38 +8,38 @@ class TicketPage
 	public function render()
 	{
 		/*echo '<h1>Mine biletter</h1>';
-		echo '<p>Her kan du endre hvem som kommer til å bruke biletter du har kjøpt for kommende arrangement, samt se biletter du har kjøpt til tidligere arrangement</p>';*/
+		echo '<p>Her kan du endre hvem som kommer til å bruke billetter du har kjøpt for kommende arrangement, samt se billetter du har kjøpt til tidligere arrangement</p>';*/
 		$ticketArr = TicketHandler::getTicketsForOwner(Session::getCurrentUser());
 		echo '<h3>Årets arrangement</h3>';
-		echo '<hr />';
-		foreach($ticketArr as $tikkit)
-		{
-			if($tikkit->getEvent()->getId()==EventHandler::getCurrentEvent()->getId())
-			{
-				self::printTicket($tikkit);
-				echo '<hr />';
+		echo '<hr>';
+		
+		foreach($ticketArr as $ticket) {
+			if ($ticket->getEvent()->getId() == EventHandler::getCurrentEvent()->getId()) {
+				self::printTicket($ticket);
+				echo '<hr>';
 			}
 		}
+		
 		echo '<h3>Tidligere arrangementer</h3>';
-		echo '<hr />';
-		foreach($ticketArr as $tikkit)
+		echo '<hr>';
+		
+		foreach($ticketArr as $ticket)
 		{
-			if($tikkit->getEvent()->getId() != EventHandler::getCurrentEvent()->getId())
-			{
-				self::printOldTicket($tikkit);
-				echo '<hr />';
+			if($ticket->getEvent()->getId() != EventHandler::getCurrentEvent()->getId()) {
+				self::printOldTicket($ticket);
+				echo '<hr';
 			}
 		}
 	}
-	public function renderTutorial()
-	{
+	
+	public function renderTutorial() {
 		echo '<h1>Mine billetter</h1>';
 
-		echo '<p>Har du kjøpt billett for en annen må den overføres til hans/huns bruker. Dette gjør du ved å trykke  ”Overfør billetten”</p>';
+		echo '<p>Har du kjøpt billett for en annen må den overføres til hans/huns bruker. Dette gjør du ved å trykke "Overfør billetten"</p>';
 
-		echo '<p>Ønsker du at en annen skal velge plass for deg? Trykk på ”Endre plassreserverer” <br /> Dette gjør det enklere og komme samme i gruppe.</p>';
+		echo '<p>Ønsker du at en annen skal velge plass for deg? Trykk på #Endre plassreserverer# <br> Dette gjør det enklere og komme sammen i en gruppe.</p>';
 
-		echo '<p>Alle må ha med billett når de kommer på Infected, Du kan selv velge om du ønsker og skrive den ut eller bare ha den på Mobilen din.</p>';
+		echo '<p>Alle må ha med billett når de kommer på Infected, Du kan selv velge om du ønsker og skrive den ut eller bare ha den på mobilen din.</p>';
 	}
 
 	private function printOldTicket($ticket)
@@ -56,14 +56,11 @@ class TicketPage
 					echo 'Ble arrangert den ' . date("j. M o", $oldEvent->getStartTime());
 				echo '</td>';
 				echo '<td>';
-					if(!isset($seater))
-						{
-							echo "Seatet av deg";
-						}
-						else
-						{
-							echo 'Seatet av ' . $seater->getDisplayName();
-						}
+					if (!isset($seater)) {
+						echo "Seatet av deg";
+					} else {
+						echo 'Seatet av ' . $seater->getDisplayName();
+					}
 				echo '</td>';
 				echo '<td>';
 					echo 'Var arrangert på ' . $oldEvent->getLocation()->getTitle();
@@ -94,7 +91,7 @@ class TicketPage
 					echo '<b>' . $ticket->getHumanName() . '</b>';
 				echo '</td>';
 				echo '<td width="18%">';
-					echo '<input type="button" value="Overfør biletten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/transferticket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
+					echo '<input type="button" value="Overfør billetten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/transferticket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
 				echo '</td>';
 				echo '<td align="center" width="23%">';
 					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/setseater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
@@ -103,10 +100,10 @@ class TicketPage
 				if(isset($seat))
 				{
 					echo '<td width="18%">';
-						echo '<input type="button" value="Skriv ut Billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
+						echo '<input type="button" value="Skriv ut billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
 					echo '</td>';
 					echo '<td width="18%">';
-						echo '<input type="button" value="Mobil bilett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
+						echo '<input type="button" value="Mobil billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
 					echo '</td>';
 				}
 				else
