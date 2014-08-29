@@ -213,6 +213,10 @@ class Site {
 														echo '<input type="email" name="email" placeholder="E-post" required>';
 												echo '</li>';
 												echo '<li>';
+														echo '<small>Vi opplever problemer med sending av e-post til Hotmail. <br>';
+														echo 'Vennligst bruk en annen e-post tjeneste som Gmail eller tilsvarende.</small>';
+												echo '</li>';
+												echo '<li>';
 													echo '<select class="select" name="gender" placeholder="Kjønn">';
 														echo '<option value="0">Mann</option>';
 														echo '<option value="1">Kvinne</option>';
