@@ -1,7 +1,9 @@
 <?php
-require_once 'handlers/eventhandler.php';
 require_once 'session.php';
 require_once 'utils.php';
+require_once 'handlers/eventhandler.php';
+require_once 'handlers/emergencycontacthandler.php';
+
 class TicketPage {
 	public function render() {
 			$user = Session::getCurrentUser();
@@ -89,6 +91,18 @@ class TicketPage {
 					echo '<tr>';
 						echo '<td>Nickname:</td>';
 						echo '<td><input type="text" name="nickname" value="' . $user->getNickname() . '"></td>';
+					echo '</tr>';
+					echo '<tr>';
+						echo '<td>Foresatte\'s telefon:</td>';
+
+							if (EmergencyContactHandler::hasEmergencyContact($user)) {
+								$emergencycontactphone = EmergencyContactHandler::getEmergencyContactForUser($user)->getPhone();
+							
+								echo '<td><input name="emergencycontactphone" type="tel" value="' . $emergencycontactphone . '"></td>';
+							} else {
+								echo '<td><input name="emergencycontactphone" type="tel"></td>';
+							}
+						echo '<td><i>(Påkrevd hvis du er under 18)</i></td>';
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td><input type="submit" value="Lagre"><input type="button" value="Endre passord" onClick=\'window.location="index.php?page=edit-password"\' /></td>';
