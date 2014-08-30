@@ -26,8 +26,8 @@
     border-color: rgb(179, 60, 60);
 }
 .info {
-	background-color: rgb(100, 100, 255);
-	border: 2px solid;
-    border-radius: 10px;
-    border-color: rgb(60, 60, 179);
+	background-color: rgb(15, 139, 196);
+	border: 3px solid;
+    /* border-radius: 10px; */
+    border-color: rgb(15, 105, 168);
 }
