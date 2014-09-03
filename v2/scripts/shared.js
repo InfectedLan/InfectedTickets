@@ -1,10 +1,38 @@
 //Error box functions
+/*
 function error(errorMsg) {
 	$('#errorMsg').text(errorMsg);
+	errorFunction = 0;
 	showErrorBox();
 }
 function info(errorMsg) {
 	$('#errorMsg').text(errorMsg);
+	errorFunction = 0;
+	showInfoBox();
+}
+*/
+function error(errorMsg, func) {
+	$('#errorMsg').text(errorMsg);
+	if(typeof func === "undefined")
+	{
+		errorFunction = 0;
+	}
+	else
+	{
+		errorFunction = func;
+	}
+	showErrorBox();
+}
+function info(errorMsg, func) {
+	$('#errorMsg').text(errorMsg);
+	if(typeof func === "undefined")
+	{
+		errorFunction = 0;
+	}
+	else
+	{
+		errorFunction = func;
+	}
 	showInfoBox();
 }
 function hideErrorBox() {
@@ -21,5 +49,7 @@ function showInfoBox() {
 $(document).ready(function() {	
 	$('.errorClose').click(function() {
 		hideErrorBox();
+		errorFunction();
 	});
 });
+var errorFunction = 0;
