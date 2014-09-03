@@ -50,6 +50,7 @@ class Site {
 
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
 				echo '<script src="../api/scripts/jquery-1.11.1.min.js"></script>';
+				echo '<script src="../api/scripts/jquery.form.min.js"></script>';
 				echo '<script src="scripts/shared.js"></script>';
 				echo '<script>';
 					echo '(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){';
