@@ -2,6 +2,7 @@
 require_once 'session.php';
 require_once 'handlers/storesessionhandler.php';
 require_once 'handlers/userhandler.php';
+require_once 'handlers/tickettypehandler.php';
 require_once 'paypal/paypal.php';
 class TicketPage {
 	public function render() {
@@ -9,7 +10,7 @@ class TicketPage {
 		$resArray = PayPal::getExpressCheckoutDetails($_REQUEST['token']);
 		$user = Session::getCurrentUser();
 		$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
-		$ticketType = $storeSession->getTicketType();
+		$getTicketType = TicketTypeHandler::getTicketType($storeSession->getTicketType());
 		//print_r($resArray);
 
 		if(StoreSessionHandler::isPaymentValid($resArray['AMT'], $storeSession))
