@@ -9,9 +9,10 @@ class TicketPage {
 		$resArray = PayPal::getExpressCheckoutDetails($_REQUEST['token']);
 		$user = Session::getCurrentUser();
 		$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
+		$ticketType = $storeSession->getTicketType();
 		//print_r($resArray);
 
-		if(StoreSessionHandler::isPaymentValid($resArray['AMT'], $resArray["L_PAYMENTREQUEST_0_QTY0"], $storeSession))
+		if(StoreSessionHandler::isPaymentValid($resArray['AMT'], $storeSession))
 		{
 			echo '<h4>Vennligst se igjennom detaljene før du godkjenner betalingen.</h4>';
 			echo '<table>';
@@ -19,8 +20,10 @@ class TicketPage {
 				echo "<tr><td class=eventnametop>E-post</td><td class=eventname>" .$resArray["EMAIL"]."</td></tr>";  
 				echo "<tr><td class=eventnametop>Din id</td><td class=eventname>" .$resArray["PAYERID"]."</td></tr>"; 
 				echo "<tr><td class=eventnametop>Totalsum</td><td class=eventname>" .$resArray["AMT"]."</td></tr>";   
-				echo "<tr><td class=eventnametop>Navn på billett</td><td class=eventname>" .$resArray["L_PAYMENTREQUEST_0_DESC0"]."</td></tr>";
-				echo "<tr><td class=eventnametop>Antall</td><td class=eventname>" .$resArray["L_PAYMENTREQUEST_0_QTY0"]."</td></tr>";      
+				//echo "<tr><td class=eventnametop>Navn på billett</td><td class=eventname>" .$resArray["L_PAYMENTREQUEST_0_DESC0"]."</td></tr>";
+				echo "<tr><td class=eventnametop>Billetttype</td><td class=eventname>" . $ticketType->getHumanName() ."</td></tr>";
+				//echo "<tr><td class=eventnametop>Antall</td><td class=eventname>" .$resArray["L_PAYMENTREQUEST_0_QTY0"]."</td></tr>";      
+				echo "<tr><td class=eventnametop>Antall</td><td class=eventname>" . $storeSession->getAmount() ."</td></tr>";      
 			echo '</table>';
 			echo '<br />';
 			echo '<form id="payForm" action="index.php?page=pay" method="POST">';
@@ -35,7 +38,7 @@ class TicketPage {
 		{
 			echo '<h1>Noe gikk galt!</h1>';
 			echo '<p>';
-				echo 'Vi fikk vite fra paypal at du betalte ' . $resArray['AMT'] . ' for ' . $resArray["L_PAYMENTREQUEST_0_QTY0"] . ' billetter. Stemmer det?';
+				echo 'Vi fikk vite fra paypal at du betalte ' . $resArray['AMT'] . '. Stemmer det?';
 			echo '</p>';
 		}
 	}
