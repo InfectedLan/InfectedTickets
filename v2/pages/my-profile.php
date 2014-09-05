@@ -111,12 +111,11 @@ class TicketPage {
 						echo '<td><i>(Påkrevd hvis du er under 18)</i></td>';
 					echo '</tr>';
 					echo '<tr>';
-						echo '<td><input type="submit" value="Lagre"><input type="button" value="Endre passord" onClick=\'window.location="index.php?page=edit-password"\' /></td>';
+						echo '<td><input type="submit" value="Lagre"></td>';
+						echo '<td><input type="button" value="Endre passord" onClick=\'window.location="index.php?page=edit-password"\'></td>';
 					echo '</tr>';
 				echo '</table>';
 			echo '</form>';
-			//echo '<a href="index.php?page=edit-password">Endre passord</a>';
-			//echo '<a href="index.php?page=edit-avatar">Endre/Last opp profilbilde</a>';
 	}
 	
 	public function renderTutorial() {
