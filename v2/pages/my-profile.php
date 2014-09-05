@@ -1,7 +1,6 @@
 <?php
 require_once 'session.php';
 require_once 'utils.php';
-require_once 'handlers/eventhandler.php';
 require_once 'handlers/emergencycontacthandler.php';
 
 class TicketPage {
@@ -77,7 +76,7 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Telefon:</td>';
-						echo '<td><input type="tel" name="phone" value="' .  str_replace(' ', '', $user->getPhone()) . '" required></td>';
+						echo '<td><input type="tel" name="phone" value="' . $user->getPhone() . '" required></td>';
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Gateadresse:</td>';
@@ -94,7 +93,6 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Foresatte\'s telefon:</td>';
-
 							if (EmergencyContactHandler::hasEmergencyContact($user)) {
 								$emergencycontactphone = EmergencyContactHandler::getEmergencyContactForUser($user)->getPhone();
 							
