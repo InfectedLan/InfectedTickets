@@ -11,7 +11,7 @@ class TicketPage {
 			echo '<script src="../api/scripts/edit-profile.js"></script>';
 			echo '<script src="../api/scripts/lookupCity.js"></script>';
 			echo '<form class="edit-profile" method="post">';
-				echo '<input type="hidden" name="id" value="' . $editUser->getId() . '">';
+				echo '<input type="hidden" name="id" value="' . $user->getId() . '">';
 				echo '<table>';
 					echo '<tr>';
 						echo '<td>Fornavn:</td>';
