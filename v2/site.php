@@ -26,6 +26,7 @@ class Site {
 				echo '<meta charset="UTF-8">';
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
 				echo '<link rel="stylesheet" href="style/shared.css">';
+				echo '<link rel="stylesheet" href="../api/style/seatmap.css">';
 				
 				if (Session::isAuthenticated()) {
 					echo '<link rel="stylesheet" href="style/style.css">';

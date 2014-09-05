@@ -4,6 +4,7 @@ class TicketPage {
 	public function render() {
 		$currentEvent = EventHandler::getCurrentEvent();
 		echo '<script src="scripts/seatmap.js"></script>';
+		echo '<script src="../api/scripts/seatmapRenderer.js"></script>';
 		echo '<script>';
 			echo 'var seatmapId = ' . $currentEvent->getSeatmap() . ';';
 			echo '$(document).ready(function() {';
