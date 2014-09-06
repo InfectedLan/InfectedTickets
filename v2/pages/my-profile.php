@@ -20,14 +20,10 @@ class TicketPage {
 						echo '<td>Etternavn:</td>';
 						echo '<td><input type="text" name="lastname" value="' . $user->getLastname() . '" required></td>';
 					echo '</tr>';
-					
-					if ($user->hasPermission('*')) {
-						echo '<tr>';
-							echo '<td>Brukernavn:</td>';
-							echo '<td><input type="text" name="username" value="' . $user->getUsername() . '" required></td>';
-						echo '</tr>';
-					}
-					
+					echo '<tr>';
+						echo '<td>Brukernavn:</td>';
+						echo '<td><input type="text" name="username" value="' . $user->getUsername() . '" required></td>';
+					echo '</tr>';
 					echo '<tr>';
 						echo '<td>E-post:</td>';
 						echo '<td><input type="email" name="email" value="' . $user->getEmail() . '" required></td>';
