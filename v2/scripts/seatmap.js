@@ -1,5 +1,5 @@
 function reserveSeat(seatId) {
-	$.getJSON('../api/json/seatTicket.php?ticket=' + seatingTicketId + "&seat="+seatId, function(data){
+	$.getJSON('../api/json/ticket/seatTicket.php?ticket=' + seatingTicketId + "&seat="+seatId, function(data){
 		if(data.result)
 		{
 			handleCustomDownloadAndRender();	
@@ -11,7 +11,7 @@ function reserveSeat(seatId) {
   	});
 }
 function loadSeatableTickets() {
-	$.getJSON('../api/json/getSeatableTickets.php?seatmap=' + seatmapId, function(data){
+	$.getJSON('../api/json/ticket/getSeatableTickets.php?seatmap=' + seatmapId, function(data){
 		if(data.result)
 		{
 			$("#seatableTickets").html("");
