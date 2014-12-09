@@ -25,8 +25,8 @@ class Site {
 				echo '<meta name="author" content="halvors and petterroea">';
 				echo '<meta charset="UTF-8">';
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
-				echo '<link rel="stylesheet" href="style/shared.css">';
-				echo '<link rel="stylesheet" href="../api/style/seatmap.css">';
+				echo '<link rel="stylesheet" href="styles/shared.css">';
+				echo '<link rel="stylesheet" href="../api/styles/seatmap.css">';
 				
 				if (Session::isAuthenticated()) {
 					echo '<link rel="stylesheet" href="style/style.css">';
@@ -38,7 +38,7 @@ class Site {
 						echo '}';
 					echo '</style>';
 				} else {
-					echo '<link rel="stylesheet" href="style/style_splash.css">';
+					echo '<link rel="stylesheet" href="styles/style_splash.css">';
 					echo '<style>';
 						echo 'body {';
 							echo 'background: #000000 url(\'' . $this->getBackground(false) . '\');';

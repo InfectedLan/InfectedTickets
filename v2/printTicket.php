@@ -6,7 +6,7 @@
 	echo '<html>';
 		echo '<head>';
 			echo '<title>Billetten din</title>';
-			echo '<link rel="stylesheet" href="style/ticket.css">';
+			echo '<link rel="stylesheet" href="styles/ticket.css">';
 			echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />";
 		echo '</head>';
 		
