@@ -29,7 +29,7 @@ class Site {
 				echo '<link rel="stylesheet" href="../api/styles/seatmap.css">';
 				
 				if (Session::isAuthenticated()) {
-					echo '<link rel="stylesheet" href="style/style.css">';
+					echo '<link rel="stylesheet" href="styles/style.css">';
 					echo '<style>';
 						echo '#imgContainer {';
 							echo 'background: #000000 url(\'' . $this->getBackground(true) . '\');';
