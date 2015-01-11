@@ -5,6 +5,7 @@ $(document).ready(function() {
 });
 function goToPaypal(ticketType, amount)
 {
+	$("#loadingIcon").html('<img src="images/loading.gif" />');
 	if($("#acceptedRulesBox").prop('checked')) {
 		$.getJSON('../api/json/getPaypalUrl.php?ticketType=' + ticketType + '&amount=' + amount , function(data){
 			if(data.result) {

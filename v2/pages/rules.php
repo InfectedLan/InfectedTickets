@@ -25,7 +25,7 @@ class TicketPage {
 
 		echo '<script src="scripts/buyTickets.js"></script>';
 		echo '<br />';
-		echo '<p><input type="button" value="Kjøp billett(er)" onclick="goToPaypal(' . $ticketType . ', ' . $ticketAmount . ')" /></p>';
+		echo '<p><input type="button" value="Kjøp billett(er)" onclick="goToPaypal(' . $ticketType . ', ' . $ticketAmount . ')" /><div id="loadingIcon"></div></p>';
 		echo '<p><i>Ved å trykke her vil du bli sendt til paypal for å godkjenne betalingen</i></p>';
 		echo '<br /><br />';
 	}
