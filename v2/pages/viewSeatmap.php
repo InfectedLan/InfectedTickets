@@ -6,7 +6,7 @@ class TicketPage {
 		echo '<script src="scripts/seatmap.js"></script>';
 		echo '<script src="../api/scripts/seatmapRenderer.js"></script>';
 		echo '<script>';
-			echo 'var seatmapId = ' . $currentEvent->getSeatmap() . ';';
+			echo 'var seatmapId = ' . $currentEvent->getSeatmap()->getId() . ';';
 			echo '$(document).ready(function() {';
 				echo 'loadSeatableTickets();';
 			echo '});';

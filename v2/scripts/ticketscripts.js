@@ -11,10 +11,9 @@ $(document).ready(function() {
 var updateKey = 0;
 function updateSearchField()
 {
-	updateKey = Math.random();
-	$.getJSON('../api/json/searchusers.php?key=' + encodeURIComponent(updateKey) + "&query=" + encodeURIComponent( $('#userSearchInput').val() ), function(data){
+	$.getJSON('../api/json/user/findUser.php?query=' + encodeURIComponent( $('#userSearchInput').val() ), function(data){
 		resetSelectedUser();
-		if(data.result == true && data.key == updateKey)
+		if(data.result == true)
 		{
 			$('#userSearchContent').html("");
 			var userLength = data.users.length;
@@ -26,10 +25,15 @@ function updateSearchField()
 			{
 				for(var i = 0; i < userLength; i++)
 				{
-					$('#userSearchContent').append("<b>" + data.users[i].firstname + ' "' + data.users[i].nickname + '" ' + data.users[i].lastname + '</b> <input type="button" value="Velg" onclick="setSelectedUser(\'' + data.users[i].userId + '\', \'' + data.users[i].firstname + ' &quot;' + data.users[i].nickname + '&quot; ' + data.users[i].lastname + '\')" /><br />');
+					$('#userSearchContent').append("<b>" + data.users[i].firstname + ' "' + data.users[i].nickname + '" ' + data.users[i].lastname + '</b> <input type="button" value="Velg" onclick="setSelectedUser(\'' + data.users[i].id + '\', \'' + data.users[i].firstname + ' &quot;' + data.users[i].nickname + '&quot; ' + data.users[i].lastname + '\')" /><br />');
 				}
 			}
 		}
+  	});
+}
+function revertTransfer(revertId) {
+	$.getJSON('../api/json/ticket/revertTransfer.php?id=' + encodeURIComponent( revertId ), function(data){
+		handleJson(data);
   	});
 }
 var selectedUserId = 0;

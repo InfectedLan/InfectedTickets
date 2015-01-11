@@ -2,6 +2,7 @@
 require_once 'session.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
+require_once 'handlers/tickettransferhandler.php';
 
 class TicketPage
 {
@@ -18,6 +19,13 @@ class TicketPage
 				self::printTicket($ticket);
 				echo '<hr>';
 			}
+		}
+
+		$revertableTickets = TicketTransferHandler::getRevertableTransfers(Session::getCurrentUser());
+
+		foreach($revertableTickets as $revertableTicket) {
+			self::printRevertableTicket($revertableTicket);
+			echo '<hr>';
 		}
 		
 		echo '<h3>Tidligere arrangementer</h3>';
@@ -80,7 +88,24 @@ class TicketPage
 		echo '</div>';
 		*/
 	}
-	
+	private function printRevertableTicket($revertableTicket) 
+	{
+		$ticket = $revertableTicket->getTicket();
+		$recipient = $revertableTicket->getTo();
+		echo '<table>';
+			echo '<tr>';
+				echo '<td width="23%">';
+					echo '<b>' . $ticket->getHumanName() . '</b>';
+				echo '</td>';
+				echo '<td>';
+					echo '<center><b>Overført til ' . $recipient->getDisplayName() . '</b></center>';
+				echo '</td>';
+				echo '<td width="15%">';
+					echo '<input type="button" value="Angre" onclick="revertTransfer(' . $revertableTicket->getTicket()->getId() . ')" /><br />';
+				echo '</td>';
+			echo '</tr>';
+		echo '</table>';
+	}
 	private function printTicket($ticket)
 	{
 		//The code
@@ -91,10 +116,10 @@ class TicketPage
 					echo '<b>' . $ticket->getHumanName() . '</b>';
 				echo '</td>';
 				echo '<td width="18%">';
-					echo '<input type="button" value="Overfør billetten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/transferticket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
+					echo '<input type="button" value="Overfør billetten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/ticket/transferTicket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
 				echo '</td>';
 				echo '<td align="center" width="23%">';
-					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/setseater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
+					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/ticket/setTicketSeater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
 				$seat = $ticket->getSeat();
 				if(isset($seat))
