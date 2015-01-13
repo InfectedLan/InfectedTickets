@@ -3,10 +3,11 @@ require_once 'handlers/eventhandler.php';
 class TicketPage {
 	public function render() {
 		$currentEvent = EventHandler::getCurrentEvent();
+		$seatmap = $currentEvent->getSeatmap();
 		echo '<script src="scripts/seatmap.js"></script>';
 		echo '<script src="../api/scripts/seatmapRenderer.js"></script>';
 		echo '<script>';
-			echo 'var seatmapId = ' . $currentEvent->getSeatmap()->getId() . ';';
+			echo 'var seatmapId = ' . $seatmap->getId() . ';';
 			echo '$(document).ready(function() {';
 				echo 'loadSeatableTickets();';
 			echo '});';
