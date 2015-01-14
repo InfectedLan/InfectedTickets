@@ -282,3 +282,8 @@ hr {
 .smallText {
 	font-size: 70%;
 }
+
+#seatableTickets {
+	overflow:scroll;
+	height: 200px;
+}
