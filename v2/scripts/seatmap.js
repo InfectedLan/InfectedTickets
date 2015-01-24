@@ -10,6 +10,8 @@ function reserveSeat(seatId) {
 				error(data.message);
 			}
 	  	});
+	} else {
+		error("Du har ingen billetter å plassere!");
 	}
 }
 function loadSeatableTickets() {
