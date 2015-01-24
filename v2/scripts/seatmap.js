@@ -1,14 +1,16 @@
 function reserveSeat(seatId) {
-	$.getJSON('../api/json/ticket/seatTicket.php?ticket=' + seatingTicketId + "&seat="+seatId, function(data){
-		if(data.result)
-		{
-			handleCustomDownloadAndRender();	
-		}
-		else
-		{
-			error(data.message);
-		}
-  	});
+	if(seatingTicketId != 0) {
+		$.getJSON('../api/json/ticket/seatTicket.php?ticket=' + seatingTicketId + "&seat="+seatId, function(data){
+			if(data.result)
+			{
+				handleCustomDownloadAndRender();	
+			}
+			else
+			{
+				error(data.message);
+			}
+	  	});
+	}
 }
 function loadSeatableTickets() {
 	$.getJSON('../api/json/ticket/getSeatableTickets.php?seatmap=' + seatmapId, function(data){
