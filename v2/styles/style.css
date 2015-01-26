@@ -287,3 +287,8 @@ hr {
 	overflow:scroll;
 	height: 200px;
 }
+
+.redText {
+	color: red;
+	font-size: 200%;
+}
