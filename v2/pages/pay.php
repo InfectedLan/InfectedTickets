@@ -46,14 +46,14 @@ class TicketPage {
 					echo "<h1>Takk for din bestilling</h1>";
 					echo "<br />";
 					echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
-					PaymentHandler::createPayment($user, 
+					$payment = PaymentHandler::createPayment($user, 
 												  TicketTypeHandler::getTicketType( $storeSession->getTicketType() ), 
 												  $storeSession->getAmount(), 
 												  $storeSession->getPrice(), 
 												  $result);
 					NotificationManager::sendPurchaseCompleteNotification($user, $result);
 
-					$success = StoreSessionHandler::purchaseComplete($storeSession);
+					$success = StoreSessionHandler::purchaseComplete($storeSession, $payment);
 					if(!$success)
 					{
 						echo '<br />';
