@@ -173,7 +173,7 @@ class Site {
 										echo '<div id="loginFrame">';
 											echo '<form class="login" method="post">';
 												echo '<li>';
-													echo '<input class="input" type="text" name="username" placeholder="Brukernavn / epost">';
+													echo '<input class="input" type="text" name="identifier" placeholder="Brukernavn eller E-post">';
 												echo '</li>';
 												echo '<li>';
 													echo '<input class="input" name="password" type="password" placeholder="Passord">';
