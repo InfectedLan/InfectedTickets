@@ -173,7 +173,7 @@ class Site {
 										echo '<div id="loginFrame">';
 											echo '<form class="login" method="post">';
 												echo '<li>';
-													echo '<input class="input" type="text" name="username" placeholder="Brukernavn / epost">';
+													echo '<input class="input" type="text" name="identifier" placeholder="Brukernavn / epost">';
 												echo '</li>';
 												echo '<li>';
 													echo '<input class="input" name="password" type="password" placeholder="Passord">';
@@ -278,7 +278,7 @@ class Site {
 											echo '<li>';
 												echo '<form class="request-reset-password" method="post">';
 													echo '<p>Skriv inn ditt brukernavnet eller din e-postadresse for å nullstille passordet ditt:</p>';
-													echo '<input type="text" name="username" placeholder="Brukernavn eller e-post" required autofocus>';
+													echo '<input type="text" name="identifier" placeholder="Brukernavn eller e-post" required autofocus>';
 													echo '<input class="button" type="submit" value="Nullstill passord">';
 												echo '</form>';
 											echo '</li>';
