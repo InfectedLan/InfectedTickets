@@ -6,7 +6,7 @@ class TicketPage {
 			echo '<b>Du skal ikke være her. Trykk "Kjøp billetter" for å kjøpe billetter</b>';
 			return;
 		}
-		echo '<h1>Før du kan kjøpe biletter, må du godta disse reglene.</h1>';
+		echo '<h1>Før du kan kjøpe billetter, må du godta disse reglene.</h1>';
 		echo '<p>Dette er for din egen, og andres sikkerhet.</p>';
 
 		echo '<div id="ticketRules">';

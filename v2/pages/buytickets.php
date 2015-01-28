@@ -55,7 +55,7 @@ class TicketPage {
 			$type = $currentEvent->getTicketType();
 			echo '<h2>';
 				echo 'Kjøper billett for Infected ' . $currentEvent->getTheme() . ' (';
-				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . date('F', $currentEvent->getStartTime()) . '.)';
+				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getStartTime())) . '.)';
 			echo '</h2>';
 			echo '<script src="scripts/buyTickets.js"></script>';
 			echo '<script>';
