@@ -8,8 +8,6 @@ class TicketPage
 {
 	public function render()
 	{
-		/*echo '<h1>Mine biletter</h1>';
-		echo '<p>Her kan du endre hvem som kommer til å bruke billetter du har kjøpt for kommende arrangement, samt se billetter du har kjøpt til tidligere arrangement</p>';*/
 		$ticketArr = TicketHandler::getTicketsForOwner(Session::getCurrentUser());
 		echo '<h3>Årets arrangement</h3>';
 		echo '<hr>';
@@ -35,18 +33,15 @@ class TicketPage
 		{
 			if($ticket->getEvent()->getId() != EventHandler::getCurrentEvent()->getId()) {
 				self::printOldTicket($ticket);
-				echo '<hr';
+				echo '<hr>';
 			}
 		}
 	}
 	
 	public function renderTutorial() {
 		echo '<h1>Mine billetter</h1>';
-
 		echo '<p>Har du kjøpt billett for en annen må den overføres til hans/huns bruker. Dette gjør du ved å trykke "Overfør billetten"</p>';
-
 		echo '<p>Ønsker du at en annen skal velge plass for deg? Trykk på #Endre plassreserverer# <br> Dette gjør det enklere og komme sammen i en gruppe.</p>';
-
 		echo '<p>Alle må ha med billett når de kommer på Infected, Du kan selv velge om du ønsker og skrive den ut eller bare ha den på mobilen din.</p>';
 	}
 
@@ -55,6 +50,7 @@ class TicketPage
 		//The code
 		$seater = $ticket->getSeater();
 		$oldEvent = $ticket->getEvent();
+		
 		echo '<table>';
 			echo '<tr>';
 				echo '<td>';
@@ -71,7 +67,7 @@ class TicketPage
 					}
 				echo '</td>';
 				echo '<td>';
-					echo 'Var arrangert på ' . $oldEvent->getLocation()->getTitle();
+					echo 'Ble arrangert på ' . $oldEvent->getLocation()->getTitle();
 				echo '</td>';
 			echo '</tr>';
 		echo '</table>';
