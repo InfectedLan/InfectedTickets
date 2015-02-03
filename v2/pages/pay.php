@@ -47,7 +47,7 @@ class TicketPage {
 					echo "<br />";
 					echo 'Bestillingsreferansen din er <b>' . $result . '</b>';
 					$payment = PaymentHandler::createPayment($user, 
-												  TicketTypeHandler::getTicketType( $storeSession->getTicketType() ), 
+												  TicketTypeHandler::getTicketType($storeSession->getTicketType()), 
 												  $storeSession->getAmount(), 
 												  $storeSession->getPrice(), 
 												  $result);
