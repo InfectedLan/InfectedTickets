@@ -9,8 +9,8 @@ class TicketPage {
 		//echo $_REQUEST['token'];
 		$resArray = PayPal::getExpressCheckoutDetails($_REQUEST['token']);
 		$user = Session::getCurrentUser();
-		$storeSession = StoreSessionHandler::getStoreSessionForUser($user);
-		$ticketType = TicketTypeHandler::getTicketType($storeSession->getTicketType());
+		$storeSession = StoreSessionHandler::getStoreSessionByUser($user);
+		$ticketType = $storeSession->getTicketType();
 		//print_r($resArray);
 
 		if(StoreSessionHandler::isPaymentValid($resArray['AMT'], $storeSession))

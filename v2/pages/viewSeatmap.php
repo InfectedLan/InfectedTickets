@@ -21,9 +21,11 @@ class TicketPage {
 	
 	public function renderTutorial() {
 		$user = Session::getCurrentUser();
+		
 		echo '<p>Velg en billett du vil plassere fra listen. Velg deretter hvor du vil sitte ved å trykke på et grønt sete.<br>';
 		echo 'Billetter du kan plassere:</p>';
-		if($user->hasCurrentTicket()) {
+		
+		if ($user->hasTicket()) {
 			echo '<div id="seatableTickets"><i>Laster inn...</i></div>';
 		} else {
 			echo '<p>Du har ingen billetter! Du må kjøpe en billett før du kan plassere deg</p>';

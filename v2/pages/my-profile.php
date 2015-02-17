@@ -98,9 +98,9 @@ class TicketPage {
 					echo '<tr>';
 						echo '<td>Foresatte\'s telefon:</td>';
 							if (EmergencyContactHandler::hasEmergencyContact($user)) {
-								$emergencycontactphone = EmergencyContactHandler::getEmergencyContactForUser($user)->getPhone();
+								$emergencyContactPhone = EmergencyContactHandler::getEmergencyContactByUser($user)->getPhone();
 							
-								echo '<td><input name="emergencycontactphone" type="tel" value="' . $emergencycontactphone . '"></td>';
+								echo '<td><input name="emergencycontactphone" type="tel" value="' . $emergencyContactPhone . '"></td>';
 							} else {
 								echo '<td><input name="emergencycontactphone" type="tel"></td>';
 							}

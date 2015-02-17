@@ -89,16 +89,13 @@ class Site {
 								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=my-profile"\'>';
 							echo '</div>';
 						echo '</div>';
-						//Has to be done before the banner
-						//echo '<h1>put things here in the #content div</h1>';
-						$currentEvent = EventHandler::getCurrentEvent();
-						$numTickets = TicketHandler::getTicketsForOwnerAndEvent($user, $currentEvent);
 
+						$ticketList = TicketHandler::getTicketsByUser($user);
 						$pageToInclude = 'pages/buytickets.php';
-						$defaultPage = "buytickets";
+						$defaultPage = 'buytickets';
 						
-						if (!empty($numTickets)) {
-							$defaultPage = "mytickets";
+						if (!empty($ticketList)) {
+							$defaultPage = 'mytickets';
 							$pageToInclude = 'pages/mytickets.php';
 						}
 						
@@ -291,18 +288,18 @@ class Site {
 									echo '<ul id="ul2">';
 										echo '<li>';
 											$event = EventHandler::getCurrentEvent();
-								$ticketText = $event->getTicketCount() > 1 ? 'billeter' : 'billett';
+											$ticketText = count($event->getTicketCount()) > 1 ? 'billeter' : 'billett';
 								
-								echo '<p>';
-									echo '<b>Neste Lan er:</b><br>';
-									echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . '<br>';
-									echo 'Dørene åpner kl.' . date('H:i', $event->getStartTime()). '<br>';
-									
-									if ($event->isBookingTime()) {
-										echo 'Det er <b>' . $event->getAvailableTickets() . '</b> av <b>' . $event->getParticipants() . '</b> ' . $ticketText . ' igjen<br>';
-										echo 'Pris per billett: ' . $event->getTicketType()->getPrice() . ',- inkludert medlemskap i Radar.<br>';
-									}
-								echo '</p>';
+											echo '<p>';
+												echo '<b>Neste Lan er:</b><br>';
+												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . '<br>';
+												echo 'Dørene åpner kl.' . date('H:i', $event->getStartTime()). '<br>';
+												
+												if ($event->isBookingTime()) {
+													echo 'Det er <b>' . $event->getAvailableTickets() . '</b> av <b>' . $event->getParticipants() . '</b> ' . $ticketText . ' igjen<br>';
+													echo 'Pris per billett: ' . $event->getTicketType()->getPrice() . ',- inkludert medlemskap i Radar.<br>';
+												}
+											echo '</p>';
 										echo '</li>';
 									echo '</ul>';
 								}

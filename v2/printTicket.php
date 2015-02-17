@@ -35,10 +35,11 @@
 				return;
 			}
 			
-			if(Session::getCurrentUser()->getId() != $ticket->getUser()->getId()) {
+			if (!Session::getCurrentUser()->equals($ticket->getUser())) {
 				echo 'Du eier ikke denne billetten!</body></html>';
 				return;
 			}
+
 			echo '<div id="total">';
 				echo '<h2>Billett: ' . $ticket->getHumanName() . '</h2>';
 				echo '<table>';

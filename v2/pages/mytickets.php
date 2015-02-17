@@ -4,16 +4,14 @@ require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
 require_once 'handlers/tickettransferhandler.php';
 
-class TicketPage
-{
-	public function render()
-	{
-		$ticketArr = TicketHandler::getTicketsForOwner(Session::getCurrentUser());
+class TicketPage {
+	public function render() {
+		$ticketList = TicketHandler::getTicketsByUser(Session::getCurrentUser());
 		echo '<h3>Årets arrangement</h3>';
 		echo '<hr>';
 		
-		foreach($ticketArr as $ticket) {
-			if ($ticket->getEvent()->getId() == EventHandler::getCurrentEvent()->getId()) {
+		foreach ($ticketList as $ticket) {
+			if ($ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
 				self::printTicket($ticket);
 				echo '<hr>';
 			}
@@ -21,7 +19,7 @@ class TicketPage
 
 		$revertableTickets = TicketTransferHandler::getRevertableTransfers(Session::getCurrentUser());
 
-		foreach($revertableTickets as $revertableTicket) {
+		foreach ($revertableTickets as $revertableTicket) {
 			self::printRevertableTicket($revertableTicket);
 			echo '<hr>';
 		}
@@ -29,9 +27,8 @@ class TicketPage
 		echo '<h3>Tidligere arrangementer</h3>';
 		echo '<hr>';
 		
-		foreach($ticketArr as $ticket)
-		{
-			if($ticket->getEvent()->getId() != EventHandler::getCurrentEvent()->getId()) {
+		foreach($ticketList as $ticket) {
+			if (!$ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
 				self::printOldTicket($ticket);
 				echo '<hr>';
 			}
@@ -45,8 +42,7 @@ class TicketPage
 		echo '<p>Alle må ha med billett når de kommer på Infected, Du kan selv velge om du ønsker og skrive den ut eller bare ha den på mobilen din.</p>';
 	}
 
-	private function printOldTicket($ticket)
-	{
+	private function printOldTicket($ticket) {
 		//The code
 		$seater = $ticket->getSeater();
 		$oldEvent = $ticket->getEvent();
@@ -84,8 +80,8 @@ class TicketPage
 		echo '</div>';
 		*/
 	}
-	private function printRevertableTicket($revertableTicket) 
-	{
+
+	private function printRevertableTicket($revertableTicket) {
 		$ticket = $revertableTicket->getTicket();
 		$recipient = $revertableTicket->getTo();
 		echo '<table>';
@@ -102,8 +98,8 @@ class TicketPage
 			echo '</tr>';
 		echo '</table>';
 	}
-	private function printTicket($ticket)
-	{
+	
+	private function printTicket($ticket) {
 		//The code
 		$seater = $ticket->getSeater();
 		echo '<table>';
@@ -135,18 +131,14 @@ class TicketPage
 				}
 				
 			echo '</tr>';
-			//Seater row :P
 			echo '<tr>';
 				echo '<td></td>'; //name
 				echo '<td></td>'; //transfer
 				echo '<td>'; //seater
 					echo '<center>';
-						if(!isset($seater))
-						{
+						if(!isset($seater)) {
 							echo "(Deg)";
-						}
-						else
-						{
+						} else {
 							echo '(' . $seater->getDisplayName() . ')';
 						}
 					echo '</center>';
@@ -155,18 +147,6 @@ class TicketPage
 				echo '<td></td>'; //mobile
 			echo '</tr>';
 		echo '</table>';
-		/*
-		echo '<div class="ticket_div">';
-			echo '<b>' . $ticket->getHumanName() . '</b>';
-			if(!isset($sete))
-			{
-				echo '<b>Ikke plassert</b>';
-			}
-			echo '<br />';
-			echo 'Eier: <b>' . $ticket->getOwner()->getDisplayName() . '</b><br />';
-			echo 'Seater: <b>' . $ticket->getSeater()->getDisplayName() . '</b><br />';
-		echo '</div>';
-		*/
 	}
 }
 ?>

@@ -8,11 +8,12 @@ require_once 'utils.php';
 class TicketPage {
 	public function render() {
 		$user = Session::getCurrentUser();
-		if( StoreSessionHandler::hasStoreSession( $user ) )
-		{
-			$session = StoreSessionHandler::getStoreSessionForUser($user);
+		
+		if (StoreSessionHandler::hasStoreSession($user)) {
+			$session = StoreSessionHandler::getStoreSessionByUser($user);
 			StoreSessionHandler::deleteStoreSession($session);
 		}
+
 		$this->renderFirstStep();
 	}
 	
@@ -50,9 +51,10 @@ class TicketPage {
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
 		$user = Session::getCurrentUser();
-		if($currentEvent->isBookingTime())
-		{
+		
+		if($currentEvent->isBookingTime()) {
 			$type = $currentEvent->getTicketType();
+			
 			echo '<h2>';
 				echo 'Kjøper billett for Infected ' . $currentEvent->getTheme() . ' (';
 				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getStartTime())) . '.)';

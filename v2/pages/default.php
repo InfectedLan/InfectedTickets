@@ -5,7 +5,7 @@ class TicketPage {
 	}
 	
 	public function renderTutorial() {
-		echo '';
+
 	}
 }
 ?>
