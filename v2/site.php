@@ -1,7 +1,7 @@
 <?php
 require_once 'session.php';
 require_once 'settings.php';
-require_once 'utils.php';
+require_once 'dateutils.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
 
@@ -227,7 +227,7 @@ class Site {
 													echo '</select>';
 													echo '<select name="birthmonth">';
 														for ($month = 1; $month < 13; $month++) {
-															echo '<option value="' . $month . '">' . Utils::getMonthFromInt($month) . '</option>';
+															echo '<option value="' . $month . '">' . DateUtils::getMonthFromInt($month) . '</option>';
 														}
 													echo '</select>';
 													echo '<select name="birthyear">';
@@ -292,7 +292,7 @@ class Site {
 								
 											echo '<p>';
 												echo '<b>Neste Lan er:</b><br>';
-												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . '<br>';
+												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . '<br>';
 												echo 'Dørene åpner kl.' . date('H:i', $event->getStartTime()). '<br>';
 												
 												if ($event->isBookingTime()) {

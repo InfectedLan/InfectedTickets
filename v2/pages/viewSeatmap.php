@@ -1,6 +1,7 @@
 <?php
-require_once 'handlers/eventhandler.php';
 require_once 'session.php';
+require_once 'handlers/eventhandler.php';
+
 class TicketPage {
 	public function render() {
 		$currentEvent = EventHandler::getCurrentEvent();

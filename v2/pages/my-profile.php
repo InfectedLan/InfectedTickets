@@ -1,6 +1,6 @@
 <?php
 require_once 'session.php';
-require_once 'utils.php';
+require_once 'dateutils.php';
 require_once 'handlers/emergencycontacthandler.php';
 
 class TicketPage {
@@ -61,9 +61,9 @@ class TicketPage {
 							echo '<select name="birthmonth">';					
 								for ($month = 1; $month < 13; $month++) {
 									if ($month == date('m', $birthdate)) {
-										echo '<option value="' . $month . '" selected>' . Utils::getMonthFromInt($month) . '</option>';
+										echo '<option value="' . $month . '" selected>' . DateUtils::getMonthFromInt($month) . '</option>';
 									} else {
-										echo '<option value="' . $month . '">' . Utils::getMonthFromInt($month) . '</option>';
+										echo '<option value="' . $month . '">' . DateUtils::getMonthFromInt($month) . '</option>';
 									}
 								}
 							echo '</select>';
@@ -97,7 +97,7 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Foresatte\'s telefon:</td>';
-							if (EmergencyContactHandler::hasEmergencyContact($user)) {
+							if (EmergencyContactHandler::hasEmergencyContactByUser($user)) {
 								$emergencyContactPhone = EmergencyContactHandler::getEmergencyContactByUser($user)->getPhone();
 							
 								echo '<td><input name="emergencycontactphone" type="tel" value="' . $emergencyContactPhone . '"></td>';

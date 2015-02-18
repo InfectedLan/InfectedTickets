@@ -1,5 +1,6 @@
 <?php
 require_once 'handlers/pagehandler.php';
+
 class TicketPage {
 	public function render() {
 		if(!isset($_POST['ticketAmount'])){

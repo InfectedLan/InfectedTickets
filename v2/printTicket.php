@@ -57,7 +57,7 @@
 					else
 					{
 						$entrance = $seat->getRow()->getEntrance();
-						echo '<tr><td>Sete:</td><td>' . SeatHandler::getHumanString($seat) . '</td></tr>';
+						echo '<tr><td>Sete:</td><td>' . $seat->getString() . '</td></tr>';
 						echo '<tr><td colspan="2"><b>Innsjekking: ' . $entrance->getTitle() . '</b></td></tr>';
 					}
 					

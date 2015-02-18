@@ -4,6 +4,7 @@ require_once 'handlers/storesessionhandler.php';
 require_once 'handlers/userhandler.php';
 require_once 'handlers/tickettypehandler.php';
 require_once 'paypal/paypal.php';
+
 class TicketPage {
 	public function render() {
 		//echo $_REQUEST['token'];

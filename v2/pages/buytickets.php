@@ -1,9 +1,9 @@
 <?php
+require_once 'session.php';
+require_once 'dateutils.php';
 require_once 'handlers/storesessionhandler.php';
 require_once 'handlers/tickettypehandler.php';
 require_once 'handlers/eventhandler.php';
-require_once 'session.php';
-require_once 'utils.php';
 
 class TicketPage {
 	public function render() {
@@ -57,7 +57,7 @@ class TicketPage {
 			
 			echo '<h2>';
 				echo 'Kjøper billett for Infected ' . $currentEvent->getTheme() . ' (';
-				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getStartTime())) . '.)';
+				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getStartTime())) . '.)';
 			echo '</h2>';
 			echo '<script src="scripts/buyTickets.js"></script>';
 			echo '<script>';
@@ -110,7 +110,7 @@ class TicketPage {
 			echo '</form>';
 		} else {
 			echo '<h1>Billettsalget har ikke åpnet enda</h1>';
-			echo '<p>Billettsalget åpner ' . Utils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . Utils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.</p>';
+			echo '<p>Billettsalget åpner ' . DateUtils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.</p>';
 		}
 	}
 }
