@@ -1,9 +1,9 @@
 <?php
 require_once 'session.php';
 require_once 'settings.php';
-require_once 'dateutils.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
+require_once 'utils/dateutils.php';
 
 class Site {
 	// Variable definitions.

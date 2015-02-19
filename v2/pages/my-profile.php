@@ -1,7 +1,7 @@
 <?php
 require_once 'session.php';
-require_once 'dateutils.php';
 require_once 'handlers/emergencycontacthandler.php';
+require_once 'utils/dateutils.php';
 
 class TicketPage {
 	public function render() {
