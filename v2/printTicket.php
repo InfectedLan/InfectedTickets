@@ -41,12 +41,12 @@
 			}
 
 			echo '<div id="total">';
-				echo '<h2>Billett: ' . $ticket->getHumanName() . '</h2>';
+				echo '<h2>Billett: ' . $ticket->getString() . '</h2>';
 				echo '<table>';
 					echo '<tr><td width="100px"><b>Navn:</b></td><td>' . $ticket->getUser()->getFullName() . '</td></tr>';
 					echo '<tr><td>Født:</td><td>' . date('d.m.Y', $ticket->getUser()->getBirthdate()) .'</td></tr>';
 					echo '<tr><td>Adresse:</td><td>' . $ticket->getUser()->getAddress() . '</td></tr>';
-					echo '<tr><td>Mobil:</td><td>' . $ticket->getUser()->getPhone() . '</td></tr>';
+					echo '<tr><td>Mobil:</td><td>' . $ticket->getUser()->getPhoneAsString() . '</td></tr>';
 					echo '<tr><td>Brukernavn:</td><td>' . $ticket->getUser()->getUsername() . '</td></tr>';
 					$seat = $ticket->getSeat();
 					if( !isset($seat) )

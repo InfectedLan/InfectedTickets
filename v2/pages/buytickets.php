@@ -61,7 +61,7 @@ class TicketPage {
 			echo '</h2>';
 			echo '<script src="scripts/buyTickets.js"></script>';
 			echo '<script>';
-				echo 'var ticketPrice = ' . $type->getPriceForUser($user). ';';
+				echo 'var ticketPrice = ' . $type->getPriceByUser($user). ';';
 			echo '</script>';
 			echo '<form action="index.php?page=rules" id="buyTicketForm" method="post">';
 				echo '<input type="hidden" name="ticketType" value="' . $type->getId() . '" />';
@@ -90,7 +90,7 @@ class TicketPage {
 							echo '</b>';
 						echo '</td>';
 						echo '<td>';
-							echo $type->getPriceForUser($user) . ',-';
+							echo $type->getPriceByUser($user) . ',-';
 						echo '</td>';
 						echo '<td>';
 							$ticketsLeft = $currentEvent->getAvailableTickets();
@@ -100,7 +100,7 @@ class TicketPage {
 							echo $ticketsLeft . '/' . $currentEvent->getParticipants();
 						echo '</td>';
 						echo '<td>';
-							echo '<span id="totalPrice">' . $type->getPriceForUser($user) . ',-</span>';
+							echo '<span id="totalPrice">' . $type->getPriceByUser($user) . ',-</span>';
 						echo '</td>';
 						echo '<td>';
 							echo '<input type="submit" value="Neste" />';
