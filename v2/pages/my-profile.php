@@ -48,6 +48,10 @@ class TicketPage {
 						echo '<td><input type="email" name="email" value="' . $user->getEmail() . '" required></td>';
 					echo '</tr>';
 					echo '<tr>';
+						echo '<td>Gjenta e-post:</td>';
+						echo '<td><input type="email" name="confirmemail" required></td>';
+					echo '</tr>';
+					echo '<tr>';
 						echo '<td>Kjønn:</td>';
 						echo '<td>';
 							echo '<select name="gender">';
