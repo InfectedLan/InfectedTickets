@@ -111,7 +111,7 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Postnummer:</td>';
-						echo '<td><input class="postalcode" type="number" name="postalcode" min="1" max="9999" value="' . $user->getPostalCode() . '" required></td>';
+						echo '<td><input class="postalcode" type="number" name="postalcode" min="1" max="10000" value="' . $user->getPostalCode() . '" required></td>';
 						echo '<td><span class="city">' . $user->getCity() . '</span></td>';
 					echo '</tr>';
 					echo '<tr>';
