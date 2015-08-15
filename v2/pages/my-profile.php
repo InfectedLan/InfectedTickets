@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,7 +25,7 @@ require_once 'utils/dateutils.php';
 class TicketPage {
 	public function render() {
 			$user = Session::getCurrentUser();
-	
+
 			echo '<script src="../api/scripts/edit-profile.js"></script>';
 			echo '<script src="../api/scripts/lookupCity.js"></script>';
 			echo '<form class="edit-profile" method="post">';
@@ -56,7 +56,7 @@ class TicketPage {
 						echo '<td>';
 							echo '<select name="gender">';
 								$gender = $user->getGender();
-								
+
 								if ($gender == 0) {
 									echo '<option value="0" selected>Mann</option>';
 									echo '<option value="1">Kvinne</option>';
@@ -71,7 +71,7 @@ class TicketPage {
 						echo '<td>Fødselsdato:</td>';
 						echo '<td>';
 							$birthdate = $user->getBirthdate();
-						
+
 							echo '<select name="birthday">';
 								for ($day = 1; $day <= 31; $day++) {
 									if ($day == date('d', $birthdate)) {
@@ -81,7 +81,7 @@ class TicketPage {
 									}
 								}
 							echo '</select>';
-							echo '<select name="birthmonth">';					
+							echo '<select name="birthmonth">';
 								for ($month = 1; $month <= 12; $month++) {
 									if ($month == date('m', $birthdate)) {
 										echo '<option value="' . $month . '" selected>' . DateUtils::getMonthFromInt($month) . '</option>';
@@ -103,7 +103,7 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Telefon:</td>';
-						echo '<td><input type="tel" name="phone" value="' . $user->getPhone() . '" required></td>';
+						echo '<td>(+47) <input type="tel" name="phone" value="' . $user->getPhone() . '" required></td>';
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Gateadresse:</td>';
@@ -122,10 +122,10 @@ class TicketPage {
 						echo '<td>Foresatte\'s telefon:</td>';
 							if (EmergencyContactHandler::hasEmergencyContactByUser($user)) {
 								$emergencyContactPhone = EmergencyContactHandler::getEmergencyContactByUser($user)->getPhone();
-							
-								echo '<td><input name="emergencycontactphone" type="tel" value="' . $emergencyContactPhone . '"></td>';
+
+								echo '<td>(+47) <input name="emergencycontactphone" type="tel" value="' . $emergencyContactPhone . '"></td>';
 							} else {
-								echo '<td><input name="emergencycontactphone" type="tel"></td>';
+								echo '<td>(+47) <input name="emergencycontactphone" type="tel"></td>';
 							}
 						echo '<td><i>(Påkrevd hvis du er under 18)</i></td>';
 					echo '</tr>';
@@ -136,7 +136,7 @@ class TicketPage {
 				echo '</table>';
 			echo '</form>';
 	}
-	
+
 	public function renderTutorial() {
 		echo '<h1>Min profil</h1>';
 		echo '<p>';

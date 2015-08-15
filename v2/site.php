@@ -260,7 +260,7 @@ class Site {
 													echo '</select>';
 												echo '</li>';
 												echo '<li>';
-													echo '<input type="tel" name="phone" placeholder="Telefon" required>';
+													echo '(+47) <input type="tel" name="phone" placeholder="Telefon" required>';
 												echo '</li>';
 												echo '<li>';
 													echo '<input type="text" name="address" placeholder="Gateadresse" required>';
@@ -275,7 +275,7 @@ class Site {
 													echo '<input name="nickname" type="text" placeholder="Kallenavn">';
 												echo '</li>';
 												echo '<li>';
-													echo '<input name="emergencycontactphone" type="tel" placeholder="Foresatte\'s telefon">';
+													echo '(+47) <input name="emergencycontactphone" type="tel" placeholder="Foresatte\'s telefon">';
 													echo '<i>(Påkrevd hvis du er under 18)</i>';
 												echo '</li>';
 												echo '<li>';
