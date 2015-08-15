@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,12 +27,12 @@ require_once 'utils/dateutils.php';
 class Site {
 	// Variable definitions.
 	private $pageName;
-	
+
 	public function __construct() {
 		// Set the variables.
 		$this->pageName = isset($_GET['page']) ? $_GET['page'] : 'buytickets';
 	}
-	
+
 	// Execute the site.
 	public function execute() {
 		echo '<!DOCTYPE html>';
@@ -46,7 +46,7 @@ class Site {
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
 				echo '<link rel="stylesheet" href="styles/shared.css">';
 				echo '<link rel="stylesheet" href="../api/styles/seatmap.css">';
-				
+
 				if (Session::isAuthenticated()) {
 					echo '<link rel="stylesheet" href="styles/style.css">';
 					echo '<style>';
@@ -80,7 +80,7 @@ class Site {
 
 					echo 'ga(\'create\', \'UA-54254513-2\', \'auto\');';
 					echo 'ga(\'send\', \'pageview\');';
-				echo '</script>';	
+				echo '</script>';
 			echo '</head>';
 			echo '<body>';
 				if (Session::isAuthenticated()) {
@@ -112,12 +112,12 @@ class Site {
 						$ticketList = TicketHandler::getTicketsByUser($user);
 						$pageToInclude = 'pages/buytickets.php';
 						$defaultPage = 'buytickets';
-						
+
 						if (!empty($ticketList)) {
 							$defaultPage = 'mytickets';
 							$pageToInclude = 'pages/mytickets.php';
 						}
-						
+
 						//Banner
 						echo '<div class="banner" id="nav">';
 							$pageString = (isset($_GET['page']) ? $_GET['page'] : $defaultPage);
@@ -127,7 +127,7 @@ class Site {
 							echo '<a href="index.php?page=viewSeatmap"><h1' . ($pageString == 'viewSeatmap' ? $underlined : '') . '>Plassreservering</h1></a>';
 							echo '<a href="index.php?page=contact"><h1' . ($pageString == 'contact' ? $underlined : '') . '>Kontakt</h1></a>';
 						echo '</div>';
-						
+
 						//Make sure it is not trying to access something outside the pages directory
 						if (isset($_GET['page']) && !empty($_GET['page'])) {
 							if (file_exists('pages/' . $this->pageName . '.php')) {
@@ -136,16 +136,16 @@ class Site {
 								$pageToInclude = "pages/404.php";
 							}
 						}
-						
+
 						include $pageToInclude;
 						$contentPage = new TicketPage();
 
 						echo '<div id="tutorial">';
-						
+
 						if (method_exists($contentPage, "renderTutorial")) {
 							$contentPage->renderTutorial();
 						}
-						
+
 						echo '</div>';
 						echo '<div class="banner">';
 						echo '</div>';
@@ -172,10 +172,10 @@ class Site {
 						echo '<div class="middle">';
 							echo '<div class="inner">';
 								echo '<img id="logo" src="images/logo.png" alt="Infected">';
-								
-								$publicPages = array('activation', 
+
+								$publicPages = array('activation',
 													 'reset-password');
-							
+
 								if (isset($_GET['page']) && in_array($this->pageName, $publicPages)) {
 									echo '<ul id="ul1">';
 										$this->viewPage($this->pageName);
@@ -194,7 +194,7 @@ class Site {
 												echo '<li>';
 													echo '<input class="input" name="password" type="password" placeholder="Passord">';
 												echo '</li>';
-												
+
 												echo '<li>';
 													echo '<input class="button" id="submit" name="submit" type="submit" value="Logg inn">';
 												echo '</li>';
@@ -308,15 +308,20 @@ class Site {
 										echo '<li>';
 											$event = EventHandler::getCurrentEvent();
 											$ticketText = count($event->getTicketCount()) > 1 ? 'billeter' : 'billett';
-								
+
 											echo '<p>';
 												echo '<b>Neste Lan er:</b><br>';
-												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . '<br>';
-												echo 'Dørene åpner kl.' . date('H:i', $event->getStartTime()). '<br>';
-												
+												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . ', dørene åpner kl. ' . date('H:i', $event->getStartTime()) . '<br>';
+												echo 'Pris per billett: <i>' . $event->getTicketType()->getPrice() . ',-</i> (Inkluderer medlemskap i Radar)' . '<br>';
+
 												if ($event->isBookingTime()) {
-													echo 'Det er <b>' . $event->getAvailableTickets() . '</b> av <b>' . $event->getParticipants() . '</b> ' . $ticketText . ' igjen<br>';
-													echo 'Pris per billett: ' . $event->getTicketType()->getPrice() . ',- inkludert medlemskap i Radar.<br>';
+													if (!empty($event->getAvailableTickets())) {
+														echo 'Det er <b>' . $event->getAvailableTickets() . '</b> av <b>' . $event->getParticipants() . '</b> ' . $ticketText . ' igjen';
+													} else {
+														echo 'Det er ingen billetter igjen';
+													}
+												} else {
+													echo 'Billettsalget starter ' . date('d', $event->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getBookingTime())) .' kl. '  . date('H:i', $event->getBookingTime());
 												}
 											echo '</p>';
 										echo '</li>';
@@ -333,46 +338,46 @@ class Site {
 			echo '</body>';
 		echo '</html>';
 	}
-	
+
 	// Generates title.
 	private function getTitle() {
 		return Settings::name . ' Tickets';
 	}
-	
+
 	// Picks randomly a background from the background directory.
 	private function getBackground($authenticated) {
 		$directory = 'images/backgrounds/';
 		$suffix = 'jpg';
 		$list = null;
-		
+
 		if ($authenticated) {
 			$list = glob($directory . '/main/*.' . $suffix);
 		} else {
 			$list = glob($directory . '/splash/*.' . $suffix);
 		}
-		
+
 		return $list[rand(0, count($list) - 1)];
 	}
-	
+
 	private function viewPage($pageName) {
 		$directoryList = array('pages');
 		$includedPages = array();
 		$found = false;
-		
+
 		foreach ($directoryList as $directory) {
 			$filePath = $directory . '/' . $pageName . '.php';
-		
+
 			if (!in_array($pageName, $includedPages) &&
 				in_array($filePath, glob($directory . '/*.php'))) {
-				// Make sure we don't include pages with same name twice, 
+				// Make sure we don't include pages with same name twice,
 				// and set the found varialbe so that we don't have to display the not found message.
 				array_push($includedPages, $pageName);
 				$found = true;
-			
+
 				include_once $filePath;
 			}
 		}
-			
+
 		if (!$found) {
 			echo '<article>';
 				echo '<h1>Siden ble ikke funnet!</h1>';
