@@ -4,18 +4,18 @@
  *
  * Copyright (C) 2015 Infected <http://infected.no/>.
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
-
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 require_once 'session.php';
@@ -25,7 +25,7 @@ require_once 'utils/dateutils.php';
 class TicketPage {
 	public function render() {
 			$user = Session::getCurrentUser();
-	
+
 			echo '<script src="../api/scripts/edit-profile.js"></script>';
 			echo '<script src="../api/scripts/lookupCity.js"></script>';
 			echo '<form class="edit-profile" method="post">';
@@ -48,11 +48,15 @@ class TicketPage {
 						echo '<td><input type="email" name="email" value="' . $user->getEmail() . '" required></td>';
 					echo '</tr>';
 					echo '<tr>';
+						echo '<td>Gjenta e-post:</td>';
+						echo '<td><input type="email" name="confirmemail" required></td>';
+					echo '</tr>';
+					echo '<tr>';
 						echo '<td>Kjønn:</td>';
 						echo '<td>';
 							echo '<select name="gender">';
 								$gender = $user->getGender();
-								
+
 								if ($gender == 0) {
 									echo '<option value="0" selected>Mann</option>';
 									echo '<option value="1">Kvinne</option>';
@@ -67,9 +71,9 @@ class TicketPage {
 						echo '<td>Fødselsdato:</td>';
 						echo '<td>';
 							$birthdate = $user->getBirthdate();
-						
+
 							echo '<select name="birthday">';
-								for ($day = 1; $day < 32; $day++) {
+								for ($day = 1; $day <= 31; $day++) {
 									if ($day == date('d', $birthdate)) {
 										echo '<option value="' . $day . '" selected>' . $day . '</option>';
 									} else {
@@ -77,8 +81,8 @@ class TicketPage {
 									}
 								}
 							echo '</select>';
-							echo '<select name="birthmonth">';					
-								for ($month = 1; $month < 13; $month++) {
+							echo '<select name="birthmonth">';
+								for ($month = 1; $month <= 12; $month++) {
 									if ($month == date('m', $birthdate)) {
 										echo '<option value="' . $month . '" selected>' . DateUtils::getMonthFromInt($month) . '</option>';
 									} else {
@@ -87,7 +91,7 @@ class TicketPage {
 								}
 							echo '</select>';
 							echo '<select name="birthyear">';
-								for ($year = date('Y') - 100; $year < date('Y'); $year++) {
+								for ($year = date('Y') - 100; $year <= date('Y'); $year++) {
 									if ($year == date('Y', $birthdate)) {
 										echo '<option value="' . $year . '" selected>' . $year . '</option>';
 									} else {
@@ -99,7 +103,7 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Telefon:</td>';
-						echo '<td><input type="tel" name="phone" value="' . $user->getPhone() . '" required></td>';
+						echo '<td>(+47) <input type="tel" name="phone" value="' . $user->getPhone() . '" required></td>';
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Gateadresse:</td>';
@@ -107,7 +111,7 @@ class TicketPage {
 					echo '</tr>';
 					echo '<tr>';
 						echo '<td>Postnummer:</td>';
-						echo '<td><input class="postalcode" type="number" name="postalcode" min="1" max="9999" value="' . $user->getPostalCode() . '" required></td>';
+						echo '<td><input class="postalcode" type="number" name="postalcode" min="1" max="10000" value="' . $user->getPostalCode() . '" required></td>';
 						echo '<td><span class="city">' . $user->getCity() . '</span></td>';
 					echo '</tr>';
 					echo '<tr>';
@@ -118,10 +122,10 @@ class TicketPage {
 						echo '<td>Foresatte\'s telefon:</td>';
 							if (EmergencyContactHandler::hasEmergencyContactByUser($user)) {
 								$emergencyContactPhone = EmergencyContactHandler::getEmergencyContactByUser($user)->getPhone();
-							
-								echo '<td><input name="emergencycontactphone" type="tel" value="' . $emergencyContactPhone . '"></td>';
+
+								echo '<td>(+47) <input name="emergencycontactphone" type="tel" value="' . $emergencyContactPhone . '"></td>';
 							} else {
-								echo '<td><input name="emergencycontactphone" type="tel"></td>';
+								echo '<td>(+47) <input name="emergencycontactphone" type="tel"></td>';
 							}
 						echo '<td><i>(Påkrevd hvis du er under 18)</i></td>';
 					echo '</tr>';
@@ -132,7 +136,7 @@ class TicketPage {
 				echo '</table>';
 			echo '</form>';
 	}
-	
+
 	public function renderTutorial() {
 		echo '<h1>Min profil</h1>';
 		echo '<p>';

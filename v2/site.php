@@ -4,18 +4,18 @@
  *
  * Copyright (C) 2015 Infected <http://infected.no/>.
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
-
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 require_once 'session.php';
@@ -260,7 +260,7 @@ class Site {
 													echo '</select>';
 												echo '</li>';
 												echo '<li>';
-													echo '<input type="tel" name="phone" placeholder="Telefon" required>';
+													echo '(+47) <input type="tel" name="phone" placeholder="Telefon" required>';
 												echo '</li>';
 												echo '<li>';
 													echo '<input type="text" name="address" placeholder="Gateadresse" required>';
@@ -275,7 +275,7 @@ class Site {
 													echo '<input name="nickname" type="text" placeholder="Kallenavn">';
 												echo '</li>';
 												echo '<li>';
-													echo '<input name="emergencycontactphone" type="tel" placeholder="Foresatte\'s telefon">';
+													echo '(+47) <input name="emergencycontactphone" type="tel" placeholder="Foresatte\'s telefon">';
 													echo '<i>(Påkrevd hvis du er under 18)</i>';
 												echo '</li>';
 												echo '<li>';
@@ -312,7 +312,7 @@ class Site {
 											echo '<p>';
 												echo '<b>Neste Lan er:</b><br>';
 												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . ', dørene åpner kl. ' . date('H:i', $event->getStartTime()) . '<br>';
-												echo 'Pris per billett: ' . $event->getTicketType()->getPrice() . ',- (Inkluderer medlemskap i Radar)' . '<br>';
+												echo 'Pris per billett: <i>' . $event->getTicketType()->getPrice() . ',-</i> (Inkluderer medlemskap i Radar)' . '<br>';
 
 												if ($event->isBookingTime()) {
 													if (!empty($event->getAvailableTickets())) {
