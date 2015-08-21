@@ -106,7 +106,7 @@ class TicketPage {
 					echo '<tr>';
 						echo '<td>';
 							echo '<b>';
-								echo $type->getHumanName();
+								echo $type->getTitle();
 							echo '</b>';
 						echo '</td>';
 						echo '<td>';
