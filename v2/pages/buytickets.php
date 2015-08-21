@@ -8,7 +8,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -27,7 +27,7 @@ require_once 'utils/dateutils.php';
 class TicketPage {
 	public function render() {
 		$user = Session::getCurrentUser();
-		
+
 		if (StoreSessionHandler::hasStoreSession($user)) {
 			$session = StoreSessionHandler::getStoreSessionByUser($user);
 			StoreSessionHandler::deleteStoreSession($session);
@@ -35,7 +35,7 @@ class TicketPage {
 
 		$this->renderFirstStep();
 	}
-	
+
 	public function renderTutorial() {
 		echo '<h1 style="margin-bottom:0px;">Slik kjøper du billett</h1>';
 		echo '<center>';
@@ -56,13 +56,13 @@ class TicketPage {
 				echo '</tr>';
 			echo '</table>';
 		echo '</center>';
-		
+
 		echo '<div id="divInstruks1">';
 			echo '<p>Når du har kjøpt billett får du den/de opp på siden "Mine Billetter". Du velger plass etter at du har kjøpt billetten på "Plassreservering".</p>';
-			
-			
+
+
 			echo '<p>Alle som skal på Infected må ha en bruker med en tilknyttet billett.';
-	
+
 			echo '<br><br>';
 			echo '<p>Det er mulig å kjøpe billetter på vegne av andre. Kjøp billetten(e) og overfør eierskap på siden "Mine billetter".</p>';
 		echo'</div>';
@@ -70,10 +70,11 @@ class TicketPage {
 	public function renderFirstStep() {
 		$currentEvent = EventHandler::getCurrentEvent();
 		$user = Session::getCurrentUser();
-		
-		if($currentEvent->isBookingTime()) {
+
+		if ($user->hasPermission('tickets.byPassBookingTime') ||
+			$currentEvent->isBookingTime()) {
 			$type = $currentEvent->getTicketType();
-			
+
 			echo '<h2>';
 				echo 'Kjøper billett for Infected ' . $currentEvent->getTheme() . ' (';
 				echo date('d', $currentEvent->getStartTime()) . '. - ' . date('d', $currentEvent->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getStartTime())) . '.)';
