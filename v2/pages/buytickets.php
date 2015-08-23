@@ -30,7 +30,7 @@ class TicketPage {
 
 		if (StoreSessionHandler::hasStoreSession($user)) {
 			$session = StoreSessionHandler::getStoreSessionByUser($user);
-			StoreSessionHandler::deleteStoreSession($session);
+			StoreSessionHandler::removeStoreSession($session);
 		}
 
 		$this->renderFirstStep();
