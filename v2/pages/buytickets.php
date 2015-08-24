@@ -82,7 +82,7 @@ class TicketPage {
 			echo '<script src="scripts/buyTickets.js"></script>';
 			echo '<script>';
             echo 'var ticketPrice = ' . $ticketType->getPrice() . ';';
-                echo 'var ticketDiscount = ' . Settings::radarFee . ';';
+                echo 'var ticketDiscount = ' . Settings::ticketFee . ';';
                 echo 'var shouldPayMembershipFee = ' . ($ticketType->isUserEligibleForDiscount($user) ? "false" : "true" ) . ';';
 			echo '</script>';
 			echo '<form action="index.php?page=rules" id="buyTicketForm" method="post">';
