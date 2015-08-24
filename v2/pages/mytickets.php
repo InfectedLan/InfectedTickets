@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,35 +25,50 @@ require_once 'handlers/tickettransferhandler.php';
 
 class TicketPage {
 	public function render() {
-		$ticketList = TicketHandler::getTicketsByUser(Session::getCurrentUser());
-		echo '<h3>Årets arrangement</h3>';
-		echo '<hr>';
-		
-		foreach ($ticketList as $ticket) {
-			if ($ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
-				self::printTicket($ticket);
+		if (Session::isAuthenticated()) {
+			$user = Session::getCurrentUser();
+
+			$ticketList = $user->getTickets();
+
+			if (!empty($ticketList)) {
+				echo '<h3>Årets arrangement</h3>';
 				echo '<hr>';
+
+				foreach ($ticketList as $ticket) {
+					if ($ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
+						self::printTicket($ticket);
+						echo '<hr>';
+					}
+				}
 			}
-		}
 
-		$revertableTickets = TicketTransferHandler::getRevertableTransfers(Session::getCurrentUser());
+			$revertableTicketList = TicketTransferHandler::getRevertableTransfers(Session::getCurrentUser());
 
-		foreach ($revertableTickets as $revertableTicket) {
-			self::printRevertableTicket($revertableTicket);
+			if (!empty($revertableTicketList)) {
+				foreach ($revertableTickets as $ticket) {
+					self::printRevertableTicket($ticket);
+					echo '<hr>';
+				}
+			}
+
+			echo '<h3>Tidligere arrangementer</h3>';
 			echo '<hr>';
-		}
-		
-		echo '<h3>Tidligere arrangementer</h3>';
-		echo '<hr>';
-		
-		foreach($ticketList as $ticket) {
-			if (!$ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
-				self::printOldTicket($ticket);
-				echo '<hr>';
+
+			$previousTicketList = $user->getTicketsByAllEvents();
+
+			if (!empty($previousTicketList)) {
+				foreach ($previousTicketList as $ticket) {
+					if (!$ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
+						self::printOldTicket($ticket);
+						echo '<hr>';
+					}
+				}
 			}
+		} else {
+			echo '<p>Du er ikke logget inn.</p>';
 		}
 	}
-	
+
 	public function renderTutorial() {
 		echo '<h1>Mine billetter</h1>';
 		echo '<p>Har du kjøpt billett for en annen må den overføres til hans/huns bruker. Dette gjør du ved å trykke "Overfør billetten"</p>';
@@ -65,7 +80,7 @@ class TicketPage {
 		//The code
 		$seater = $ticket->getSeater();
 		$oldEvent = $ticket->getEvent();
-		
+
 		echo '<table>';
 			echo '<tr>';
 				echo '<td>';
@@ -103,6 +118,7 @@ class TicketPage {
 	private function printRevertableTicket($revertableTicket) {
 		$ticket = $revertableTicket->getTicket();
 		$recipient = $revertableTicket->getTo();
+
 		echo '<table>';
 			echo '<tr>';
 				echo '<td width="23%">';
@@ -117,10 +133,11 @@ class TicketPage {
 			echo '</tr>';
 		echo '</table>';
 	}
-	
+
 	private function printTicket($ticket) {
 		//The code
 		$seater = $ticket->getSeater();
+
 		echo '<table>';
 			echo '<tr>';
 				echo '<td width="23%">';
@@ -132,30 +149,29 @@ class TicketPage {
 				echo '<td align="center" width="23%">';
 					echo '<input type="button" value="Endre plassreserverer" onclick="searchUser(\'Sett som seater!\', function(user) { $.getJSON(\'../api/json/ticket/setTicketSeater.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" /><br />';
 				echo '</td>';
+
 				$seat = $ticket->getSeat();
-				if(isset($seat))
-				{
+
+				if (isset($seat)) {
 					echo '<td width="18%">';
 						echo '<input type="button" value="Skriv ut billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '&print\'"/>';
 					echo '</td>';
 					echo '<td width="18%">';
 						echo '<input type="button" value="Mobil billett" onclick="window.location.href = \'printTicket.php?id=' . $ticket->getId() . '\'"/>';
 					echo '</td>';
-				}
-				else
-				{
+				} else {
 					echo '<td width="36%" colspan="2">';
 						echo '<i>Du må plassere billetten før du kan printe den ut</i>';
 					echo '</td>';
 				}
-				
+
 			echo '</tr>';
 			echo '<tr>';
 				echo '<td></td>'; //name
 				echo '<td></td>'; //transfer
 				echo '<td>'; //seater
 					echo '<center>';
-						if(!isset($seater)) {
+						if (!isset($seater)) {
 							echo "(Deg)";
 						} else {
 							echo '(' . $seater->getDisplayName() . ')';

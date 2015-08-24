@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,7 +25,7 @@ class TicketPage {
 	public function render() {
 		$currentEvent = EventHandler::getCurrentEvent();
 		$seatmap = $currentEvent->getSeatmap();
-		
+
 		echo '<script src="scripts/seatmap.js"></script>';
 		echo '<script src="../api/scripts/seatmapRenderer.js"></script>';
 		echo '<script>';
@@ -38,13 +38,13 @@ class TicketPage {
 			echo '<i>Vennligst vent, laster inn...</i>';
 		echo '</div>';
 	}
-	
+
 	public function renderTutorial() {
 		$user = Session::getCurrentUser();
-		
+
 		echo '<p>Velg en billett du vil plassere fra listen. Velg deretter hvor du vil sitte ved å trykke på et grønt sete.<br>';
 		echo 'Billetter du kan plassere:</p>';
-		
+
 		if ($user->hasTicket()) {
 			echo '<div id="seatableTickets"><i>Laster inn...</i></div>';
 		} else {

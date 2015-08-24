@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -24,9 +24,9 @@ require_once 'handlers/eventhandler.php';
 class TicketPage {
 	public function render() {
 			$user = Session::getCurrentUser();
-	
+
 			echo '<h3>Endre passord</h3>';
-	
+
 			echo '<script src="../api/scripts/edit-password.js"></script>';
 			echo '<form class="edit-password" method="post">';
 				echo '<table>';
@@ -48,7 +48,7 @@ class TicketPage {
 				echo '</table>';
 			echo '</form>';
 	}
-	
+
 	public function renderTutorial() {
 		echo '<h1>Endre passord</h1>';
 		echo '<p>';
