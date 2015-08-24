@@ -35,7 +35,7 @@ class TicketPage {
 		{
 			echo '<h4>Vennligst se igjennom detaljene før du godkjenner betalingen.</h4>';
 			echo '<table>';
-				echo "<tr><td class=eventnametop width=150px>Ditt navn</td><td class=eventname width=300px>" .$resArray["FIRSTNAME"] . " " . $resArray["LASTNAME"]. "</td></tr>";
+				echo "<tr><td class=eventnametop width=150px>Ditt navn</td><td class=eventname width=300px>" . $resArray["FIRSTNAME"] . " " . $resArray["LASTNAME"]. "</td></tr>";
 				echo "<tr><td class=eventnametop>E-post</td><td class=eventname>" .$resArray["EMAIL"]."</td></tr>";
 				echo "<tr><td class=eventnametop>Din id</td><td class=eventname>" .$resArray["PAYERID"]."</td></tr>";
 				echo "<tr><td class=eventnametop>Totalsum</td><td class=eventname>" .$resArray["AMT"]."</td></tr>";
