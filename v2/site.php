@@ -20,6 +20,7 @@
 
 require_once 'session.php';
 require_once 'settings.php';
+require_once 'localization.php';
 require_once 'handlers/eventhandler.php';
 require_once 'handlers/tickethandler.php';
 require_once 'utils/dateutils.php';
@@ -293,9 +294,9 @@ class Site {
 											echo '<script src="../api/scripts/reset-password.js"></script>';
 											echo '<li>';
 												echo '<form class="request-reset-password" method="post">';
-													echo '<p>Skriv inn ditt brukernavnet eller din e-postadresse for å nullstille passordet ditt:</p>';
-													echo '<input type="text" name="identifier" placeholder="Brukernavn eller e-post" required autofocus>';
-													echo '<input class="button" type="submit" value="Nullstill passord">';
+													echo '<p>' . Localization::getLocale('enter_your_username_or_e-mail_in_order_to_reset_your_password') . '</p>';
+													echo '<input type="text" name="identifier" placeholder="Brukernavn, e-post eller telefon" required autofocus>';
+													echo '<input type="submit" class="button" value="' . Localization::getLocale('reset_password') . '">';
 												echo '</form>';
 											echo '</li>';
 											//Go back button
