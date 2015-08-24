@@ -19,6 +19,7 @@
  */
 
 require_once 'session.php';
+require_once 'localization.php';
 require_once 'handlers/emergencycontacthandler.php';
 require_once 'utils/dateutils.php';
 
@@ -55,15 +56,8 @@ class TicketPage {
 						echo '<td>Kjønn:</td>';
 						echo '<td>';
 							echo '<select name="gender">';
-								$gender = $user->getGender();
-
-								if ($gender == 0) {
-									echo '<option value="0" selected>Mann</option>';
-									echo '<option value="1">Kvinne</option>';
-								} else if ($gender == 1) {
-									echo '<option value="0">Mann</option>';
-									echo '<option value="1" selected>Kvinne</option>';
-								}
+								echo '<option value="0"' . ($user->getGender() ? ' selected' : null) . '>' . Localization::getLocale($user->getAge() < 18 ? 'boy' : 'male') . '</option>';
+								echo '<option value="1"' . (!$user->getGender() ? ' selected' : null) . '>' . Localization::getLocale($user->getAge() < 18 ? 'girl' : 'female') . '</option>';
 							echo '</select>';
 						echo '</td>';
 					echo '</tr>';
