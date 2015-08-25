@@ -26,10 +26,11 @@ class TicketPage {
 	public function renderTutorial() {
 		echo '<br />';
 		echo '<p>';
-			echo '<b>Arrangementsansvarlig</b><br />';
+			echo '<b>Informasjonsansvarlig</b><br />';
 			echo 'Fredrik Warbo<br />';
 			echo '99 76 77 45<br />';
 			echo 'fredrik@warbo.org<br />';
+            echo 'Oppgaver: Info, presse, utvikling, web, Core-Chief<br />';
 		echo '</p>';
 	}
 }
