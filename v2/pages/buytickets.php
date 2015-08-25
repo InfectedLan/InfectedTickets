@@ -133,9 +133,9 @@ class TicketPage {
 			echo '</form>';
 		} else {
 			echo '<h1>Billettsalget har ikke åpnet enda</h1>';
-			echo '<p>Billettsalget åpner ' . DateUtils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.</p>';
+			echo '<p>Billettsalget åpner ' . DateUtils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.<br>';
             
-            echo '<p>Pris per billett: ' . $ticketType->getPrice() . ',- (Inkluderer medlemskap i Radar Event)</p>';
+            echo 'Pris per billett: ' . $ticketType->getPrice() . ',- (Inkluderer medlemskap i Radar Event)</p>';
 		}
 	}
 }
