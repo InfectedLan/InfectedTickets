@@ -19,7 +19,7 @@
 
 $(document).ready(function() {
 	$("#ticketAmount").change(function(e) {
-		$("#totalPrice").text(ticketPrice * $("#ticketAmount").val() );
+	    $("#totalPrice").text( ((ticketPrice - ticketDiscount) * $("#ticketAmount").val()) + (shouldPayMembershipFee ? ticketDiscount : 0) + ',-');
 	});
 });
 
