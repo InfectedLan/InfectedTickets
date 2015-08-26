@@ -28,64 +28,70 @@ class TicketPage {
 		$resArray = PayPal::getExpressCheckoutDetails($_REQUEST['token']);
 		$user = Session::getCurrentUser();
 		$storeSession = StoreSessionHandler::getStoreSessionByUser($user);
-		$ticketType = $storeSession->getTicketType();
-		//print_r($resArray);
+        if(isset($storeSession)) {
+            $ticketType = $storeSession->getTicketType();
+            //print_r($resArray);
 
-		if (StoreSessionHandler::isPaymentValid($resArray['AMT'], $storeSession)) {
-			echo '<h4>Vennligst se igjennom detaljene før du godkjenner betalingen.</h4>';
-			echo '<table>';
+            if (StoreSessionHandler::isPaymentValid($resArray['AMT'], $storeSession)) {
+                echo '<h4>Vennligst se igjennom detaljene før du godkjenner betalingen.</h4>';
+                echo '<table>';
 				echo '<tr>';
-					echo '<td class=eventnametop width="150px">Ditt navn</td>';
-					echo '<td class=eventname width="300px">' . $resArray['FIRSTNAME'] . ' ' . $resArray['LASTNAME']. '</td>';
+                echo '<td class=eventnametop width="150px">Ditt navn</td>';
+                echo '<td class=eventname width="300px">' . $resArray['FIRSTNAME'] . ' ' . $resArray['LASTNAME']. '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<td class=eventnametop>E-post</td>';
-					echo '<td class=eventname>' . $resArray['EMAIL'] . '</td>';
+                echo '<td class=eventnametop>E-post</td>';
+                echo '<td class=eventname>' . $resArray['EMAIL'] . '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<td class=eventnametop>Din id</td>';
-					echo '<td class=eventname>' . $resArray['PAYERID'] . '</td>';
+                echo '<td class=eventnametop>Din id</td>';
+                echo '<td class=eventname>' . $resArray['PAYERID'] . '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<td class=eventnametop>Totalsum</td>';
-					echo '<td class=eventname>' . $resArray['AMT'] . '</td>';
-				echo '</tr>';
-
-				/*
-				echo '<tr>';
-					echo '<td class=eventnametop>Navn på billett</td>';
-					echo '<td class=eventname>" .$resArray["L_PAYMENTREQUEST_0_DESC0"]."</td>';
-				echo '</tr>';
-				*/
-
-				echo '<tr>';
-					echo '<td class=eventnametop>Billett-type</td>';
-					echo '<td class=eventname>' . $ticketType->getTitle() . '</td>';
+                echo '<td class=eventnametop>Totalsum</td>';
+                echo '<td class=eventname>' . $resArray['AMT'] . '</td>';
 				echo '</tr>';
 
 				/*
-				echo '<tr>';'
-					echo '<td class=eventnametop>Antall</td>';
-					echo '<td class=eventname>' . $resArray['L_PAYMENTREQUEST_0_QTY0'] . '</td>';
+                  echo '<tr>';
+                  echo '<td class=eventnametop>Navn på billett</td>';
+                  echo '<td class=eventname>" .$resArray["L_PAYMENTREQUEST_0_DESC0"]."</td>';
+                  echo '</tr>';
+				*/
+
+				echo '<tr>';
+                echo '<td class=eventnametop>Billett-type</td>';
+                echo '<td class=eventname>' . $ticketType->getTitle() . '</td>';
 				echo '</tr>';
+
+				/*
+                  echo '<tr>';'
+                  echo '<td class=eventnametop>Antall</td>';
+                  echo '<td class=eventname>' . $resArray['L_PAYMENTREQUEST_0_QTY0'] . '</td>';
+                  echo '</tr>';
 				*/
 				echo '<tr>';
-					echo '<td class=eventnametop>Antall</td>';
-					echo '<td class=eventname>' . $storeSession->getAmount() . '</td>';
+                echo '<td class=eventnametop>Antall</td>';
+                echo '<td class=eventname>' . $storeSession->getAmount() . '</td>';
 				echo '</tr>';
-			echo '</table>';
-			echo '<br />';
-			echo '<form id="payForm" action="index.php?page=pay" method="POST">';
+                echo '</table>';
+                echo '<br />';
+                echo '<form id="payForm" action="index.php?page=pay" method="POST">';
 				echo '<input type="hidden" name="token" value="' . $_REQUEST['token'] . '">';
 				//echo '<input type="hidden" name="paymentAmount" value="' . $resArray["AMT"] . '" />';
 				//echo '<input type="hidden" name="paymentType" value="' . $_SESSION['paymentType'] . '" />';
 				echo '<input type="hidden" name="payerID" value="' . $_REQUEST['PayerID'] . '">';
 				echo '<input type="submit" value="Kjøp">';
-			echo '</form>';
-		} else {
-			echo '<h1>Noe gikk galt!</h1>';
-			echo '<p>Vi fikk vite fra paypal at du betalte ' . $resArray['AMT'] . ',-. Stemmer det?</p>';
-		}
+                echo '</form>';
+            } else {
+                echo '<h1>Noe gikk galt!</h1>';
+                echo '<p>Vi fikk vite fra paypal at du betalte ' . $resArray['AMT'] . ',-. Stemmer det?</p>';
+            }
+        } else {
+            echo '<h1>Noe gikk galt</h1>';
+            echo '<p>Billetten vi hadde reservert for deg er borte. Dette kan være grunnet at du brukte for lang tid hos paypal, eller på grunn av en teknisk feil. Å kjøpe billetten på nytt vil i de fleste tilfeller fikse dette. Om det ikke gjør det, kan du kontakte oss <a href="index.php&page=contact">her</a>, så skal vi prøve å fikse det for deg.</p>';
+        }
+		
 	}
 
 	public function renderTutorial() {
