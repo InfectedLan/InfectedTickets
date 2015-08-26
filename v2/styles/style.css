@@ -276,10 +276,10 @@ body {
 
 /* Seatable tickets */
 .ticket {
-	background-image: url("../images/noselect.png");
+	/* background-image: url("../images/noselect.png"); */
 	background-repeat: no-repeat;
 	padding-top: 1px;
-	padding-left: 30px;
+	padding-left: 1px;
 	margin: 1px;
 	height: 21px;
 }
@@ -310,4 +310,11 @@ hr {
 .redText {
 	color: red;
 	font-size: 200%;
+}
+
+.ticketCheckbox {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+    vertical-align: middle;
 }

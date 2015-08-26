@@ -45,7 +45,7 @@ class TicketPage {
 			$revertableTicketList = TicketTransferHandler::getRevertableTransfers(Session::getCurrentUser());
 
 			if (!empty($revertableTicketList)) {
-				foreach ($revertableTickets as $ticket) {
+				foreach ($revertableTicketList as $ticket) {
 					self::printRevertableTicket($ticket);
 					echo '<hr>';
 				}
