@@ -106,7 +106,7 @@ class Site {
 								echo '<span> Du er nå logget in som ' . $user->getFullName() . '</span>';
 								echo '<div style="clear:both";></div>';
 								echo '<input type="button" value="Logg ut" onClick="logout()">';
-								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=my-profile"\'>';
+								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=user-profile"\'>';
 							echo '</div>';
 						echo '</div>';
 
