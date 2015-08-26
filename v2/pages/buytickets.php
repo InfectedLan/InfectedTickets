@@ -71,9 +71,9 @@ class TicketPage {
 		$currentEvent = EventHandler::getCurrentEvent();
 		$user = Session::getCurrentUser();
 
+        $ticketType = $currentEvent->getTicketType();
 		if ($user->hasPermission('tickets.byPassBookingTime') ||
 			$currentEvent->isBookingTime()) {
-			$ticketType = $currentEvent->getTicketType();
 
 			echo '<h2>';
 				echo 'Kjøper billett for Infected ' . $currentEvent->getTheme() . ' (';
@@ -133,7 +133,9 @@ class TicketPage {
 			echo '</form>';
 		} else {
 			echo '<h1>Billettsalget har ikke åpnet enda</h1>';
-			echo '<p>Billettsalget åpner ' . DateUtils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.</p>';
+			echo '<p>Billettsalget åpner ' . DateUtils::getDayFromInt(date('w', $currentEvent->getBookingTime())) . ' den ' . date('d', $currentEvent->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $currentEvent->getBookingTime())) . ' klokken ' . date('H:i', $currentEvent->getBookingTime()) . '.<br>';
+            
+            echo 'Pris per billett: ' . $ticketType->getPrice() . ',- (Inkluderer medlemskap i Radar Event)</p>';
 		}
 	}
 }
