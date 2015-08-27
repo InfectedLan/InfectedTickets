@@ -308,7 +308,7 @@ class Site {
 									echo '<ul id="ul2">';
 										echo '<li>';
 											$event = EventHandler::getCurrentEvent();
-											$ticketText = count($event->getTicketCount()) > 1 ? 'billeter' : 'billett';
+											$ticketText = $event->getTicketCount() > 1 ? 'billetter' : 'billett';
 
 											echo '<p>';
 												echo '<b>Neste Lan er:</b><br>';
