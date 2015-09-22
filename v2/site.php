@@ -364,7 +364,7 @@ class Site {
 
 	private function viewPage($pageName) {
 		$directoryList = array('pages');
-		$includedPages = array();
+		$includedPages = [];
 		$found = false;
 
 		foreach ($directoryList as $directory) {
