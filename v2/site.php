@@ -174,8 +174,8 @@ class Site {
 							echo '<div class="inner">';
 								echo '<img id="logo" src="images/logo.png" alt="Infected">';
 
-								$publicPages = array('activation',
-													 'reset-password');
+								$publicPages = ['activation',
+													 			'reset-password'];
 
 								if (isset($_GET['page']) && in_array($this->pageName, $publicPages)) {
 									echo '<ul id="ul1">';
@@ -363,7 +363,7 @@ class Site {
 	}
 
 	private function viewPage($pageName) {
-		$directoryList = array('pages');
+		$directoryList = ['pages'];
 		$includedPages = [];
 		$found = false;
 
@@ -374,7 +374,7 @@ class Site {
 				in_array($filePath, glob($directory . '/*.php'))) {
 				// Make sure we don't include pages with same name twice,
 				// and set the found varialbe so that we don't have to display the not found message.
-				array_push($includedPages, $pageName);
+				$includedPages[] = $pageName;
 				$found = true;
 
 				include_once $filePath;
