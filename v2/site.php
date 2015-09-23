@@ -70,7 +70,7 @@ class Site {
 				}
 
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
-				echo '<script src="../api/scripts/jquery-1.11.1.min.js"></script>';
+				echo '<script src="../api/scripts/jquery-1.11.3.min.js"></script>';
 				echo '<script src="../api/scripts/jquery.form.min.js"></script>';
 				echo '<script src="scripts/shared.js"></script>';
 				echo '<script>';
