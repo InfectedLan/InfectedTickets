@@ -84,7 +84,7 @@ class TicketPage {
 		echo '<table>';
 			echo '<tr>';
 				echo '<td>';
-					echo '<b>' . $ticket->getString() . '</b>';
+					echo '<b>' . $ticket->toString() . '</b>';
 				echo '</td>';
 				echo '<td>';
 					echo 'Ble arrangert den ' . date("j. M o", $oldEvent->getStartTime());
@@ -122,7 +122,7 @@ class TicketPage {
 		echo '<table>';
 			echo '<tr>';
 				echo '<td width="23%">';
-					echo '<b>' . $ticket->getString() . '</b>';
+					echo '<b>' . $ticket->toString() . '</b>';
 				echo '</td>';
 				echo '<td>';
 					echo '<center><b>Overført til ' . $recipient->getDisplayName() . '</b></center>';
@@ -141,7 +141,7 @@ class TicketPage {
 		echo '<table>';
 			echo '<tr>';
 				echo '<td width="23%">';
-					echo '<b>' . $ticket->getString() . '</b>';
+					echo '<b>' . $ticket->toString() . '</b>';
 				echo '</td>';
 				echo '<td width="18%">';
 					echo '<input type="button" value="Overfør billetten" onclick="searchUser(\'Overfør billetten!\', function(user) { $.getJSON(\'../api/json/ticket/transferTicket.php?id=' . $ticket->getId() . '&target=\' + user, handleJson); })" />';
