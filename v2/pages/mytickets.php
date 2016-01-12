@@ -122,7 +122,7 @@ class TicketPage {
 		echo '<table>';
 			echo '<tr>';
 				echo '<td width="23%">';
-					echo '<b>' . $ticket->getString() . '</b>';
+					echo '<b>' . $ticket->toString() . '</b>';
 				echo '</td>';
 				echo '<td>';
 					echo '<center><b>Overført til ' . $recipient->getDisplayName() . '</b></center>';

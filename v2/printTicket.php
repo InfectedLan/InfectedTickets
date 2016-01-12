@@ -60,7 +60,7 @@ echo '<html>';
 		}
 
 		echo '<div id="total">';
-			echo '<h2>Billett: ' . $ticket->getString() . '</h2>';
+			echo '<h2>Billett: ' . $ticket->toString() . '</h2>';
 			echo '<table>';
 				echo '<tr><td width="100px"><b>Navn:</b></td><td>' . $ticket->getUser()->getFullName() . '</td></tr>';
 				echo '<tr><td>Født:</td><td>' . date('d.m.Y', $ticket->getUser()->getBirthdate()) .'</td></tr>';
