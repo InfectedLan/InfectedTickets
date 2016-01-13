@@ -19,12 +19,15 @@
  */
 
 require_once 'handlers/pagehandler.php';
+require_once 'session.php';
 
 class TicketPage {
 	public function render() {
 		if (!isset($_POST['ticketAmount'])) {
-			echo '<b>Du skal ikke være her. Trykk "Kjøp billetter" for å kjøpe billetter</b>';
-			return;
+		    $user = Session::getCurrentUser();
+		    echo '<b>Du skal ikke være her. Trykk "Kjøp billetter" for å kjøpe billetter</b>';
+		    SyslogHandler::log("User got to rules without ticket number", "tickets/index.php?page=rules", $user, SyslogHandler::SEVERITY_INFO);
+		    return;
 		}
 
 		echo '<h1>Før du kan kjøpe billetter, må du godta disse reglene.</h1>';
