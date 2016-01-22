@@ -64,9 +64,11 @@ class TicketPage {
 					if (!StoreSessionHandler::purchaseComplete($storeSession, $payment)) {
 						echo '<br />';
 						echo 'Det skjedde noe galt under registreringen av bilettene dine. Kontakt support.';
+						SyslogHandler::log("Completing purchase failed. Payment without ticket!", "pay", $user, SyslogHandler::SEVERITY_WARNING, array("price" => $paymentAmount, "storeSession" => $storeSession->getCode()));
 					} else {
 						echo '<br />';
 						echo 'Kjøpet ditt er registrert. Du kan nå plassere deg ved å trykke på "Plassreservering" oppe i menyen.';
+						SyslogHandler::log("Payment complete", "pay", $user, SyslogHandler::SEVERITY_INFO, array("price" => $paymentAmount, "storeSession" => $storeSession->getCode()));
 
 						NotificationManager::sendPurchaseCompleteNotification($user, $result);
 					}
