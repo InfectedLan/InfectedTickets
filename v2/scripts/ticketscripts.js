@@ -7,12 +7,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 3.0 of the License, or (at your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -27,54 +27,56 @@ $(document).ready(function() {
 		updateSearchField();
 	});
 });
+
 var updateKey = 0;
-function updateSearchField()
-{
+
+function updateSearchField() {
 	$.getJSON('../api/json/user/findUser.php?query=' + encodeURIComponent( $('#userSearchInput').val() ), function(data){
 		resetSelectedUser();
-		if(data.result == true)
-		{
+		if (data.result == true) {
 			$('#userSearchContent').html("");
 			var userLength = data.users.length;
-			if(userLength==0)
-			{
+
+			if (userLength==0) {
 				$('#userSearchContent').append("<i>Det er ingen brukere som fyller kravene! Har du stavet no feil?</i>");
-			}
-			else
-			{
-				for(var i = 0; i < userLength; i++)
-				{
+			} else {
+				for (var i = 0; i < userLength; i++) {
 					$('#userSearchContent').append("<b>" + data.users[i].firstname + ' "' + data.users[i].username + '" ' + data.users[i].lastname + '</b> <input type="button" value="Velg" onclick="setSelectedUser(\'' + data.users[i].id + '\', \'' + data.users[i].firstname + ' &quot;' + data.users[i].nickname + '&quot; ' + data.users[i].lastname + '\')" /><br />');
 				}
 			}
 		}
-  	});
+  });
 }
+
 function revertTransfer(revertId) {
-	$.getJSON('../api/json/ticket/revertTransfer.php?id=' + encodeURIComponent( revertId ), function(data){
+	$.getJSON('../api/json/ticket/revertTransfer.php?id=' + encodeURIComponent( revertId ), function(data) {
 		handleJson(data);
-  	});
+  });
 }
+
 var selectedUserId = 0;
 var acceptText = "hei";
 var acceptFunction = 0;
+
 function setSelectedUser(userId, displayname) {
 	selectedUserId = userId;
 	acceptFunction(userId);
 	//$("#userSelectedData").html('<b>Du har valgt ' + displayname + '. <input type="button" value="' + acceptText + '" onclick="acceptFunction(' + userId + ')" /></b>');
 }
+
 function resetSelectedUser() {
 	selectedUserId = 0;
 	$("#userSelectedData").html('');
 }
+
 function searchUser(acceptTextIn, onAccept) {
 	$("#fade").fadeIn(200);
 	$("#prompt").fadeIn(200);
 	acceptText = acceptTextIn;
 	acceptFunction = onAccept;
 }
-function closePrompt()
-{
+
+function closePrompt() {
 	$("#fade").fadeOut(200);
 	$("#prompt").fadeOut(200, function() {
 		resetSelectedUser();
@@ -82,14 +84,11 @@ function closePrompt()
 		$('#userSearchInput').val("");
 	});
 }
-function handleJson(data)
-{
-	if(data.result == true)
-	{
+
+function handleJson(data) {
+	if (data.result == true) {
 		location.reload();
-	}
-	else
-	{
+	} else {
 		error(data.message);
 	}
 }

@@ -70,7 +70,7 @@ class Site {
 				}
 
 				echo '<link rel="shortcut icon" href="images/favicon.ico">';
-				echo '<script src="../api/scripts/jquery-1.11.1.min.js"></script>';
+				echo '<script src="../api/scripts/jquery-1.11.3.min.js"></script>';
 				echo '<script src="../api/scripts/jquery.form.min.js"></script>';
 				echo '<script src="scripts/shared.js"></script>';
 				echo '<script>';
@@ -106,7 +106,7 @@ class Site {
 								echo '<span> Du er nå logget in som ' . $user->getFullName() . '</span>';
 								echo '<div style="clear:both";></div>';
 								echo '<input type="button" value="Logg ut" onClick="logout()">';
-								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=my-profile"\'>';
+								echo '<input type="button" value="Min profil" onClick=\'window.location="index.php?page=user-profile"\'>';
 							echo '</div>';
 						echo '</div>';
 
@@ -174,8 +174,8 @@ class Site {
 							echo '<div class="inner">';
 								echo '<img id="logo" src="images/logo.png" alt="Infected">';
 
-								$publicPages = array('activation',
-													 'reset-password');
+								$publicPages = ['activation',
+													 			'reset-password'];
 
 								if (isset($_GET['page']) && in_array($this->pageName, $publicPages)) {
 									echo '<ul id="ul1">';
@@ -308,7 +308,7 @@ class Site {
 									echo '<ul id="ul2">';
 										echo '<li>';
 											$event = EventHandler::getCurrentEvent();
-											$ticketText = count($event->getTicketCount()) > 1 ? 'billeter' : 'billett';
+											$ticketText = $event->getTicketCount() > 1 ? 'billetter' : 'billett';
 
 											echo '<p>';
 												echo '<b>Neste Lan er:</b><br>';
@@ -363,8 +363,8 @@ class Site {
 	}
 
 	private function viewPage($pageName) {
-		$directoryList = array('pages');
-		$includedPages = array();
+		$directoryList = ['pages'];
+		$includedPages = [];
 		$found = false;
 
 		foreach ($directoryList as $directory) {
@@ -374,7 +374,7 @@ class Site {
 				in_array($filePath, glob($directory . '/*.php'))) {
 				// Make sure we don't include pages with same name twice,
 				// and set the found varialbe so that we don't have to display the not found message.
-				array_push($includedPages, $pageName);
+				$includedPages[] = $pageName;
 				$found = true;
 
 				include_once $filePath;
