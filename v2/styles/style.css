@@ -318,3 +318,20 @@ hr {
     margin: 3px;
     vertical-align: middle;
 }
+
+#seatingBlockedOverlay {
+    position: absolute;
+    min-height: 1782px;
+    width: 880px;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 1;
+}
+
+.seatingBlockMessage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+}

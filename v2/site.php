@@ -306,11 +306,11 @@ class Site {
 										echo '</div>';
 									echo '</ul>';
 									echo '<ul id="ul2">';
-										echo '<li>';
+										echo '<div class="lanInfo">';
 											$event = EventHandler::getCurrentEvent();
 											$ticketText = $event->getTicketCount() > 1 ? 'billetter' : 'billett';
 
-											echo '<p>';
+											//echo '<p>';
 												echo '<b>Neste Lan er:</b><br>';
 												echo date('d', $event->getStartTime()) . '. - ' . date('d', $event->getEndTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getEndTime())) . ' i ' . $event->getLocation()->getTitle() . ', dørene åpner kl. ' . date('H:i', $event->getStartTime()) . '<br>';
 												echo 'Pris per billett: <i>' . $event->getTicketType()->getPrice() . ',-</i> (Inkluderer medlemskap i Radar)' . '<br>';
@@ -323,11 +323,17 @@ class Site {
 													}
 												} else {
 													$ticketSaleStartDate = date('Y-m-d', $event->getBookingTime()) == date('Y-m-d') ? 'i dag' : date('d', $event->getBookingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getBookingTime()));
+													$prioritySeatingStartDate = date('Y-m-d', $event->getPrioritySeatingTime()) == date('Y-m-d') ? 'i dag' : date('d', $event->getPrioritySeatingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getPrioritySeatingTime()));
+													$seatingStartDate = date('Y-m-d', $event->getSeatingTime()) == date('Y-m-d') ? 'i dag' : date('d', $event->getSeatingTime()) . '. ' . DateUtils::getMonthFromInt(date('m', $event->getSeatingTime()));
 
-													echo 'Billettsalget starter ' . $ticketSaleStartDate . ' kl. '  . date('H:i', $event->getBookingTime());
+													echo 'Billettsalget starter ' . $ticketSaleStartDate . ' kl. '  . date('H:i', $event->getBookingTime()) . '<br>';
+													/*echo 'Prioritetsseating(grupper på <b>' . Settings::prioritySeatingReq . '</b> eller mer) starter ' . $prioritySeatingStartDate . ' kl. '  . date('H:i', $event->getPrioritySeatingTime()) . '<br>';
+													echo 'Vanelig seating starter ' . $seatingStartDate . ' kl. '  . date('H:i', $event->getSeatingTime());
+													*/
+													echo 'Gruppe-seating starter ' . $prioritySeatingStartDate . ' kl. ' . date('H:i', $event->getPrioritySeatingTime()) . '<br> Seating for resten starter ' . $seatingStartDate . ' kl. ' . date('H:i', $event->getSeatingTime());
 												}
-											echo '</p>';
-										echo '</li>';
+												//echo '</p>';
+										echo '</div>';
 									echo '</ul>';
 								}
 							echo '</div>';
