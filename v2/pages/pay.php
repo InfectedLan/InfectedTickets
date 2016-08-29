@@ -68,7 +68,7 @@ class TicketPage {
 					} else {
 						echo '<br />';
 						echo 'Kjøpet ditt er registrert. Du kan nå plassere deg ved å trykke på "Plassreservering" oppe i menyen.';
-						SyslogHandler::log("Payment complete", "pay", $user, SyslogHandler::SEVERITY_INFO, array("price" => $paymentAmount, "storeSession" => $storeSession->getCode()));
+						SyslogHandler::log("Payment complete", "pay", $user, SyslogHandler::SEVERITY_INFO, array("price" => $paymentAmount, "storeSession" => $storeSession->getCode(), "ticketType" => $storeSession->getTicketType()->getId()));
 
 						NotificationManager::sendPurchaseCompleteNotification($user, $result);
 					}
