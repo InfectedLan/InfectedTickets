@@ -41,7 +41,7 @@ class TicketPage {
 		    echo '<div id="seatingBlockedOverlay">';
 		    	echo '<div class="seatingBlockMessage">';
 		    	echo '<h1>Seating er for øyeblikket kun åpent for grupper på ' . Settings::prioritySeatingReq . ' eller fler</h1>';
-			echo '<p>Du trenger å være sete-ansvarlig for <b>' . Settings::prioritySeatingReq . '</b> eller flere billetter å seate for å få tilgang på seating nå.<br>Om gruppen din er så mange, kan dere seate nå ved å sette en person som plassreserverer på alle bilettene. Dette kan gjøres <a href="index.php?page=mytickets">her</a>.<br><br>Vanelig seating starter om <b>' . round((($currentEvent->getSeatingTime() - time())/60), 0, PHP_ROUND_HALF_UP) . '</b> minutter.</p>';
+			echo '<p>Du trenger å være sete-ansvarlig for <b>' . Settings::prioritySeatingReq . '</b> eller flere billetter å seate for å få tilgang på seating nå.<br>Om gruppen din er så mange, kan dere seate nå ved å sette en person som plassreserverer på alle bilettene. Dette kan gjøres <a href="index.php?page=mytickets">her</a>.<br><br>Vanelig seating starter kl <b>' . /*round((($currentEvent->getSeatingTime() - time())/60), 0, PHP_ROUND_HALF_UP)*/date('H:i', $currentEvent->getSeatingTime()) . '</b>.</p>';
 		    	echo '</div>';
 		    echo '</div>';
 		} else if($currentEvent->getSeatingTime() > time()) {
