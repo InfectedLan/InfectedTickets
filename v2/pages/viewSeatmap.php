@@ -36,7 +36,7 @@ class TicketPage {
 				echo 'loadSeatableTickets();';
 			echo '});';
 		echo '</script>';
-		if($currentEvent->getPrioritySeatingTime() < time()  && !$user->isEligibleForPreSeating()) {
+		if($currentEvent->getPrioritySeatingTime() < time()  && !$user->isEligibleForPreSeating() && $currentEvent->getSeatingTime() > time()) {
 		    echo '<script>seatingBlockCountdown(' . ($currentEvent->getSeatingTime() - time()) . ');</script>';
 		    echo '<div id="seatingBlockedOverlay">';
 		    	echo '<div class="seatingBlockMessage">';
