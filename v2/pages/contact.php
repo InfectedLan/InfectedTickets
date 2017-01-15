@@ -22,15 +22,15 @@ class TicketPage {
 	public function render() {
 		//echo 'Dersom du vil kontakte infected, kan vi nås per e-post hos <a href="mail://kontakt@infected.no">kontakt@infected.no</a>';
 	}
-	
+
 	public function renderTutorial() {
 		echo '<br />';
 		echo '<p>';
-			echo '<b>Informasjonsansvarlig</b><br />';
-			echo 'Fredrik Warbo<br />';
-			echo '99 76 77 45<br />';
-			echo 'fredrik@warbo.org<br />';
-            echo 'Oppgaver: Info, presse, utvikling, web, Core-Chief<br />';
+			echo '<b>Informasjons- og billettansvarlig</b><br />';
+			echo 'Jens Andreas Schanche<br />';
+			echo 'Telefon: 48 05 96 67<br />';
+			echo 'ja.schanche@gmail.com<br />';
+            echo 'Oppgaver: Informasjon og billettsalg.<br />';
 		echo '</p>';
 	}
 }
