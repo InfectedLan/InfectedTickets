@@ -36,6 +36,7 @@ class Site {
 
 	// Execute the site.
 	public function execute() {
+		$start = explode(' ', microtime())[0] + explode(' ', microtime())[1];
 		echo '<!DOCTYPE html>';
 		echo '<html>';
 			echo '<head>';
@@ -346,6 +347,7 @@ class Site {
 					echo '</div>';
 				}
 			echo '</body>';
+			echo('<!-- Page generated in '.round((explode(' ', microtime())[0] + explode(' ', microtime())[1]) - $start, 4).' seconds.-->');
 		echo '</html>';
 	}
 
