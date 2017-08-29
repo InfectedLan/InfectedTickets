@@ -27,9 +27,9 @@ class TicketPage {
 		echo '<br />';
 		echo '<p>';
 			echo '<b>Informasjons- og billettansvarlig</b><br />';
-			echo 'Jens Andreas Schanche<br />';
-			echo 'Telefon: 48 05 96 67<br />';
-			echo 'ja.schanche@gmail.com<br />';
+			echo 'Jonas Nicolaysen<br />';
+			echo 'Telefon: 45 44 65 51<br />';
+			echo 'nicolaysen89@gmail.com<br />';
             echo 'Oppgaver: Informasjon og billettsalg.<br />';
 		echo '</p>';
 	}
