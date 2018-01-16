@@ -346,3 +346,17 @@ hr {
     margin-left: 5px;
     top: -9px;
 }
+
+.seatExplanation {
+	position: absolute;
+	top: 910px;
+	left: 20px;
+	border: 1px solid black;
+	padding: 3px;
+}
+
+.explanationBox {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}

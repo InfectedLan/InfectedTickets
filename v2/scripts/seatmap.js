@@ -75,6 +75,8 @@ var addHandlersCallback = function() {
 			}
 		}
 	}
+	$("#seatmapCanvas").append('<div class="seatExplanation"><span class="explanationBox free"></span> Ledig <span class="explanationBox taken"></span> Opptatt <span class="explanationBox current"></span> Min billett <span class="explanationBox friend"></span> Venn</div>');
+
 };
 
 function handleCustomRender() {
@@ -92,6 +94,7 @@ function handleCustomRender() {
 
 		return "taken";
 	}, addHandlersCallback);
+	
 }
 
 function handleCustomDownloadAndRender() {
@@ -100,10 +103,15 @@ function handleCustomDownloadAndRender() {
 			return "free";
 		}
 
+		if(takenData.isFriend) {
+			return "friend";
+		}
+
 		if (takenData.id == seatingTicketId) {
 			return "current";
 		}
 
 		return "taken";
 	}, addHandlersCallback);
+
 }
