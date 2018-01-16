@@ -125,6 +125,9 @@ class Site {
 							$underlined = ' style="border-left:0px; text-decoration:underline;"';
 							echo '<a href="index.php?page=buytickets"><h1' . ($pageString == 'buytickets' ? $underlined : '') . '>Kjøp billetter</h1></a>';
 							echo '<a href="index.php?page=mytickets"><h1' . ($pageString == 'mytickets' ? $underlined : '') . '>Mine billetter</h1></a>';
+							//Show a small bubble if the user has an incoming friend request
+							$friendList = $user->getPendingFriendsTo();
+							echo '<a href="index.php?page=friends"><h1' . ($pageString == 'friends' ? $underlined : '') . '>Venner' . (count($friendList)==0?'':'<span class="friendBubble">' . count($friendList) . '</span>') . '</h1></a>';
 							/*echo '<a href="index.php?page=friends"><h1' . ($pageString == 'friends' ? $underlined : '') . '>Venner</h1></a>';*/
 							echo '<a href="index.php?page=viewSeatmap"><h1' . ($pageString == 'viewSeatmap' ? $underlined : '') . '>Plassreservering</h1></a>';
 							echo '<a href="index.php?page=contact"><h1' . ($pageString == 'contact' ? $underlined : '') . '>Kontakt</h1></a>';

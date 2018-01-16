@@ -82,6 +82,9 @@ function handleCustomRender() {
 		if (!taken) {
 			return "free";
 		}
+		if(takenData.isFriend) {
+			return "friend";
+		}
 
 		if (takenData.id == seatingTicketId) {
 			return "current";

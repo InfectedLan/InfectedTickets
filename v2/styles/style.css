@@ -335,3 +335,14 @@ hr {
     transform: translate(-50%, -50%);
     max-width: 400px;
 }
+
+.friendBubble {
+	display: relative;
+	background-color: #FF0000;
+	width: 16px;
+	height: 16px;
+	-moz-border-radius: 8px;
+    border-radius: 8px;
+    margin-left: 5px;
+    top: -9px;
+}

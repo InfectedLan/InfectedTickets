@@ -28,42 +28,71 @@ class TicketPage {
 		if (Session::isAuthenticated()) {
 			$user = Session::getCurrentUser();
 
-			$ticketList = $user->getTickets();
+			$pendingFriends = $user->getPendingFriendsTo();
 
-			if (!empty($ticketList)) {
-				echo '<h3>Årets arrangement</h3>';
+
+
+			if (!empty($pendingFriends)) {
+				echo '<h3>Venneforespørsler</h3>';
 				echo '<hr>';
 
-				foreach ($ticketList as $ticket) {
-					if ($ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
-						self::printTicket($ticket);
-						echo '<hr>';
-					}
-				}
-			}
-
-			$revertableTicketList = TicketTransferHandler::getRevertableTransfers(Session::getCurrentUser());
-
-			if (!empty($revertableTicketList)) {
-				foreach ($revertableTicketList as $ticket) {
-					self::printRevertableTicket($ticket);
+				foreach ($pendingFriends as $friend) {
+					echo '<table>';
+						echo '<tr>';
+							echo '<td>';
+								echo $friend->getDisplayName();
+							echo '</td>';
+							echo '<td width="15%">';
+								echo '<input type="button" value="Godta" onclick="$.post(\'../api/rest/user/friend/accept.php\', {friendId: ' . $friend->getId() . '}, handleJson);" /><br />';
+							echo '</td>';
+							echo '<td width="15%">';
+								echo '<input type="button" value="Avslå" onclick="$.post(\'../api/rest/user/friend/reject.php\', {friendId: ' . $friend->getId() . '}, handleJson);" /><br />';
+							echo '</td>';
+						echo '</tr>';
+					echo '</table>';
 					echo '<hr>';
 				}
 			}
 
-			echo '<h3>Tidligere arrangementer</h3>';
-			echo '<hr>';
+			$myPendingFriends = $user->getPendingFriendsFrom();
 
-			$previousTicketList = $user->getTicketsByAllEvents();
+			if (!empty($myPendingFriends)) {
+				echo '<h3>Utgående venneforespørsler</h3>';
+				echo '<hr>';
 
-			if (!empty($previousTicketList)) {
-				foreach ($previousTicketList as $ticket) {
-					if (!$ticket->getEvent()->equals(EventHandler::getCurrentEvent())) {
-						self::printOldTicket($ticket);
-						echo '<hr>';
-					}
+				foreach ($myPendingFriends as $friend) {
+					echo '<table>';
+						echo '<tr>';
+							echo '<td>';
+								echo $friend->getDisplayName();
+							echo '</td>';
+						echo '</tr>';
+					echo '</table>';
+					echo '<hr>';
 				}
 			}
+
+			echo '<br /><input type="button" value="Legg til ny venn" onclick="searchUser(\'Søk etter person å legge til\', function(user) { $.post(\'../api/rest/user/friend/create.php\', {friendId: user}, handleJson); })" /><br />';
+
+			echo '<h3>Venner</h3>';
+			echo '<hr>';
+
+			$friendList = $user->getFriends();
+
+			foreach ($friendList as $friend) {
+				echo '<table>';
+					echo '<tr>';
+						echo '<td>';
+							echo $friend->getDisplayName();
+						echo '</td>';
+						echo '<td width="15%">';
+							echo '<input type="button" value="Fjern vennskap" onclick="$.post(\'../api/rest/user/friend/delete.php\', {friendId: ' . $friend->getId() . '}, handleJson);" /><br />';
+						echo '</td>';
+					echo '</tr>';
+				echo '</table>';
+				echo '<hr>';
+			}
+
 		} else {
 			echo '<p>Du er ikke logget inn.</p>';
 		}
@@ -71,9 +100,7 @@ class TicketPage {
 
 	public function renderTutorial() {
 		echo '<h1>Venner</h1>';
-		echo '<p>Her kan du legge til folk du kjenner. Ved å gjøre dette, kan du enkelt se hvor de sitter i salen, samt få dem opp først under overføringer</p>';
-		echo '<p>Ønsker du at en annen skal velge plass for deg? Trykk på #Endre plassreserverer# <br> Dette gjør det enklere og komme sammen i en gruppe.</p>';
-		echo '<p>Alle må ha med billett når de kommer på Infected, Du kan selv velge om du ønsker og skrive den ut eller bare ha den på mobilen din.</p>';
+		echo '<p>Her kan du legge til folk du kjenner. Ved å gjøre dette, kan du enkelt se hvor de sitter i salen, samt at du finner dem lettere ved søk</p>';
 	}
 }
 ?>

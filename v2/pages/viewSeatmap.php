@@ -36,6 +36,15 @@ class TicketPage {
 				echo 'loadSeatableTickets();';
 			echo '});';
 		echo '</script>';
+		
+		$pendingFrom = $user->getPendingFriendsFrom();
+		$friendList = $user->getFriends();
+
+		if(count($pendingFrom)==0 && count($friendList)==0) {
+			echo '<div class="info" style="margin: 5px 0px 5px 0px;"><b>Visste du:</b>Du kan legge til brukere som venner for å se dem i en annen farge på seatmappet</div>';
+		}
+
+
 		if($currentEvent->getPrioritySeatingTime() < time()  && !$user->isEligibleForPreSeating() && $currentEvent->getSeatingTime() > time()) {
 		    echo '<script>seatingBlockCountdown(' . ($currentEvent->getSeatingTime() - time()) . ');</script>';
 		    echo '<div id="seatingBlockedOverlay">';
