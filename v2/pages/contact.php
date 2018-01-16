@@ -27,9 +27,9 @@ class TicketPage {
 		echo '<br />';
 		echo '<p>';
 			echo '<b>Informasjons- og billettansvarlig</b><br />';
-			echo 'Jonas Nicolaysen<br />';
-			echo 'Telefon: 45 44 65 51<br />';
-			echo 'Nicolaysen89@gmail.com<br />';
+			echo 'Erling Francke-Enersen<br />';
+			echo 'Telefon: 95 01 83 05<br />';
+			echo 'erling@nortiktak.no<br />';
             echo 'Oppgaver: Informasjon og billettsalg.<br />';
 		echo '</p>';
 	}
