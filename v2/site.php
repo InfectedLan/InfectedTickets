@@ -17,6 +17,8 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
+//Maintenance trap
+require_once 'SiteMaintenanceTrap.php';
 
 require_once 'session.php';
 require_once 'settings.php';

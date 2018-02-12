@@ -80,7 +80,7 @@ echo '<html>';
 					echo '<tr><td colspan="2"><b>Innsjekking: ' . $entrance->getTitle() . '</b></td></tr>';
 				}
 				
-				echo '<div id="inputdata"><img src="' . "" . '../api/content/qrcache/' . $ticket->getQrImagePath() . '" width="200px"/></div>';
+				echo '<div id="inputdata"><img src="' . "" . '../api/content/qrcache/' . $ticket->getQrImagePath() . '" width="350px"/></div>';
 			echo '</table>';
 		echo '</div>';
 		echo '<div id="tekstprint">Denne billetten skal vises ved innsjekking på Radar. Husk å ta med gyldig legitimasjon. De under 14 må ha med
